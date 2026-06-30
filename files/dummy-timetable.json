@@ -1,0 +1,50 @@
+{
+  "_comment": "DUMMY DATA — replace with the real department timetable when it arrives. Keep the exact same shape (array of these objects) so room-status-engine.ts doesn't need any changes. roomId MUST match an id in config/campus-structure.ts. dayOfWeek: 0=Sunday ... 6=Saturday. Times are 24h 'HH:MM'.",
+
+  "entries": [
+    {
+      "entryId": "TT-001",
+      "roomId": "MAIN-G-01",
+      "subject": "Data Structures",
+      "facultyName": "Dr. Mehta",
+      "dayOfWeek": 1,
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "semester": 5,
+      "batch": "A"
+    },
+    {
+      "entryId": "TT-002",
+      "roomId": "MAIN-G-02",
+      "subject": "Operating Systems",
+      "facultyName": "Prof. Shah",
+      "dayOfWeek": 1,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "semester": 5,
+      "batch": "B"
+    },
+    {
+      "entryId": "TT-003",
+      "roomId": "MAIN-G-03",
+      "subject": "DBMS Lab",
+      "facultyName": "Dr. Patel",
+      "dayOfWeek": 1,
+      "startTime": "11:00",
+      "endTime": "13:00",
+      "semester": 5,
+      "batch": "A"
+    },
+    {
+      "entryId": "TT-004",
+      "roomId": "MAIN-G-04",
+      "subject": "Computer Networks",
+      "facultyName": "Prof. Joshi",
+      "dayOfWeek": 1,
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "semester": 5,
+      "batch": "A"
+    }
+  ]
+}
