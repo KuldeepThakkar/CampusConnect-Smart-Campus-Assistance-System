@@ -1,22 +1,81 @@
 const dijkstraService = require("./dijkstra.service");
 const nearestCheckpointService = require("./nearestCheckpoint.service");
+const classroomService = require("./classroom.service");
 
 function navigate(data) {
 
-    const { latitude, longitude, destination } = data;
+    const { latitude, longitude, classroom } = data;
 
-    const nearestCheckpoint =
-        nearestCheckpointService.findNearestCheckpoint(
-            latitude,
-            longitude
-        );
-
-    const result = dijkstraService.findShortestPath(
-        nearestCheckpoint.checkpointId,
-        destination
+    // Find nearest checkpoint to the user
+    const nearestCheckpoint = nearestCheckpointService.findNearestCheckpoint(
+        latitude,
+        longitude
     );
 
-    return result;
+    // Find the building containing the classroom
+    const building = classroomService.findBuildingByClassroom(classroom);
+
+    if (!building) {
+
+        return {
+
+            success: false,
+
+            message: "Classroom not found"
+
+        };
+
+    }
+
+    // Variable to store the best route
+    let bestRoute = null;
+
+    // Check every entrance of the building
+    building.entrances.forEach((entrance) => {
+
+        const route = dijkstraService.findShortestPath(
+
+            nearestCheckpoint.checkpointId,
+
+            entrance
+
+        );
+
+        // Ignore invalid routes
+        if (!route.success)
+            return;
+
+        // First route
+        if (bestRoute === null) {
+
+            bestRoute = route;
+
+            return;
+
+        }
+
+        // Replace if current route is shorter
+        if (route.distance < bestRoute.distance) {
+
+            bestRoute = route;
+
+        }
+
+    });
+
+    if (!bestRoute) {
+
+        return {
+
+            success: false,
+
+            message: "No route found"
+
+        };
+
+    }
+
+    return bestRoute;
 
 }
 

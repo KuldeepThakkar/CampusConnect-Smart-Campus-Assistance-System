@@ -1195,6 +1195,10 @@
     {
       "id": "B1",
       "name": "Girls Hostel",
+	"entrances": [
+        "CP95"
+    ],
+    "classrooms": [],
       "center": {
         "lat": 23.066491442601205,
         "lng": 72.44006708264352
@@ -1269,6 +1273,10 @@
     {
       "id": "B2",
       "name": "Canteen",
+	"entrances": [
+        "CP112"
+    ],
+    "classrooms": [],
       "center": {
         "lat": 23.065735294128295,
         "lng": 72.44045197963716
@@ -1319,6 +1327,10 @@
     {
       "id": "B3",
       "name": "Boys Hostel",
+	"entrances": [
+        "CP81"
+    ],
+    "classrooms": [],
       "center": {
         "lat": 23.065851246414127,
         "lng": 72.44042515754701
@@ -1381,6 +1393,16 @@
     {
       "id": "B4",
       "name": "Bhanwar Building",
+	"entrances": [
+        "CP124",
+        "CP91"
+    ],
+    "classrooms": [
+        "LH-10",
+        "LH-20",
+        "LH-30",
+        "LH-40"
+    ],
       "center": {
         "lat": 23.065044666387983,
         "lng": 72.44023874402048
@@ -1455,6 +1477,17 @@
     {
       "id": "B5",
       "name": "Main Building",
+      "entrances": [
+            "CP167",
+            "CP168",
+            "CP169"
+      ],
+      "classrooms": [
+            "LH-50",
+            "LH-60",
+            "LH-70",
+            "LH-80"
+      ],
       "center": {
         "lat": 23.064235459850135,
         "lng": 72.4397572875023
@@ -1569,6 +1602,10 @@
     {
       "id": "B6",
       "name": "Workshop Lab",
+      "entrances": [
+            "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.06401218770877,
         "lng": 72.44070008397104
@@ -1603,6 +1640,10 @@
     {
       "id": "B7",
       "name": "Tea Post",
+      "entrances": [
+            "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.064356348400562,
         "lng": 72.44063705205919
@@ -1629,6 +1670,10 @@
     {
       "id": "B8",
       "name": "Food Shop",
+      "entrances": [
+            "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.063853059533084,
         "lng": 72.43975862860681
@@ -1655,6 +1700,10 @@
     {
       "id": "B9",
       "name": "Unknown-1",
+      "entrances": [
+            "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.064076332487904,
         "lng": 72.43998393416406
@@ -1681,6 +1730,10 @@
     {
       "id": "B10",
       "name": "Unknown-2",
+      "entrances": [
+            "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.064242861600636,
         "lng": 72.44039699435235
@@ -1707,6 +1760,10 @@
     {
       "id": "B11",
       "name": "Unknown-3",
+      "entrances": [
+            "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.063870329281453,
         "lng": 72.44034469127656
@@ -1733,6 +1790,10 @@
     {
       "id": "B12",
       "name": "Automobile Unknown",
+      "entrances": [
+            "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.064279868323943,
         "lng": 72.44080603122713
@@ -1771,6 +1832,10 @@
     {
       "id": "B13",
       "name": "Unknown-4",
+      "entrances": [
+            "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.06442542712246,
         "lng": 72.44084358215333
@@ -1797,6 +1862,10 @@
     {
       "id": "B14",
       "name": "Unknown-5",
+      "entrances": [
+            "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.064551248965977,
         "lng": 72.44083553552629
@@ -1823,6 +1892,10 @@
     {
       "id": "B15",
       "name": "Unknown-6",
+      "entrances": [
+                "CP133"
+      ],
+      "classrooms": [],
       "center": {
         "lat": 23.06345652200246,
         "lng": 72.4401877820492
