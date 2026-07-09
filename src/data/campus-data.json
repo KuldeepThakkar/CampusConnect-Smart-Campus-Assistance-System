@@ -1,0 +1,3064 @@
+{
+  "checkpoints": [
+    {
+      "id": "CP1",
+      "name": "Node-1",
+      "type": "Entrance",
+      "latitude": 23.068269094258692,
+      "longitude": 72.43918329477312
+    },
+    {
+      "id": "CP2",
+      "name": "Node-2",
+      "type": "Entrance",
+      "latitude": 23.06810873747674,
+      "longitude": 72.4390733242035
+    },
+    {
+      "id": "CP3",
+      "name": "Node-3",
+      "type": "Entrance",
+      "latitude": 23.067938512375953,
+      "longitude": 72.43901431560518
+    },
+    {
+      "id": "CP4",
+      "name": "Node-4",
+      "type": "Entrance",
+      "latitude": 23.067770754094923,
+      "longitude": 72.43893384933473
+    },
+    {
+      "id": "CP5",
+      "name": "Node-5",
+      "type": "Entrance",
+      "latitude": 23.06761779783284,
+      "longitude": 72.43887215852739
+    },
+    {
+      "id": "CP6",
+      "name": "Node-6",
+      "type": "Entrance",
+      "latitude": 23.067479643640194,
+      "longitude": 72.43881046772005
+    },
+    {
+      "id": "CP7",
+      "name": "Node-7",
+      "type": "Entrance",
+      "latitude": 23.067363692690442,
+      "longitude": 72.4387836456299
+    },
+    {
+      "id": "CP8",
+      "name": "Node-8",
+      "type": "Entrance",
+      "latitude": 23.067171263234144,
+      "longitude": 72.43872463703157
+    },
+    {
+      "id": "CP9",
+      "name": "Node-9",
+      "type": "Entrance",
+      "latitude": 23.066993635799452,
+      "longitude": 72.43867903947832
+    },
+    {
+      "id": "CP10",
+      "name": "Node-10",
+      "type": "Entrance",
+      "latitude": 23.06685301391399,
+      "longitude": 72.43864417076112
+    },
+    {
+      "id": "CP11",
+      "name": "Node-11",
+      "type": "Entrance",
+      "latitude": 23.06671485893604,
+      "longitude": 72.43860661983491
+    },
+    {
+      "id": "CP12",
+      "name": "Node-12",
+      "type": "Entrance",
+      "latitude": 23.066603841440223,
+      "longitude": 72.43858247995378
+    },
+    {
+      "id": "CP13",
+      "name": "Node-13",
+      "type": "Entrance",
+      "latitude": 23.066495290911302,
+      "longitude": 72.43856102228166
+    },
+    {
+      "id": "CP14",
+      "name": "Node-14",
+      "type": "Entrance",
+      "latitude": 23.0663867402948,
+      "longitude": 72.43852615356447
+    },
+    {
+      "id": "CP15",
+      "name": "Node-15",
+      "type": "Entrance",
+      "latitude": 23.066278189590744,
+      "longitude": 72.43850737810136
+    },
+    {
+      "id": "CP16",
+      "name": "Node-16",
+      "type": "Entrance",
+      "latitude": 23.066140034022528,
+      "longitude": 72.43848592042924
+    },
+    {
+      "id": "CP17",
+      "name": "Node-17",
+      "type": "Entrance",
+      "latitude": 23.065984608838736,
+      "longitude": 72.43846446275712
+    },
+    {
+      "id": "CP18",
+      "name": "Node-18",
+      "type": "Entrance",
+      "latitude": 23.06572309939414,
+      "longitude": 72.43842691183092
+    },
+    {
+      "id": "CP19",
+      "name": "Node-19",
+      "type": "Entrance",
+      "latitude": 23.06543198450895,
+      "longitude": 72.43840813636781
+    },
+    {
+      "id": "CP20",
+      "name": "Node-20",
+      "type": "Entrance",
+      "latitude": 23.06515567149292,
+      "longitude": 72.43850737810136
+    },
+    {
+      "id": "CP21",
+      "name": "Node-21",
+      "type": "Entrance",
+      "latitude": 23.06496570596526,
+      "longitude": 72.43861198425294
+    },
+    {
+      "id": "CP22",
+      "name": "Node-22",
+      "type": "Entrance",
+      "latitude": 23.06478807561881,
+      "longitude": 72.43869245052339
+    },
+    {
+      "id": "CP23",
+      "name": "Node-23",
+      "type": "Entrance",
+      "latitude": 23.06464498433588,
+      "longitude": 72.43875682353975
+    },
+    {
+      "id": "CP24",
+      "name": "Node-24",
+      "type": "Entrance",
+      "latitude": 23.064484623234534,
+      "longitude": 72.4388372898102
+    },
+    {
+      "id": "CP25",
+      "name": "Gate",
+      "type": "Gate",
+      "latitude": 23.064504359995777,
+      "longitude": 72.43899285793306
+    },
+    {
+      "id": "CP26",
+      "name": "Node-25",
+      "type": "Entrance",
+      "latitude": 23.064302058055763,
+      "longitude": 72.43892312049867
+    },
+    {
+      "id": "CP27",
+      "name": "Node-26",
+      "type": "Entrance",
+      "latitude": 23.064107157118556,
+      "longitude": 72.43901163339616
+    },
+    {
+      "id": "CP28",
+      "name": "Node-27",
+      "type": "Entrance",
+      "latitude": 23.06387278219994,
+      "longitude": 72.43910014629365
+    },
+    {
+      "id": "CP29",
+      "name": "Node-28",
+      "type": "Entrance",
+      "latitude": 23.06361620287364,
+      "longitude": 72.43915379047395
+    },
+    {
+      "id": "CP30",
+      "name": "Car Parking",
+      "type": "Parking",
+      "latitude": 23.063512584160872,
+      "longitude": 72.43926644325258
+    },
+    {
+      "id": "CP31",
+      "name": "Node-29",
+      "type": "Entrance",
+      "latitude": 23.063332484779774,
+      "longitude": 72.43918865919115
+    },
+    {
+      "id": "CP32",
+      "name": "Parking-N-1",
+      "type": "Parking",
+      "latitude": 23.064709194042713,
+      "longitude": 72.43902772665025
+    },
+    {
+      "id": "CP33",
+      "name": "Parking-N-2",
+      "type": "Parking",
+      "latitude": 23.064800476386864,
+      "longitude": 72.43888825178148
+    },
+    {
+      "id": "CP34",
+      "name": "Parking-N-3",
+      "type": "Parking",
+      "latitude": 23.065005244663364,
+      "longitude": 72.43881046772005
+    },
+    {
+      "id": "CP35",
+      "name": "Parking-N-4",
+      "type": "Parking",
+      "latitude": 23.065271689665032,
+      "longitude": 72.43869781494142
+    },
+    {
+      "id": "CP36",
+      "name": "Parking-N-5",
+      "type": "Parking",
+      "latitude": 23.06548632553269,
+      "longitude": 72.43863612413408
+    },
+    {
+      "id": "CP37",
+      "name": "Parking-N-6",
+      "type": "Parking",
+      "latitude": 23.065693559838635,
+      "longitude": 72.43866831064226
+    },
+    {
+      "id": "CP38",
+      "name": "Parking-N-7",
+      "type": "Parking",
+      "latitude": 23.064864620699776,
+      "longitude": 72.43902236223222
+    },
+    {
+      "id": "CP39",
+      "name": "Parking-N-8",
+      "type": "Parking",
+      "latitude": 23.065064454709326,
+      "longitude": 72.43897944688798
+    },
+    {
+      "id": "CP40",
+      "name": "Parking-N-9",
+      "type": "Parking",
+      "latitude": 23.065133533063364,
+      "longitude": 72.43886947631837
+    },
+    {
+      "id": "CP41",
+      "name": "Parking-N-10",
+      "type": "Parking",
+      "latitude": 23.065330899593757,
+      "longitude": 72.43881046772005
+    },
+    {
+      "id": "CP42",
+      "name": "Parking-N-11",
+      "type": "Parking",
+      "latitude": 23.06550852922359,
+      "longitude": 72.43875682353975
+    },
+    {
+      "id": "CP43",
+      "name": "Parking-N-12",
+      "type": "Parking",
+      "latitude": 23.0656614878836,
+      "longitude": 72.43881851434709
+    },
+    {
+      "id": "CP44",
+      "name": "Parking-N-13",
+      "type": "Parking",
+      "latitude": 23.065362971627597,
+      "longitude": 72.438982129097
+    },
+    {
+      "id": "CP45",
+      "name": "Parking-N-14",
+      "type": "Parking",
+      "latitude": 23.065387642417665,
+      "longitude": 72.43913769721986
+    },
+    {
+      "id": "CP46",
+      "name": "Parking-N-15",
+      "type": "Parking",
+      "latitude": 23.06535803746904,
+      "longitude": 72.43927180767061
+    },
+    {
+      "id": "CP47",
+      "name": "Parking-N-16",
+      "type": "Parking",
+      "latitude": 23.065510996300137,
+      "longitude": 72.4393254518509
+    },
+    {
+      "id": "CP48",
+      "name": "Parking-N-17",
+      "type": "Parking",
+      "latitude": 23.06558254150015,
+      "longitude": 72.43915915489198
+    },
+    {
+      "id": "CP49",
+      "name": "Parking-N-18",
+      "type": "Parking",
+      "latitude": 23.065585008575336,
+      "longitude": 72.43901968002321
+    },
+    {
+      "id": "CP50",
+      "name": "Parking-N-19",
+      "type": "Parking",
+      "latitude": 23.06558994272556,
+      "longitude": 72.4389097094536
+    },
+    {
+      "id": "CP51",
+      "name": "Parking-N-20",
+      "type": "Parking",
+      "latitude": 23.06551839752948,
+      "longitude": 72.4390545487404
+    },
+    {
+      "id": "CP52",
+      "name": "Parking-N-21",
+      "type": "Parking",
+      "latitude": 23.064741266224726,
+      "longitude": 72.43922621011735
+    },
+    {
+      "id": "CP53",
+      "name": "Parking-N-22",
+      "type": "Parking",
+      "latitude": 23.064946034591337,
+      "longitude": 72.4393066763878
+    },
+    {
+      "id": "CP54",
+      "name": "Parking-N-23",
+      "type": "Parking",
+      "latitude": 23.065128598896386,
+      "longitude": 72.4393790960312
+    },
+    {
+      "id": "CP55",
+      "name": "Parking-N-24",
+      "type": "Parking",
+      "latitude": 23.065089125554124,
+      "longitude": 72.43953734636308
+    },
+    {
+      "id": "CP56",
+      "name": "Parking-N-25",
+      "type": "Parking",
+      "latitude": 23.06488929158119,
+      "longitude": 72.43944615125658
+    },
+    {
+      "id": "CP57",
+      "name": "Parking-N-26",
+      "type": "Parking",
+      "latitude": 23.06473139786184,
+      "longitude": 72.43938982486726
+    },
+    {
+      "id": "CP58",
+      "name": "Parking-N-27",
+      "type": "Parking",
+      "latitude": 23.063527452159363,
+      "longitude": 72.4393603205681
+    },
+    {
+      "id": "CP59",
+      "name": "Parking-N-28",
+      "type": "Parking",
+      "latitude": 23.06368534729144,
+      "longitude": 72.43938982486726
+    },
+    {
+      "id": "CP60",
+      "name": "Parking-N-29",
+      "type": "Parking",
+      "latitude": 23.063690281511327,
+      "longitude": 72.43957221508028
+    },
+    {
+      "id": "CP61",
+      "name": "Parking-N-30",
+      "type": "Parking",
+      "latitude": 23.063668077520386,
+      "longitude": 72.43982166051866
+    },
+    {
+      "id": "CP62",
+      "name": "Parking-N-31",
+      "type": "Parking",
+      "latitude": 23.063586662855606,
+      "longitude": 72.43952929973604
+    },
+    {
+      "id": "CP63",
+      "name": "Parking-N-32",
+      "type": "Parking",
+      "latitude": 23.06356692595975,
+      "longitude": 72.43971168994905
+    },
+    {
+      "id": "CP64",
+      "name": "Parking-N-33",
+      "type": "Parking",
+      "latitude": 23.06353238638504,
+      "longitude": 72.4399557709694
+    },
+    {
+      "id": "CP65",
+      "name": "Parking-N-34",
+      "type": "Parking",
+      "latitude": 23.0634435702951,
+      "longitude": 72.43948906660081
+    },
+    {
+      "id": "CP66",
+      "name": "Parking-N-35",
+      "type": "Parking",
+      "latitude": 23.063441103180637,
+      "longitude": 72.43967682123186
+    },
+    {
+      "id": "CP67",
+      "name": "Parking-N-36",
+      "type": "Parking",
+      "latitude": 23.06341396491875,
+      "longitude": 72.43991553783418
+    },
+    {
+      "id": "CP68",
+      "name": "Parking-N-37",
+      "type": "Parking",
+      "latitude": 23.06333008298373,
+      "longitude": 72.43955075740816
+    },
+    {
+      "id": "CP69",
+      "name": "Parking-N-38",
+      "type": "Parking",
+      "latitude": 23.06328567487933,
+      "longitude": 72.43980824947359
+    },
+    {
+      "id": "CP70",
+      "name": "Navigating-N-1",
+      "type": "Entrance",
+      "latitude": 23.06457855387426,
+      "longitude": 72.43916988372804
+    },
+    {
+      "id": "CP71",
+      "name": "Navigating-N-2",
+      "type": "Entrance",
+      "latitude": 23.064583488061405,
+      "longitude": 72.439341545105
+    },
+    {
+      "id": "CP72",
+      "name": "Navigating-N-3",
+      "type": "Entrance",
+      "latitude": 23.06457855387426,
+      "longitude": 72.4394676089287
+    },
+    {
+      "id": "CP73",
+      "name": "Navigating-N-4",
+      "type": "Entrance",
+      "latitude": 23.064758651587617,
+      "longitude": 72.43954271078111
+    },
+    {
+      "id": "CP74",
+      "name": "Navigating-N-5",
+      "type": "Entrance",
+      "latitude": 23.0648943414864,
+      "longitude": 72.43963658809663
+    },
+    {
+      "id": "CP75",
+      "name": "Navigating-N-6",
+      "type": "Entrance",
+      "latitude": 23.065099109620057,
+      "longitude": 72.43969023227693
+    },
+    {
+      "id": "CP76",
+      "name": "Navigating-N-7",
+      "type": "Entrance",
+      "latitude": 23.065286607878768,
+      "longitude": 72.43976265192033
+    },
+    {
+      "id": "CP77",
+      "name": "Navigating-N-8",
+      "type": "Entrance",
+      "latitude": 23.065491375415473,
+      "longitude": 72.43985116481782
+    },
+    {
+      "id": "CP78",
+      "name": "Navigating-N-9",
+      "type": "Entrance",
+      "latitude": 23.06571341215131,
+      "longitude": 72.43994772434236
+    },
+    {
+      "id": "CP79",
+      "name": "Navigating-N-10",
+      "type": "Entrance",
+      "latitude": 23.065873771788215,
+      "longitude": 72.44006305933
+    },
+    {
+      "id": "CP80",
+      "name": "Navigating-N-11",
+      "type": "Entrance",
+      "latitude": 23.065905843692644,
+      "longitude": 72.44021862745286
+    },
+    {
+      "id": "CP81",
+      "name": "Boys Hostel Gate",
+      "type": "Gate",
+      "latitude": 23.06587130471832,
+      "longitude": 72.4403500556946
+    },
+    {
+      "id": "CP82",
+      "name": "Navigating-N-12",
+      "type": "Entrance",
+      "latitude": 23.065787424315165,
+      "longitude": 72.4401354789734
+    },
+    {
+      "id": "CP83",
+      "name": "Navigating-N-13",
+      "type": "Entrance",
+      "latitude": 23.065678873127574,
+      "longitude": 72.44019180536272
+    },
+    {
+      "id": "CP84",
+      "name": "Navigating-N-14",
+      "type": "Entrance",
+      "latitude": 23.065607327978796,
+      "longitude": 72.44027763605119
+    },
+    {
+      "id": "CP85",
+      "name": "Canteen Gate",
+      "type": "Gate",
+      "latitude": 23.065619663351974,
+      "longitude": 72.44037151336671
+    },
+    {
+      "id": "CP86",
+      "name": "Navigating-N-15",
+      "type": "Entrance",
+      "latitude": 23.065538249867995,
+      "longitude": 72.4403876066208
+    },
+    {
+      "id": "CP87",
+      "name": "Navigating-N-16",
+      "type": "Entrance",
+      "latitude": 23.065437099713215,
+      "longitude": 72.44045466184618
+    },
+    {
+      "id": "CP88",
+      "name": "Navigating-N-17",
+      "type": "Entrance",
+      "latitude": 23.06536062027741,
+      "longitude": 72.4404761195183
+    },
+    {
+      "id": "CP89",
+      "name": "Navigating-N-18",
+      "type": "Entrance",
+      "latitude": 23.065224930848814,
+      "longitude": 72.44041979312898
+    },
+    {
+      "id": "CP90",
+      "name": "Navigating-N-19",
+      "type": "Entrance",
+      "latitude": 23.065141050042723,
+      "longitude": 72.44039028882982
+    },
+    {
+      "id": "CP91",
+      "name": "BhanwarB-BackGate",
+      "type": "Gate",
+      "latitude": 23.065047300844608,
+      "longitude": 72.44035273790361
+    },
+    {
+      "id": "CP92",
+      "name": "Navigating-N-20",
+      "type": "Entrance",
+      "latitude": 23.066068670166523,
+      "longitude": 72.44010597467424
+    },
+    {
+      "id": "CP93",
+      "name": "Navigating-N-21",
+      "type": "Entrance",
+      "latitude": 23.066229029380022,
+      "longitude": 72.44017302989961
+    },
+    {
+      "id": "CP94",
+      "name": "Navigating-N-22",
+      "type": "Entrance",
+      "latitude": 23.06640912488424,
+      "longitude": 72.44025617837907
+    },
+    {
+      "id": "CP95",
+      "name": "Navigating-N-23",
+      "type": "Entrance",
+      "latitude": 23.066574417806077,
+      "longitude": 72.4403151869774
+    },
+    {
+      "id": "CP96",
+      "name": "Navigating-N-24",
+      "type": "Entrance",
+      "latitude": 23.066500406075136,
+      "longitude": 72.44042783975603
+    },
+    {
+      "id": "CP97",
+      "name": "Navigating-N-25",
+      "type": "Entrance",
+      "latitude": 23.066421460183935,
+      "longitude": 72.4405673146248
+    },
+    {
+      "id": "CP98",
+      "name": "Navigating-N-26",
+      "type": "Entrance",
+      "latitude": 23.066295566235166,
+      "longitude": 72.44050294160844
+    },
+    {
+      "id": "CP99",
+      "name": "Navigating-N-28",
+      "type": "Entrance",
+      "latitude": 23.066191949585686,
+      "longitude": 72.44046807289125
+    },
+    {
+      "id": "CP100",
+      "name": "Navigating-N-29",
+      "type": "Entrance",
+      "latitude": 23.066152476555388,
+      "longitude": 72.44058072566988
+    },
+    {
+      "id": "CP101",
+      "name": "Navigating-N-30",
+      "type": "Entrance",
+      "latitude": 23.066085865790463,
+      "longitude": 72.4406746029854
+    },
+    {
+      "id": "CP102",
+      "name": "Navigating-N-31",
+      "type": "Entrance",
+      "latitude": 23.065992117250648,
+      "longitude": 72.4406746029854
+    },
+    {
+      "id": "CP103",
+      "name": "Navigating-N-32",
+      "type": "Entrance",
+      "latitude": 23.06598718311517,
+      "longitude": 72.44015961885454
+    },
+    {
+      "id": "CP104",
+      "name": "Navigating-N-33",
+      "type": "Entrance",
+      "latitude": 23.066006919656022,
+      "longitude": 72.44026690721513
+    },
+    {
+      "id": "CP105",
+      "name": "Navigating-N-34",
+      "type": "Entrance",
+      "latitude": 23.06605626099547,
+      "longitude": 72.44039565324785
+    },
+    {
+      "id": "CP106",
+      "name": "Navigating-N-35",
+      "type": "Entrance",
+      "latitude": 23.066031590328006,
+      "longitude": 72.44052439928056
+    },
+    {
+      "id": "CP107",
+      "name": "Prof.CanteenGate",
+      "type": "Gate",
+      "latitude": 23.0659822489795,
+      "longitude": 72.44056195020677
+    },
+    {
+      "id": "CP108",
+      "name": "Navigating-N-36",
+      "type": "Entrance",
+      "latitude": 23.065925506406348,
+      "longitude": 72.44066387414934
+    },
+    {
+      "id": "CP109",
+      "name": "Navigating-N-37",
+      "type": "Entrance",
+      "latitude": 23.065853961388697,
+      "longitude": 72.4406585097313
+    },
+    {
+      "id": "CP110",
+      "name": "Navigating-N-38",
+      "type": "Entrance",
+      "latitude": 23.06574787732698,
+      "longitude": 72.4406585097313
+    },
+    {
+      "id": "CP111",
+      "name": "Navigating-N-39",
+      "type": "Entrance",
+      "latitude": 23.065678799288364,
+      "longitude": 72.44062364101411
+    },
+    {
+      "id": "CP112",
+      "name": "Navigating-N-40",
+      "type": "Entrance",
+      "latitude": 23.06562205658724,
+      "longitude": 72.4404948949814
+    },
+    {
+      "id": "CP113",
+      "name": "Navigating-N-41",
+      "type": "Entrance",
+      "latitude": 23.06559491876519,
+      "longitude": 72.44066387414934
+    },
+    {
+      "id": "CP114",
+      "name": "Navigating-N-42",
+      "type": "Entrance",
+      "latitude": 23.065422223405793,
+      "longitude": 72.44067728519441
+    },
+    {
+      "id": "CP115",
+      "name": "Navigating-N-43",
+      "type": "Entrance",
+      "latitude": 23.0652421265806,
+      "longitude": 72.4406933784485
+    },
+    {
+      "id": "CP116",
+      "name": "Navigating-N-44",
+      "type": "Entrance",
+      "latitude": 23.065091634528095,
+      "longitude": 72.44072020053865
+    },
+    {
+      "id": "CP117",
+      "name": "Navigating-N-45",
+      "type": "Entrance",
+      "latitude": 23.06495841191495,
+      "longitude": 72.4407121539116
+    },
+    {
+      "id": "CP118",
+      "name": "Navigating-N-46",
+      "type": "Entrance",
+      "latitude": 23.064810386634512,
+      "longitude": 72.44067996740343
+    },
+    {
+      "id": "CP119",
+      "name": "Navigating-N-47",
+      "type": "Entrance",
+      "latitude": 23.064709235932565,
+      "longitude": 72.44065046310426
+    },
+    {
+      "id": "CP120",
+      "name": "Navigating-N-48",
+      "type": "Entrance",
+      "latitude": 23.064534072342003,
+      "longitude": 72.4406397342682
+    },
+    {
+      "id": "CP121",
+      "name": "Navigating-N-49",
+      "type": "Entrance",
+      "latitude": 23.064990484037576,
+      "longitude": 72.43977069854738
+    },
+    {
+      "id": "CP122",
+      "name": "Navigating-N-50",
+      "type": "Entrance",
+      "latitude": 23.065192784942585,
+      "longitude": 72.43983775377275
+    },
+    {
+      "id": "CP123",
+      "name": "Zerox-Gate",
+      "type": "Gate",
+      "latitude": 23.065375348912852,
+      "longitude": 72.43991017341615
+    },
+    {
+      "id": "CP124",
+      "name": "BhanwarBGate",
+      "type": "Gate",
+      "latitude": 23.065015154895924,
+      "longitude": 72.43988066911699
+    },
+    {
+      "id": "CP125",
+      "name": "Navigating-N-51",
+      "type": "Gate",
+      "latitude": 23.064854794235746,
+      "longitude": 72.43973582983018
+    },
+    {
+      "id": "CP126",
+      "name": "Navigating-N-52",
+      "type": "Entrance",
+      "latitude": 23.06479311700785,
+      "longitude": 72.43989139795305
+    },
+    {
+      "id": "CP127",
+      "name": "Navigating-N-53",
+      "type": "Entrance",
+      "latitude": 23.06472157138809,
+      "longitude": 72.44005233049394
+    },
+    {
+      "id": "CP128",
+      "name": "Navigating-N-54",
+      "type": "Entrance",
+      "latitude": 23.06466976246728,
+      "longitude": 72.44021326303483
+    },
+    {
+      "id": "CP129",
+      "name": "Navigating-N-55",
+      "type": "Entrance",
+      "latitude": 23.064622887712197,
+      "longitude": 72.44035810232164
+    },
+    {
+      "id": "CP130",
+      "name": "Navigating-N-56",
+      "type": "Entrance",
+      "latitude": 23.06455874328405,
+      "longitude": 72.44049221277238
+    },
+    {
+      "id": "CP131",
+      "name": "Navigating-N-57",
+      "type": "Entrance",
+      "latitude": 23.06447979625361,
+      "longitude": 72.44071751832963
+    },
+    {
+      "id": "CP132",
+      "name": "Navigating-N-58",
+      "type": "Entrance",
+      "latitude": 23.06435397432807,
+      "longitude": 72.44069069623949
+    },
+    {
+      "id": "CP133",
+      "name": "Navigating-N-59",
+      "type": "Entrance",
+      "latitude": 23.064267625879733,
+      "longitude": 72.44066119194032
+    },
+    {
+      "id": "CP134",
+      "name": "Navigating-N-60",
+      "type": "Entrance",
+      "latitude": 23.064447724009245,
+      "longitude": 72.44057536125185
+    },
+    {
+      "id": "CP135",
+      "name": "Navigating-N-61",
+      "type": "Entrance",
+      "latitude": 23.06432930334849,
+      "longitude": 72.44055390357973
+    },
+    {
+      "id": "CP136",
+      "name": "Navigating-N-62",
+      "type": "Entrance",
+      "latitude": 23.064233086484876,
+      "longitude": 72.44053512811662
+    },
+    {
+      "id": "CP137",
+      "name": "Navigating-N-63",
+      "type": "Entrance",
+      "latitude": 23.064223218084727,
+      "longitude": 72.44059413671495
+    },
+    {
+      "id": "CP138",
+      "name": "Navigating-N-64",
+      "type": "Entrance",
+      "latitude": 23.064139336654176,
+      "longitude": 72.44052171707155
+    },
+    {
+      "id": "CP139",
+      "name": "Navigating-N-65",
+      "type": "Entrance",
+      "latitude": 23.06402831703333,
+      "longitude": 72.44050562381746
+    },
+    {
+      "id": "CP140",
+      "name": "Navigating-N-66",
+      "type": "Entrance",
+      "latitude": 23.063927165743472,
+      "longitude": 72.4404948949814
+    },
+    {
+      "id": "CP141",
+      "name": "Navigating-N-67",
+      "type": "Entrance",
+      "latitude": 23.06394443548128,
+      "longitude": 72.44037955999376
+    },
+    {
+      "id": "CP142",
+      "name": "Navigating-N-68",
+      "type": "Entrance",
+      "latitude": 23.06398637626383,
+      "longitude": 72.44022935628892
+    },
+    {
+      "id": "CP143",
+      "name": "Navigating-N-69",
+      "type": "Entrance",
+      "latitude": 23.06456614456578,
+      "longitude": 72.44023472070695
+    },
+    {
+      "id": "CP144",
+      "name": "Navigating-N-70",
+      "type": "Entrance",
+      "latitude": 23.064450191105234,
+      "longitude": 72.44021326303483
+    },
+    {
+      "id": "CP145",
+      "name": "Navigating-N-71",
+      "type": "Entrance",
+      "latitude": 23.064349040132516,
+      "longitude": 72.4402078986168
+    },
+    {
+      "id": "CP146",
+      "name": "Navigating-N-72",
+      "type": "Entrance",
+      "latitude": 23.064205948382707,
+      "longitude": 72.44020521640779
+    },
+    {
+      "id": "CP147",
+      "name": "Navigating-N-73",
+      "type": "Entrance",
+      "latitude": 23.064124534043348,
+      "longitude": 72.44020253419878
+    },
+    {
+      "id": "CP148",
+      "name": "Navigating-N-74",
+      "type": "Entrance",
+      "latitude": 23.064233086484876,
+      "longitude": 72.4401167035103
+    },
+    {
+      "id": "CP149",
+      "name": "Navigating-N-75",
+      "type": "Entrance",
+      "latitude": 23.06429476396946,
+      "longitude": 72.43998527526857
+    },
+    {
+      "id": "CP150",
+      "name": "Navigating-N-76",
+      "type": "Entrance",
+      "latitude": 23.064277494276638,
+      "longitude": 72.43987798690797
+    },
+    {
+      "id": "CP151",
+      "name": "Navigating-N-77",
+      "type": "Entrance",
+      "latitude": 23.064484730444356,
+      "longitude": 72.43951052427293
+    },
+    {
+      "id": "CP152",
+      "name": "Navigating-N-78",
+      "type": "Entrance",
+      "latitude": 23.064383579497616,
+      "longitude": 72.43948101997377
+    },
+    {
+      "id": "CP153",
+      "name": "Navigating-N-79",
+      "type": "Entrance",
+      "latitude": 23.06428982977172,
+      "longitude": 72.43941932916643
+    },
+    {
+      "id": "CP154",
+      "name": "Navigating-N-80",
+      "type": "Entrance",
+      "latitude": 23.06391729732088,
+      "longitude": 72.44020521640779
+    },
+    {
+      "id": "CP155",
+      "name": "Navigating-N-81",
+      "type": "Entrance",
+      "latitude": 23.063901843613905,
+      "longitude": 72.44009256362916
+    },
+    {
+      "id": "CP156",
+      "name": "Navigating-N-82",
+      "type": "Entrance",
+      "latitude": 23.063921580460615,
+      "longitude": 72.43991017341615
+    },
+    {
+      "id": "CP157",
+      "name": "Navigating-N-83",
+      "type": "Entrance",
+      "latitude": 23.063815494875413,
+      "longitude": 72.44017839431764
+    },
+    {
+      "id": "CP158",
+      "name": "Navigating-N-84",
+      "type": "Entrance",
+      "latitude": 23.06365759989607,
+      "longitude": 72.44015425443651
+    },
+    {
+      "id": "CP159",
+      "name": "Navigating-N-85",
+      "type": "Entrance",
+      "latitude": 23.06349723761802,
+      "longitude": 72.44012206792833
+    },
+    {
+      "id": "CP160",
+      "name": "Navigating-N-86",
+      "type": "Entrance",
+      "latitude": 23.06337881612078,
+      "longitude": 72.44009524583818
+    },
+    {
+      "id": "CP161",
+      "name": "Navigating-N-87",
+      "type": "Entrance",
+      "latitude": 23.064432334973088,
+      "longitude": 72.43912160396577
+    },
+    {
+      "id": "CP162",
+      "name": "Navigating-N-88",
+      "type": "Entrance",
+      "latitude": 23.064318848495635,
+      "longitude": 72.43911355733873
+    },
+    {
+      "id": "CP163",
+      "name": "Navigating-N-89",
+      "type": "Entrance",
+      "latitude": 23.06418315801651,
+      "longitude": 72.439161837101
+    },
+    {
+      "id": "CP164",
+      "name": "Navigating-N-90",
+      "type": "Entrance",
+      "latitude": 23.064052401607185,
+      "longitude": 72.4391806125641
+    },
+    {
+      "id": "CP165",
+      "name": "Navigating-N-91",
+      "type": "Entrance",
+      "latitude": 23.063956184545575,
+      "longitude": 72.43924766778947
+    },
+    {
+      "id": "CP166",
+      "name": "Navigating-N-92",
+      "type": "Entrance",
+      "latitude": 23.06392411217643,
+      "longitude": 72.43933886289598
+    },
+    {
+      "id": "CP167",
+      "name": "Mainbuilding-Gate-Main",
+      "type": "Gate",
+      "latitude": 23.064252566973014,
+      "longitude": 72.43947297334672
+    },
+    {
+      "id": "CP168",
+      "name": "MainbuildingLeftGate",
+      "type": "Gate",
+      "latitude": 23.063914573904473,
+      "longitude": 72.43943005800249
+    },
+    {
+      "id": "CP169",
+      "name": "MainbuildingBackGate",
+      "type": "Gate",
+      "latitude": 23.064309310251666,
+      "longitude": 72.4397921562195
+    },
+    {
+      "id": "CP170",
+      "name": "InduCafe",
+      "type": "Canteen",
+      "latitude": 23.063862764672933,
+      "longitude": 72.43980824947359
+    }
+  ],
+  "buildings": [
+    {
+      "id": "B1",
+      "name": "Girls Hostel",
+      "center": {
+        "lat": 23.066491442601205,
+        "lng": 72.44006708264352
+      },
+      "polygon": [
+        [
+          23.066601226706283,
+          72.43997991085054
+        ],
+        [
+          23.066519813816228,
+          72.44021058082582
+        ],
+        [
+          23.06645813735156,
+          72.44020253419878
+        ],
+        [
+          23.06647047264675,
+          72.44016766548158
+        ],
+        [
+          23.0664408679364,
+          72.44014352560045
+        ],
+        [
+          23.066430999698152,
+          72.44017839431764
+        ],
+        [
+          23.06638165849613,
+          72.44015425443651
+        ],
+        [
+          23.066403862039262,
+          72.44006574153902
+        ],
+        [
+          23.06646060441069,
+          72.44007915258409
+        ],
+        [
+          23.06646060441069,
+          72.44003355503084
+        ],
+        [
+          23.066428532638486,
+          72.44002014398576
+        ],
+        [
+          23.06647047264675,
+          72.43992358446123
+        ],
+        [
+          23.066522280874228,
+          72.43994504213335
+        ],
+        [
+          23.06650994558377,
+          72.43997454643251
+        ],
+        [
+          23.06654695145171,
+          72.43999332189561
+        ],
+        [
+          23.06655928673877,
+          72.43995845317842
+        ]
+      ]
+    },
+    {
+      "id": "B2",
+      "name": "Canteen",
+      "center": {
+        "lat": 23.065735294128295,
+        "lng": 72.44045197963716
+      },
+      "polygon": [
+        [
+          23.06566374905947,
+          72.44026422500612
+        ],
+        [
+          23.06570568930614,
+          72.44037151336671
+        ],
+        [
+          23.065779701474252,
+          72.44050830602647
+        ],
+        [
+          23.06582164168476,
+          72.4405324459076
+        ],
+        [
+          23.065851246531366,
+          72.44061022996904
+        ],
+        [
+          23.065794503902964,
+          72.4406397342682
+        ],
+        [
+          23.065703222233164,
+          72.44059681892396
+        ],
+        [
+          23.065681018574388,
+          72.44055926799776
+        ],
+        [
+          23.065629210022987,
+          72.44043856859209
+        ],
+        [
+          23.065619341725228,
+          72.44038492441179
+        ]
+      ]
+    },
+    {
+      "id": "B3",
+      "name": "Boys Hostel",
+      "center": {
+        "lat": 23.065851246414127,
+        "lng": 72.44042515754701
+      },
+      "polygon": [
+        [
+          23.065794503902964,
+          72.440242767334
+        ],
+        [
+          23.065836444108893,
+          72.44036614894868
+        ],
+        [
+          23.06587098309217,
+          72.44038224220277
+        ],
+        [
+          23.065986935328333,
+          72.4403339624405
+        ],
+        [
+          23.066028875474274,
+          72.44044393301012
+        ],
+        [
+          23.06592772568831,
+          72.44048953056337
+        ],
+        [
+          23.065977067056817,
+          72.44058340787889
+        ],
+        [
+          23.06587098309217,
+          72.44063705205919
+        ],
+        [
+          23.065819174613914,
+          72.44052171707155
+        ],
+        [
+          23.065759964900067,
+          72.44045734405519
+        ],
+        [
+          23.065715557597564,
+          72.44037151336671
+        ],
+        [
+          23.065673617353976,
+          72.4402615427971
+        ],
+        [
+          23.065784635617337,
+          72.44021326303483
+        ]
+      ]
+    },
+    {
+      "id": "B4",
+      "name": "Bhanwar Building",
+      "center": {
+        "lat": 23.065044666387983,
+        "lng": 72.44023874402048
+      },
+      "polygon": [
+        [
+          23.065419663318426,
+          72.43999332189561
+        ],
+        [
+          23.065103876939155,
+          72.4398458003998
+        ],
+        [
+          23.06509400860286,
+          72.43993431329729
+        ],
+        [
+          23.06495831890543,
+          72.43986994028093
+        ],
+        [
+          23.064899108812753,
+          72.44002550840379
+        ],
+        [
+          23.064859635403167,
+          72.43999868631364
+        ],
+        [
+          23.064669669457544,
+          72.44045734405519
+        ],
+        [
+          23.064714077105226,
+          72.44047880172731
+        ],
+        [
+          23.064694340374718,
+          72.4405485391617
+        ],
+        [
+          23.06486950375665,
+          72.44063168764116
+        ],
+        [
+          23.064899108812753,
+          72.4405485391617
+        ],
+        [
+          23.06493858221075,
+          72.44058340787889
+        ],
+        [
+          23.065096475687003,
+          72.44020521640779
+        ],
+        [
+          23.065239566489808,
+          72.44026958942415
+        ],
+        [
+          23.065293842271746,
+          72.44015693664552
+        ],
+        [
+          23.065357986349472,
+          72.44019716978075
+        ]
+      ]
+    },
+    {
+      "id": "B5",
+      "name": "Main Building",
+      "center": {
+        "lat": 23.064235459850135,
+        "lng": 72.4397572875023
+      },
+      "polygon": [
+        [
+          23.064494505815507,
+          72.43976265192033
+        ],
+        [
+          23.06467707073318,
+          72.43984043598176
+        ],
+        [
+          23.064578387024653,
+          72.44010061025621
+        ],
+        [
+          23.064388420681993,
+          72.44001746177675
+        ],
+        [
+          23.06442789422981,
+          72.43992894887926
+        ],
+        [
+          23.064368683903716,
+          72.43979483842851
+        ],
+        [
+          23.06428480256385,
+          72.43977606296541
+        ],
+        [
+          23.064220657974538,
+          72.43989676237108
+        ],
+        [
+          23.064023289815662,
+          72.43981897830965
+        ],
+        [
+          23.06405782926437,
+          72.43972510099412
+        ],
+        [
+          23.06391473720489,
+          72.43966877460481
+        ],
+        [
+          23.06383085558203,
+          72.4396848678589
+        ],
+        [
+          23.06379384896709,
+          72.43961781263353
+        ],
+        [
+          23.06385059243917,
+          72.43957221508028
+        ],
+        [
+          23.06387032929341,
+          72.43945956230165
+        ],
+        [
+          23.063932006944263,
+          72.43943005800249
+        ],
+        [
+          23.064003552983863,
+          72.4394139647484
+        ],
+        [
+          23.064107171318575,
+          72.43943542242052
+        ],
+        [
+          23.064154046253297,
+          72.43944615125658
+        ],
+        [
+          23.064321809043765,
+          72.43951857089998
+        ],
+        [
+          23.0643144077486,
+          72.43955075740816
+        ],
+        [
+          23.064344012926846,
+          72.43956685066225
+        ],
+        [
+          23.06435388131813,
+          72.43954271078111
+        ],
+        [
+          23.06445996647888,
+          72.43959099054338
+        ],
+        [
+          23.064432828422472,
+          72.43970632553102
+        ],
+        [
+          23.064447630999382,
+          72.43975996971132
+        ]
+      ]
+    },
+    {
+      "id": "B6",
+      "name": "Workshop Lab",
+      "center": {
+        "lat": 23.06401218770877,
+        "lng": 72.44070008397104
+      },
+      "polygon": [
+        [
+          23.064205855372677,
+          72.44060754776002
+        ],
+        [
+          23.06387526350652,
+          72.44054585695268
+        ],
+        [
+          23.06381852004486,
+          72.4408006668091
+        ],
+        [
+          23.064080033190987,
+          72.4408543109894
+        ],
+        [
+          23.064107171318575,
+          72.44080871343614
+        ],
+        [
+          23.064163914658508,
+          72.44082748889925
+        ]
+      ]
+    },
+    {
+      "id": "B7",
+      "name": "Tea Post",
+      "center": {
+        "lat": 23.064356348400562,
+        "lng": 72.44063705205919
+      },
+      "polygon": [
+        [
+          23.064420492940467,
+          72.44063168764116
+        ],
+        [
+          23.064292203860656,
+          72.44061291217805
+        ],
+        [
+          23.064302072255757,
+          72.44064509868623
+        ],
+        [
+          23.06441309165072,
+          72.44066119194032
+        ]
+      ]
+    },
+    {
+      "id": "B8",
+      "name": "Food Shop",
+      "center": {
+        "lat": 23.063853059533084,
+        "lng": 72.43975862860681
+      },
+      "polygon": [
+        [
+          23.063912270099078,
+          72.43974119424821
+        ],
+        [
+          23.063890066144765,
+          72.43980288505556
+        ],
+        [
+          23.06379384896709,
+          72.43977338075639
+        ],
+        [
+          23.063813585829667,
+          72.43971437215806
+        ]
+      ]
+    },
+    {
+      "id": "B9",
+      "name": "Unknown-1",
+      "center": {
+        "lat": 23.064076332487904,
+        "lng": 72.43998393416406
+      },
+      "polygon": [
+        [
+          23.064191052769164,
+          72.43989676237108
+        ],
+        [
+          23.0641096384208,
+          72.44012475013734
+        ],
+        [
+          23.063961612206644,
+          72.44005233049394
+        ],
+        [
+          23.064043026644573,
+          72.43984311819078
+        ]
+      ]
+    },
+    {
+      "id": "B10",
+      "name": "Unknown-2",
+      "center": {
+        "lat": 23.064242861600636,
+        "lng": 72.44039699435235
+      },
+      "polygon": [
+        [
+          23.064514242575296,
+          72.44032591581346
+        ],
+        [
+          23.06400108587968,
+          72.44027763605119
+        ],
+        [
+          23.063971480625977,
+          72.44044929742815
+        ],
+        [
+          23.064479703243748,
+          72.44051635265352
+        ]
+      ]
+    },
+    {
+      "id": "B11",
+      "name": "Unknown-3",
+      "center": {
+        "lat": 23.063870329281453,
+        "lng": 72.44034469127656
+      },
+      "polygon": [
+        [
+          23.06392707273324,
+          72.44030177593233
+        ],
+        [
+          23.063912270099078,
+          72.44040369987489
+        ],
+        [
+          23.063813585829667,
+          72.44039028882982
+        ],
+        [
+          23.06382838847468,
+          72.44028568267824
+        ]
+      ]
+    },
+    {
+      "id": "B12",
+      "name": "Automobile Unknown",
+      "center": {
+        "lat": 23.064279868323943,
+        "lng": 72.44080603122713
+      },
+      "polygon": [
+        [
+          23.06438595358486,
+          72.44077116250993
+        ],
+        [
+          23.06427246706827,
+          72.44073092937471
+        ],
+        [
+          23.064205855372677,
+          72.44069874286653
+        ],
+        [
+          23.064173783063023,
+          72.44082748889925
+        ],
+        [
+          23.064247796073754,
+          72.44085699319841
+        ],
+        [
+          23.0642576644721,
+          72.44088917970659
+        ],
+        [
+          23.06435388131813,
+          72.44091331958772
+        ]
+      ]
+    },
+    {
+      "id": "B13",
+      "name": "Unknown-4",
+      "center": {
+        "lat": 23.06442542712246,
+        "lng": 72.44084358215333
+      },
+      "polygon": [
+        [
+          23.064479703243748,
+          72.44077652692796
+        ],
+        [
+          23.064403223263763,
+          72.44075775146486
+        ],
+        [
+          23.06437115100117,
+          72.44089722633363
+        ],
+        [
+          23.064445163903343,
+          72.44092941284181
+        ]
+      ]
+    },
+    {
+      "id": "B14",
+      "name": "Unknown-5",
+      "center": {
+        "lat": 23.064551248965977,
+        "lng": 72.44083553552629
+      },
+      "polygon": [
+        [
+          23.064635130165904,
+          72.44081407785417
+        ],
+        [
+          23.06450930838561,
+          72.44077652692796
+        ],
+        [
+          23.064467367766046,
+          72.44089454412462
+        ],
+        [
+          23.064598123772143,
+          72.44088917970659
+        ]
+      ]
+    },
+    {
+      "id": "B15",
+      "name": "Unknown-6",
+      "center": {
+        "lat": 23.06345652200246,
+        "lng": 72.4401877820492
+      },
+      "polygon": [
+        [
+          23.063292459236646,
+          72.43999332189561
+        ],
+        [
+          23.063272722297636,
+          72.44012206792833
+        ],
+        [
+          23.063795750203102,
+          72.44024544954301
+        ],
+        [
+          23.06376614490425,
+          72.44041979312898
+        ],
+        [
+          23.06311976092221,
+          72.44028836488725
+        ],
+        [
+          23.063117293801817,
+          72.44006305933
+        ],
+        [
+          23.063139497883647,
+          72.4399557709694
+        ]
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "P1",
+      "from": "CP1",
+      "to": "CP2",
+      "distance": 21
+    },
+    {
+      "id": "P2",
+      "from": "CP2",
+      "to": "CP3",
+      "distance": 20
+    },
+    {
+      "id": "P3",
+      "from": "CP3",
+      "to": "CP4",
+      "distance": 20
+    },
+    {
+      "id": "P4",
+      "from": "CP4",
+      "to": "CP5",
+      "distance": 18
+    },
+    {
+      "id": "P5",
+      "from": "CP5",
+      "to": "CP6",
+      "distance": 17
+    },
+    {
+      "id": "P6",
+      "from": "CP6",
+      "to": "CP7",
+      "distance": 13
+    },
+    {
+      "id": "P7",
+      "from": "CP7",
+      "to": "CP8",
+      "distance": 22
+    },
+    {
+      "id": "P8",
+      "from": "CP8",
+      "to": "CP9",
+      "distance": 20
+    },
+    {
+      "id": "P9",
+      "from": "CP9",
+      "to": "CP10",
+      "distance": 16
+    },
+    {
+      "id": "P10",
+      "from": "CP10",
+      "to": "CP11",
+      "distance": 16
+    },
+    {
+      "id": "P11",
+      "from": "CP11",
+      "to": "CP12",
+      "distance": 13
+    },
+    {
+      "id": "P12",
+      "from": "CP12",
+      "to": "CP13",
+      "distance": 12
+    },
+    {
+      "id": "P13",
+      "from": "CP13",
+      "to": "CP14",
+      "distance": 13
+    },
+    {
+      "id": "P14",
+      "from": "CP14",
+      "to": "CP15",
+      "distance": 12
+    },
+    {
+      "id": "P15",
+      "from": "CP15",
+      "to": "CP16",
+      "distance": 16
+    },
+    {
+      "id": "P16",
+      "from": "CP16",
+      "to": "CP17",
+      "distance": 17
+    },
+    {
+      "id": "P17",
+      "from": "CP17",
+      "to": "CP18",
+      "distance": 29
+    },
+    {
+      "id": "P18",
+      "from": "CP18",
+      "to": "CP19",
+      "distance": 32
+    },
+    {
+      "id": "P19",
+      "from": "CP19",
+      "to": "CP20",
+      "distance": 32
+    },
+    {
+      "id": "P20",
+      "from": "CP20",
+      "to": "CP21",
+      "distance": 24
+    },
+    {
+      "id": "P21",
+      "from": "CP21",
+      "to": "CP22",
+      "distance": 21
+    },
+    {
+      "id": "P22",
+      "from": "CP22",
+      "to": "CP23",
+      "distance": 17
+    },
+    {
+      "id": "P23",
+      "from": "CP23",
+      "to": "CP24",
+      "distance": 20
+    },
+    {
+      "id": "P24",
+      "from": "CP24",
+      "to": "CP26",
+      "distance": 22
+    },
+    {
+      "id": "P25",
+      "from": "CP26",
+      "to": "CP27",
+      "distance": 23
+    },
+    {
+      "id": "P26",
+      "from": "CP27",
+      "to": "CP28",
+      "distance": 28
+    },
+    {
+      "id": "P27",
+      "from": "CP28",
+      "to": "CP29",
+      "distance": 29
+    },
+    {
+      "id": "P28",
+      "from": "CP29",
+      "to": "CP31",
+      "distance": 32
+    },
+    {
+      "id": "P29",
+      "from": "CP24",
+      "to": "CP25",
+      "distance": 16
+    },
+    {
+      "id": "P30",
+      "from": "CP25",
+      "to": "CP32",
+      "distance": 23
+    },
+    {
+      "id": "P31",
+      "from": "CP32",
+      "to": "CP33",
+      "distance": 18
+    },
+    {
+      "id": "P32",
+      "from": "CP33",
+      "to": "CP34",
+      "distance": 24
+    },
+    {
+      "id": "P33",
+      "from": "CP34",
+      "to": "CP35",
+      "distance": 32
+    },
+    {
+      "id": "P34",
+      "from": "CP35",
+      "to": "CP36",
+      "distance": 25
+    },
+    {
+      "id": "P35",
+      "from": "CP36",
+      "to": "CP37",
+      "distance": 23
+    },
+    {
+      "id": "P36",
+      "from": "CP37",
+      "to": "CP43",
+      "distance": 16
+    },
+    {
+      "id": "P37",
+      "from": "CP43",
+      "to": "CP50",
+      "distance": 12
+    },
+    {
+      "id": "P38",
+      "from": "CP50",
+      "to": "CP49",
+      "distance": 11
+    },
+    {
+      "id": "P39",
+      "from": "CP49",
+      "to": "CP48",
+      "distance": 14
+    },
+    {
+      "id": "P40",
+      "from": "CP48",
+      "to": "CP47",
+      "distance": 19
+    },
+    {
+      "id": "P41",
+      "from": "CP47",
+      "to": "CP46",
+      "distance": 18
+    },
+    {
+      "id": "P42",
+      "from": "CP46",
+      "to": "CP45",
+      "distance": 14
+    },
+    {
+      "id": "P43",
+      "from": "CP45",
+      "to": "CP44",
+      "distance": 16
+    },
+    {
+      "id": "P44",
+      "from": "CP44",
+      "to": "CP41",
+      "distance": 18
+    },
+    {
+      "id": "P45",
+      "from": "CP41",
+      "to": "CP40",
+      "distance": 23
+    },
+    {
+      "id": "P46",
+      "from": "CP40",
+      "to": "CP39",
+      "distance": 14
+    },
+    {
+      "id": "P47",
+      "from": "CP39",
+      "to": "CP38",
+      "distance": 23
+    },
+    {
+      "id": "P48",
+      "from": "CP38",
+      "to": "CP32",
+      "distance": 17
+    },
+    {
+      "id": "P49",
+      "from": "CP41",
+      "to": "CP42",
+      "distance": 20
+    },
+    {
+      "id": "P50",
+      "from": "CP42",
+      "to": "CP37",
+      "distance": 22
+    },
+    {
+      "id": "P51",
+      "from": "CP42",
+      "to": "CP43",
+      "distance": 18
+    },
+    {
+      "id": "P52",
+      "from": "CP51",
+      "to": "CP49",
+      "distance": 8
+    },
+    {
+      "id": "P53",
+      "from": "CP51",
+      "to": "CP44",
+      "distance": 19
+    },
+    {
+      "id": "P54",
+      "from": "CP51",
+      "to": "CP48",
+      "distance": 13
+    },
+    {
+      "id": "P55",
+      "from": "CP51",
+      "to": "CP45",
+      "distance": 17
+    },
+    {
+      "id": "P56",
+      "from": "CP25",
+      "to": "CP70",
+      "distance": 20
+    },
+    {
+      "id": "P57",
+      "from": "CP70",
+      "to": "CP52",
+      "distance": 19
+    },
+    {
+      "id": "P58",
+      "from": "CP52",
+      "to": "CP53",
+      "distance": 24
+    },
+    {
+      "id": "P59",
+      "from": "CP53",
+      "to": "CP54",
+      "distance": 22
+    },
+    {
+      "id": "P60",
+      "from": "CP54",
+      "to": "CP55",
+      "distance": 17
+    },
+    {
+      "id": "P61",
+      "from": "CP55",
+      "to": "CP56",
+      "distance": 24
+    },
+    {
+      "id": "P62",
+      "from": "CP56",
+      "to": "CP57",
+      "distance": 18
+    },
+    {
+      "id": "P63",
+      "from": "CP57",
+      "to": "CP52",
+      "distance": 17
+    },
+    {
+      "id": "P64",
+      "from": "CP53",
+      "to": "CP56",
+      "distance": 16
+    },
+    {
+      "id": "P65",
+      "from": "CP70",
+      "to": "CP71",
+      "distance": 18
+    },
+    {
+      "id": "P66",
+      "from": "CP71",
+      "to": "CP72",
+      "distance": 13
+    },
+    {
+      "id": "P67",
+      "from": "CP72",
+      "to": "CP151",
+      "distance": 11
+    },
+    {
+      "id": "P68",
+      "from": "CP151",
+      "to": "CP152",
+      "distance": 12
+    },
+    {
+      "id": "P69",
+      "from": "CP152",
+      "to": "CP153",
+      "distance": 12
+    },
+    {
+      "id": "P70",
+      "from": "CP153",
+      "to": "CP167",
+      "distance": 7
+    },
+    {
+      "id": "P71",
+      "from": "CP25",
+      "to": "CP161",
+      "distance": 15
+    },
+    {
+      "id": "P72",
+      "from": "CP161",
+      "to": "CP162",
+      "distance": 13
+    },
+    {
+      "id": "P73",
+      "from": "CP162",
+      "to": "CP163",
+      "distance": 16
+    },
+    {
+      "id": "P74",
+      "from": "CP163",
+      "to": "CP164",
+      "distance": 15
+    },
+    {
+      "id": "P75",
+      "from": "CP164",
+      "to": "CP165",
+      "distance": 13
+    },
+    {
+      "id": "P76",
+      "from": "CP165",
+      "to": "CP166",
+      "distance": 10
+    },
+    {
+      "id": "P77",
+      "from": "CP166",
+      "to": "CP168",
+      "distance": 9
+    },
+    {
+      "id": "P78",
+      "from": "CP72",
+      "to": "CP73",
+      "distance": 21
+    },
+    {
+      "id": "P79",
+      "from": "CP32",
+      "to": "CP70",
+      "distance": 21
+    },
+    {
+      "id": "P80",
+      "from": "CP73",
+      "to": "CP74",
+      "distance": 18
+    },
+    {
+      "id": "P81",
+      "from": "CP74",
+      "to": "CP121",
+      "distance": 17
+    },
+    {
+      "id": "P82",
+      "from": "CP121",
+      "to": "CP124",
+      "distance": 12
+    },
+    {
+      "id": "P83",
+      "from": "CP74",
+      "to": "CP75",
+      "distance": 23
+    },
+    {
+      "id": "P84",
+      "from": "CP75",
+      "to": "CP76",
+      "distance": 22
+    },
+    {
+      "id": "P85",
+      "from": "CP76",
+      "to": "CP77",
+      "distance": 25
+    },
+    {
+      "id": "P86",
+      "from": "CP77",
+      "to": "CP78",
+      "distance": 27
+    },
+    {
+      "id": "P87",
+      "from": "CP78",
+      "to": "CP79",
+      "distance": 21
+    },
+    {
+      "id": "P88",
+      "from": "CP79",
+      "to": "CP82",
+      "distance": 12
+    },
+    {
+      "id": "P89",
+      "from": "CP82",
+      "to": "CP83",
+      "distance": 13
+    },
+    {
+      "id": "P90",
+      "from": "CP83",
+      "to": "CP84",
+      "distance": 12
+    },
+    {
+      "id": "P91",
+      "from": "CP84",
+      "to": "CP85",
+      "distance": 10
+    },
+    {
+      "id": "P92",
+      "from": "CP85",
+      "to": "CP86",
+      "distance": 9
+    },
+    {
+      "id": "P93",
+      "from": "CP86",
+      "to": "CP87",
+      "distance": 13
+    },
+    {
+      "id": "P94",
+      "from": "CP87",
+      "to": "CP88",
+      "distance": 9
+    },
+    {
+      "id": "P95",
+      "from": "CP88",
+      "to": "CP89",
+      "distance": 16
+    },
+    {
+      "id": "P96",
+      "from": "CP89",
+      "to": "CP90",
+      "distance": 10
+    },
+    {
+      "id": "P97",
+      "from": "CP90",
+      "to": "CP91",
+      "distance": 11
+    },
+    {
+      "id": "P98",
+      "from": "CP79",
+      "to": "CP80",
+      "distance": 16
+    },
+    {
+      "id": "P99",
+      "from": "CP80",
+      "to": "CP81",
+      "distance": 14
+    },
+    {
+      "id": "P100",
+      "from": "CP79",
+      "to": "CP103",
+      "distance": 16
+    },
+    {
+      "id": "P101",
+      "from": "CP103",
+      "to": "CP92",
+      "distance": 11
+    },
+    {
+      "id": "P102",
+      "from": "CP92",
+      "to": "CP93",
+      "distance": 19
+    },
+    {
+      "id": "P103",
+      "from": "CP93",
+      "to": "CP94",
+      "distance": 22
+    },
+    {
+      "id": "P104",
+      "from": "CP94",
+      "to": "CP95",
+      "distance": 19
+    },
+    {
+      "id": "P105",
+      "from": "CP95",
+      "to": "CP96",
+      "distance": 14
+    },
+    {
+      "id": "P106",
+      "from": "CP96",
+      "to": "CP97",
+      "distance": 17
+    },
+    {
+      "id": "P107",
+      "from": "CP97",
+      "to": "CP98",
+      "distance": 15
+    },
+    {
+      "id": "P108",
+      "from": "CP98",
+      "to": "CP99",
+      "distance": 12
+    },
+    {
+      "id": "P109",
+      "from": "CP99",
+      "to": "CP100",
+      "distance": 12
+    },
+    {
+      "id": "P110",
+      "from": "CP100",
+      "to": "CP101",
+      "distance": 12
+    },
+    {
+      "id": "P111",
+      "from": "CP101",
+      "to": "CP102",
+      "distance": 10
+    },
+    {
+      "id": "P112",
+      "from": "CP102",
+      "to": "CP108",
+      "distance": 7
+    },
+    {
+      "id": "P113",
+      "from": "CP108",
+      "to": "CP109",
+      "distance": 8
+    },
+    {
+      "id": "P114",
+      "from": "CP109",
+      "to": "CP110",
+      "distance": 12
+    },
+    {
+      "id": "P115",
+      "from": "CP110",
+      "to": "CP111",
+      "distance": 8
+    },
+    {
+      "id": "P116",
+      "from": "CP111",
+      "to": "CP112",
+      "distance": 15
+    },
+    {
+      "id": "P117",
+      "from": "CP112",
+      "to": "CP86",
+      "distance": 14
+    },
+    {
+      "id": "P118",
+      "from": "CP102",
+      "to": "CP107",
+      "distance": 12
+    },
+    {
+      "id": "P119",
+      "from": "CP107",
+      "to": "CP106",
+      "distance": 7
+    },
+    {
+      "id": "P120",
+      "from": "CP106",
+      "to": "CP105",
+      "distance": 13
+    },
+    {
+      "id": "P121",
+      "from": "CP105",
+      "to": "CP104",
+      "distance": 14
+    },
+    {
+      "id": "P122",
+      "from": "CP104",
+      "to": "CP103",
+      "distance": 11
+    },
+    {
+      "id": "P123",
+      "from": "CP121",
+      "to": "CP122",
+      "distance": 24
+    },
+    {
+      "id": "P124",
+      "from": "CP122",
+      "to": "CP123",
+      "distance": 22
+    },
+    {
+      "id": "P125",
+      "from": "CP111",
+      "to": "CP113",
+      "distance": 10
+    },
+    {
+      "id": "P126",
+      "from": "CP113",
+      "to": "CP114",
+      "distance": 19
+    },
+    {
+      "id": "P127",
+      "from": "CP114",
+      "to": "CP115",
+      "distance": 20
+    },
+    {
+      "id": "P128",
+      "from": "CP115",
+      "to": "CP116",
+      "distance": 17
+    },
+    {
+      "id": "P129",
+      "from": "CP116",
+      "to": "CP117",
+      "distance": 15
+    },
+    {
+      "id": "P130",
+      "from": "CP117",
+      "to": "CP118",
+      "distance": 17
+    },
+    {
+      "id": "P131",
+      "from": "CP118",
+      "to": "CP119",
+      "distance": 12
+    },
+    {
+      "id": "P132",
+      "from": "CP119",
+      "to": "CP120",
+      "distance": 20
+    },
+    {
+      "id": "P133",
+      "from": "CP120",
+      "to": "CP131",
+      "distance": 10
+    },
+    {
+      "id": "P134",
+      "from": "CP131",
+      "to": "CP132",
+      "distance": 14
+    },
+    {
+      "id": "P135",
+      "from": "CP132",
+      "to": "CP133",
+      "distance": 10
+    },
+    {
+      "id": "P136",
+      "from": "CP133",
+      "to": "CP137",
+      "distance": 8
+    },
+    {
+      "id": "P137",
+      "from": "CP137",
+      "to": "CP136",
+      "distance": 6
+    },
+    {
+      "id": "P138",
+      "from": "CP136",
+      "to": "CP135",
+      "distance": 11
+    },
+    {
+      "id": "P139",
+      "from": "CP135",
+      "to": "CP134",
+      "distance": 13
+    },
+    {
+      "id": "P140",
+      "from": "CP134",
+      "to": "CP120",
+      "distance": 12
+    },
+    {
+      "id": "P141",
+      "from": "CP120",
+      "to": "CP130",
+      "distance": 15
+    },
+    {
+      "id": "P142",
+      "from": "CP130",
+      "to": "CP129",
+      "distance": 15
+    },
+    {
+      "id": "P143",
+      "from": "CP129",
+      "to": "CP128",
+      "distance": 16
+    },
+    {
+      "id": "P144",
+      "from": "CP128",
+      "to": "CP127",
+      "distance": 17
+    },
+    {
+      "id": "P145",
+      "from": "CP127",
+      "to": "CP126",
+      "distance": 18
+    },
+    {
+      "id": "P146",
+      "from": "CP126",
+      "to": "CP125",
+      "distance": 17
+    },
+    {
+      "id": "P147",
+      "from": "CP125",
+      "to": "CP74",
+      "distance": 11
+    },
+    {
+      "id": "P148",
+      "from": "CP128",
+      "to": "CP143",
+      "distance": 12
+    },
+    {
+      "id": "P149",
+      "from": "CP143",
+      "to": "CP144",
+      "distance": 13
+    },
+    {
+      "id": "P150",
+      "from": "CP144",
+      "to": "CP145",
+      "distance": 11
+    },
+    {
+      "id": "P151",
+      "from": "CP145",
+      "to": "CP146",
+      "distance": 16
+    },
+    {
+      "id": "P152",
+      "from": "CP146",
+      "to": "CP148",
+      "distance": 10
+    },
+    {
+      "id": "P153",
+      "from": "CP148",
+      "to": "CP149",
+      "distance": 15
+    },
+    {
+      "id": "P154",
+      "from": "CP149",
+      "to": "CP150",
+      "distance": 11
+    },
+    {
+      "id": "P155",
+      "from": "CP150",
+      "to": "CP169",
+      "distance": 9
+    },
+    {
+      "id": "P156",
+      "from": "CP146",
+      "to": "CP147",
+      "distance": 9
+    },
+    {
+      "id": "P157",
+      "from": "CP147",
+      "to": "CP142",
+      "distance": 16
+    },
+    {
+      "id": "P158",
+      "from": "CP142",
+      "to": "CP141",
+      "distance": 16
+    },
+    {
+      "id": "P159",
+      "from": "CP141",
+      "to": "CP140",
+      "distance": 12
+    },
+    {
+      "id": "P160",
+      "from": "CP140",
+      "to": "CP139",
+      "distance": 11
+    },
+    {
+      "id": "P161",
+      "from": "CP139",
+      "to": "CP138",
+      "distance": 12
+    },
+    {
+      "id": "P162",
+      "from": "CP138",
+      "to": "CP136",
+      "distance": 11
+    },
+    {
+      "id": "P163",
+      "from": "CP142",
+      "to": "CP154",
+      "distance": 8
+    },
+    {
+      "id": "P164",
+      "from": "CP154",
+      "to": "CP155",
+      "distance": 12
+    },
+    {
+      "id": "P165",
+      "from": "CP155",
+      "to": "CP156",
+      "distance": 19
+    },
+    {
+      "id": "P166",
+      "from": "CP156",
+      "to": "CP170",
+      "distance": 12
+    },
+    {
+      "id": "P167",
+      "from": "CP154",
+      "to": "CP157",
+      "distance": 12
+    },
+    {
+      "id": "P168",
+      "from": "CP157",
+      "to": "CP158",
+      "distance": 18
+    },
+    {
+      "id": "P169",
+      "from": "CP158",
+      "to": "CP159",
+      "distance": 18
+    },
+    {
+      "id": "P170",
+      "from": "CP159",
+      "to": "CP160",
+      "distance": 13
+    },
+    {
+      "id": "P171",
+      "from": "CP29",
+      "to": "CP30",
+      "distance": 16
+    },
+    {
+      "id": "P172",
+      "from": "CP31",
+      "to": "CP30",
+      "distance": 22
+    },
+    {
+      "id": "P173",
+      "from": "CP30",
+      "to": "CP58",
+      "distance": 10
+    },
+    {
+      "id": "P174",
+      "from": "CP58",
+      "to": "CP59",
+      "distance": 18
+    },
+    {
+      "id": "P175",
+      "from": "CP59",
+      "to": "CP60",
+      "distance": 19
+    },
+    {
+      "id": "P176",
+      "from": "CP60",
+      "to": "CP62",
+      "distance": 12
+    },
+    {
+      "id": "P177",
+      "from": "CP62",
+      "to": "CP65",
+      "distance": 16
+    },
+    {
+      "id": "P178",
+      "from": "CP65",
+      "to": "CP68",
+      "distance": 14
+    },
+    {
+      "id": "P179",
+      "from": "CP68",
+      "to": "CP66",
+      "distance": 18
+    },
+    {
+      "id": "P180",
+      "from": "CP66",
+      "to": "CP63",
+      "distance": 14
+    },
+    {
+      "id": "P181",
+      "from": "CP63",
+      "to": "CP61",
+      "distance": 16
+    },
+    {
+      "id": "P182",
+      "from": "CP61",
+      "to": "CP64",
+      "distance": 20
+    },
+    {
+      "id": "P183",
+      "from": "CP64",
+      "to": "CP67",
+      "distance": 14
+    },
+    {
+      "id": "P184",
+      "from": "CP67",
+      "to": "CP69",
+      "distance": 18
+    },
+    {
+      "id": "P185",
+      "from": "CP69",
+      "to": "CP68",
+      "distance": 27
+    },
+    {
+      "id": "P186",
+      "from": "CP58",
+      "to": "CP62",
+      "distance": 18
+    },
+    {
+      "id": "P187",
+      "from": "CP58",
+      "to": "CP65",
+      "distance": 16
+    },
+    {
+      "id": "P188",
+      "from": "CP65",
+      "to": "CP66",
+      "distance": 19
+    },
+    {
+      "id": "P189",
+      "from": "CP66",
+      "to": "CP62",
+      "distance": 22
+    },
+    {
+      "id": "P190",
+      "from": "CP62",
+      "to": "CP63",
+      "distance": 19
+    },
+    {
+      "id": "P191",
+      "from": "CP63",
+      "to": "CP60",
+      "distance": 20
+    },
+    {
+      "id": "P192",
+      "from": "CP60",
+      "to": "CP61",
+      "distance": 26
+    },
+    {
+      "id": "P193",
+      "from": "CP61",
+      "to": "CP67",
+      "distance": 30
+    },
+    {
+      "id": "P194",
+      "from": "CP67",
+      "to": "CP66",
+      "distance": 25
+    },
+    {
+      "id": "P195",
+      "from": "CP66",
+      "to": "CP69",
+      "distance": 22
+    },
+    {
+      "id": "P196",
+      "from": "CP69",
+      "to": "CP63",
+      "distance": 33
+    },
+    {
+      "id": "P197",
+      "from": "CP63",
+      "to": "CP65",
+      "distance": 27
+    },
+    {
+      "id": "P198",
+      "from": "CP63",
+      "to": "CP67",
+      "distance": 27
+    },
+    {
+      "id": "P199",
+      "from": "CP62",
+      "to": "CP59",
+      "distance": 18
+    },
+    {
+      "id": "P200",
+      "from": "CP64",
+      "to": "CP159",
+      "distance": 17
+    }
+  ]
+}
