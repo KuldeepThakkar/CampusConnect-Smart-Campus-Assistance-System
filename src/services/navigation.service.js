@@ -1,11 +1,18 @@
 const dijkstraService = require("./dijkstra.service");
+const nearestCheckpointService = require("./nearestCheckpoint.service");
 
 function navigate(data) {
 
-    const { source, destination } = data;
+    const { latitude, longitude, destination } = data;
+
+    const nearestCheckpoint =
+        nearestCheckpointService.findNearestCheckpoint(
+            latitude,
+            longitude
+        );
 
     const result = dijkstraService.findShortestPath(
-        source,
+        nearestCheckpoint.checkpointId,
         destination
     );
 
