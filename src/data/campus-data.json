@@ -1189,6 +1189,27 @@
       "type": "Canteen",
       "latitude": 23.063862764672933,
       "longitude": 72.43980824947359
+    },
+    {
+      "id": "CP171",
+      "name": "Navigating-N-93",
+      "type": "Entrance",
+      "latitude": 23.066670696184328,
+      "longitude": 72.44011938571931
+    },
+    {
+      "id": "CP172",
+      "name": "girls hostel gate",
+      "type": "Entrance",
+      "latitude": 23.066589283336306,
+      "longitude": 72.44007647037508
+    },
+    {
+      "id": "CP173",
+      "name": "workshop gate",
+      "type": "Gate",
+      "latitude": 23.06420308616706,
+      "longitude": 72.44066387414934
     }
   ],
   "buildings": [
@@ -1196,7 +1217,7 @@
       "id": "B1",
       "name": "Girls Hostel",
 	"entrances": [
-        "CP95"
+        "CP172"
     ],
     "classrooms": [],
       "center": {
@@ -1603,7 +1624,7 @@
       "id": "B6",
       "name": "Workshop Lab",
       "entrances": [
-            "CP133"
+            "CP173"
       ],
       "classrooms": [],
       "center": {
@@ -3132,6 +3153,30 @@
       "from": "CP64",
       "to": "CP159",
       "distance": 17
+    },
+    {
+      "id": "P201",
+      "from": "CP95",
+      "to": "CP171",
+      "distance": 23
+    },
+    {
+      "id": "P202",
+      "from": "CP171",
+      "to": "CP172",
+      "distance": 10
+    },
+    {
+      "id": "P203",
+      "from": "CP133",
+      "to": "CP173",
+      "distance": 7
+    },
+    {
+      "id": "P204",
+      "from": "CP137",
+      "to": "CP173",
+      "distance": 7
     }
   ]
 }
