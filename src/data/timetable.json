@@ -1,0 +1,146 @@
+[
+  {
+    "department": "Engineering",
+    "branch": "CE",
+    "semester": 5,
+    "division": "CE-A",
+    "schedule": {
+      "Monday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-1" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-2" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-3" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-4" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-5" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-6" }
+      ],
+      "Tuesday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-7" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-8" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-9" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-10" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-11" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-12" }
+      ],
+      "Wednesday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-13" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-14" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-15" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-16" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-17" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-18" }
+      ],
+      "Thursday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-19" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-20" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-21" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-22" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-23" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-24" }
+      ],
+      "Friday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-25" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-26" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-27" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-28" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-29" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-30" }
+      ]
+    }
+  },
+  {
+    "department": "Engineering",
+    "branch": "CE",
+    "semester": 5,
+    "division": "CE-B",
+    "schedule": {
+      "Monday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-7" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-8" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-9" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-10" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-11" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-12" }
+      ],
+      "Tuesday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-13" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-14" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-15" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-16" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-17" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-18" }
+      ],
+      "Wednesday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-19" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-20" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-21" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-22" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-23" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-24" }
+      ],
+      "Thursday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-25" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-26" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-27" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-28" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-29" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-30" }
+      ],
+      "Friday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-1" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-2" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-3" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-4" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-5" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-6" }
+      ]
+    }
+  },
+  {
+    "department": "Engineering",
+    "branch": "CE",
+    "semester": 5,
+    "division": "CE-C",
+    "schedule": {
+      "Monday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-13" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-14" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-15" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-16" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-17" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-18" }
+      ],
+      "Tuesday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-19" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-20" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-21" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-22" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-23" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-24" }
+      ],
+      "Wednesday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-25" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-26" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-27" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-28" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-29" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-30" }
+      ],
+      "Thursday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-1" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-2" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-3" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-4" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-5" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-6" }
+      ],
+      "Friday": [
+        { "startTime": "09:10", "endTime": "10:00", "subject": "Web Technology", "faculty": "Prof. Joshi", "classroom": "LH-7" },
+        { "startTime": "10:00", "endTime": "10:50", "subject": "DBMS", "faculty": "Dr. Trivedi", "classroom": "LH-8" },
+        { "startTime": "11:10", "endTime": "12:00", "subject": "Operating Systems", "faculty": "Prof. Shah", "classroom": "LH-9" },
+        { "startTime": "12:00", "endTime": "12:50", "subject": "Data Structures", "faculty": "Dr. Mehta", "classroom": "LH-10" },
+        { "startTime": "13:40", "endTime": "14:30", "subject": "Software Engineering", "faculty": "Prof. Desai", "classroom": "LH-11" },
+        { "startTime": "14:30", "endTime": "15:20", "subject": "Computer Networks", "faculty": "Prof. Patel", "classroom": "LH-12" }
+      ]
+    }
+  }
+]
