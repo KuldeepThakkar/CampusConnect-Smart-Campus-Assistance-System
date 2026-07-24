@@ -8,6 +8,15 @@ function navigate(req, res) {
 
 }
 
+function navigateToNextClass(req, res) {
+
+    const result = navigationService.navigateToNextClass(req.body);
+
+    res.status(200).json(result);
+
+}
+
 module.exports = {
-    navigate
+    navigate,
+    navigateToNextClass
 };
