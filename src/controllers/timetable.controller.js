@@ -9,15 +9,47 @@ function getAcademicOptions(req, res) {
             data: academicOptions
         });
     } catch (error) {
-        console.error(error);
-
         res.status(500).json({
             success: false,
-            message: "Failed to load academic options."
+            message: error.message
         });
     }
 }
 
+function getNextLecture(req, res) {
+    try {
+        const {
+            department,
+            branch,
+            semester,
+            division,
+            currentDate
+        } = req.body;
+
+        const result = timetableService.getNextLecture(
+            department,
+            branch,
+            Number(semester),
+            division,
+            currentDate ? new Date(currentDate) : new Date()
+        );
+
+        res.status(200).json({
+            success: true,
+            data: result
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+}
+
 module.exports = {
-    getAcademicOptions
+    getAcademicOptions,
+    getNextLecture
 };
