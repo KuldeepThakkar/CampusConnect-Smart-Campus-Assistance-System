@@ -1,23 +1,33 @@
 const timetableService = require("../services/timetable.service");
+const {successResponse,errorResponse} = require("../utils/response");
 
 function getAcademicOptions(req, res) {
+
     try {
+
         const academicOptions = timetableService.getAcademicOptions();
 
-        res.status(200).json({
-            success: true,
-            data: academicOptions
-        });
+        return res.status(200).json(
+            successResponse(
+                "Academic options fetched successfully",
+                academicOptions
+            )
+        );
+
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
+
+        return res.status(500).json(
+            errorResponse(error.message)
+        );
+
     }
+
 }
 
 function getNextLecture(req, res) {
+
     try {
+
         const {
             department,
             branch,
@@ -34,19 +44,21 @@ function getNextLecture(req, res) {
             currentDate ? new Date(currentDate) : new Date()
         );
 
-        res.status(200).json({
-            success: true,
-            data: result
-        });
+        return res.status(200).json(
+            successResponse(
+                "Next lecture fetched successfully",
+                result
+            )
+        );
 
     } catch (error) {
 
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
+        return res.status(500).json(
+            errorResponse(error.message)
+        );
 
     }
+
 }
 
 module.exports = {

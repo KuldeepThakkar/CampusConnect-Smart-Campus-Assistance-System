@@ -4,11 +4,12 @@ const router = express.Router();
 
 const navigationController = require("../controllers/navigation.controller");
 
-router.post("/", navigationController.navigate);
+const {validateNavigationRequest} = require("../validations/navigation.validation");
 
-router.post(
-    "/next-class",
-    navigationController.navigateToNextClass
-);
+const {validateNextClassRequest} = require("../validations/timetable.validation");
+
+router.post("/",validateNavigationRequest,navigationController.navigate);
+
+router.post("/next-class",validateNextClassRequest,navigationController.navigateToNextClass);
 
 module.exports = router;
