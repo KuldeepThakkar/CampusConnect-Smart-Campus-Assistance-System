@@ -7,10 +7,12 @@ function Selection(){
     const [department, setDepartment] = useState("");
     const [branch, setBranch] = useState("");
     const [semester, setSemester] = useState("");
+    const [division, setDivision] = useState("");
 
     const departments = Object.keys(academicData);
     const branches =department ? Object.keys(academicData[department]) : [];
     const semesters =department && branch ? Object.keys(academicData[department][branch]) : [];
+    const divisions = department && branch && semester ? academicData[department][branch][semester] : [];
 
     useEffect(() => {
 
@@ -46,6 +48,7 @@ function Selection(){
                 setDepartment(e.target.value);
                 setBranch("");
                 setSemester("");
+                setDivision("");
             }}
         >
             <option value="">Select Department</option>
@@ -66,6 +69,7 @@ function Selection(){
             onChange={(e) => {
                 setBranch(e.target.value);
                 setSemester("");
+                setDivision("");
             }}
             disabled={!department}
         >
@@ -87,7 +91,10 @@ function Selection(){
         <select
             id="semester"
             value={semester}
-            onChange={(e) => setSemester(e.target.value)}
+            onChange={(e) => {
+                setSemester(e.target.value);
+                setDivision("");
+            }}
             disabled={!branch}
         >
             <option value="">
@@ -104,7 +111,33 @@ function Selection(){
             ))}
         </select>
     </div>
+    <div>
+        <label htmlFor="division">
+            Division
+        </label>
+
+        <select
+            id="division"
+            value={division}
+            onChange={(e) => setDivision(e.target.value)}
+            disabled={!semester}
+        >
+            <option value="">
+                Select Division
+            </option>
+
+            {divisions.map((divisionName) => (
+                <option
+                    key={divisionName}
+                    value={divisionName}
+                >
+                    {divisionName}
+                </option>
+            ))}
+        </select>
     </div>
+    </div>
+
     )
 
 }
