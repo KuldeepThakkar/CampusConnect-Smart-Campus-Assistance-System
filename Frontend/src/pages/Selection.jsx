@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 function Selection(){
+
+    const navigate = useNavigate();
 
     const [academicData, setAcademicData] = useState({});
     const [department, setDepartment] = useState("");
@@ -30,7 +33,25 @@ function Selection(){
         } catch (error) {
             console.error(error);
         }
-    };    
+    }; 
+    
+    const handleContinue = () => {
+
+        if (!department || !branch || !semester || !division) {
+            alert("Please select all academic details.");
+            return;
+        }
+
+        navigate("/navigation", {
+            state: {
+                department,
+                branch,
+                semester,
+                division
+            }
+        });
+
+    };
 
     
     console.log(academicData);
@@ -136,6 +157,12 @@ function Selection(){
             ))}
         </select>
     </div>
+    <button
+        type="button"
+        onClick={handleContinue}
+    >
+        Continue
+    </button>
     </div>
 
     )
