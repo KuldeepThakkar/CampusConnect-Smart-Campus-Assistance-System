@@ -6,9 +6,11 @@ function Selection(){
     const [academicData, setAcademicData] = useState({});
     const [department, setDepartment] = useState("");
     const [branch, setBranch] = useState("");
+    const [semester, setSemester] = useState("");
 
     const departments = Object.keys(academicData);
     const branches =department ? Object.keys(academicData[department]) : [];
+    const semesters =department && branch ? Object.keys(academicData[department][branch]) : [];
 
     useEffect(() => {
 
@@ -43,6 +45,7 @@ function Selection(){
             onChange={(e) => {
                 setDepartment(e.target.value);
                 setBranch("");
+                setSemester("");
             }}
         >
             <option value="">Select Department</option>
@@ -60,7 +63,10 @@ function Selection(){
         <select
             id="branch"
             value={branch}
-            onChange={(e) => setBranch(e.target.value)}
+            onChange={(e) => {
+                setBranch(e.target.value);
+                setSemester("");
+            }}
             disabled={!department}
         >
             <option value="">Select Branch</option>
@@ -71,6 +77,29 @@ function Selection(){
                     value={branchName}
                 >
                     {branchName}
+                </option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label htmlFor="semester">Semester</label>
+
+        <select
+            id="semester"
+            value={semester}
+            onChange={(e) => setSemester(e.target.value)}
+            disabled={!branch}
+        >
+            <option value="">
+                Select Semester
+            </option>
+
+            {semesters.map((sem) => (
+                <option
+                    key={sem}
+                    value={sem}
+                >
+                    Semester {sem}
                 </option>
             ))}
         </select>
