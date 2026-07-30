@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
+
+import api from "../api/axios";
 
 function Selection(){
 
     const navigate = useNavigate();
 
     const [academicData, setAcademicData] = useState({});
+
     const [department, setDepartment] = useState("");
     const [branch, setBranch] = useState("");
     const [semester, setSemester] = useState("");
@@ -17,12 +19,7 @@ function Selection(){
     const semesters =department && branch ? Object.keys(academicData[department][branch]) : [];
     const divisions = department && branch && semester ? academicData[department][branch][semester] : [];
 
-    useEffect(() => {
-
-        fetchAcademicOptions()
-        
-        
-    }, []);
+    
 
     const fetchAcademicOptions = async () => {
         try {
@@ -34,6 +31,42 @@ function Selection(){
             console.error(error);
         }
     }; 
+
+    const handleDepartmentChange = (e) => {
+
+        const value = e.target.value;
+
+        setDepartment(value);
+        setBranch("");
+        setSemester("");
+        setDivision("");
+
+    };
+
+    const handleBranchChange = (e) => {
+
+        const value = e.target.value;
+
+        setBranch(value);
+        setSemester("");
+        setDivision("");
+
+    };
+
+    const handleSemesterChange = (e) => {
+
+        const value = e.target.value;
+
+        setSemester(value);
+        setDivision("");
+
+    };
+
+    const handleDivisionChange = (e) => {
+
+        setDivision(e.target.value);
+
+    };
     
     const handleContinue = () => {
 
@@ -53,8 +86,10 @@ function Selection(){
 
     };
 
+    useEffect(() => {
+        fetchAcademicOptions()     
+    }, []);
     
-    console.log(academicData);
     return(<div>
     <h2>Academic Selection</h2>
     <div>    
@@ -65,12 +100,7 @@ function Selection(){
         <select
             id="department"
             value={department}
-            onChange={(e) => {
-                setDepartment(e.target.value);
-                setBranch("");
-                setSemester("");
-                setDivision("");
-            }}
+            onChange={handleDepartmentChange}
         >
             <option value="">Select Department</option>
 
@@ -87,11 +117,7 @@ function Selection(){
         <select
             id="branch"
             value={branch}
-            onChange={(e) => {
-                setBranch(e.target.value);
-                setSemester("");
-                setDivision("");
-            }}
+            onChange={handleBranchChange}
             disabled={!department}
         >
             <option value="">Select Branch</option>
@@ -112,10 +138,7 @@ function Selection(){
         <select
             id="semester"
             value={semester}
-            onChange={(e) => {
-                setSemester(e.target.value);
-                setDivision("");
-            }}
+            onChange={handleSemesterChange}
             disabled={!branch}
         >
             <option value="">
@@ -140,7 +163,7 @@ function Selection(){
         <select
             id="division"
             value={division}
-            onChange={(e) => setDivision(e.target.value)}
+            onChange={handleDivisionChange}
             disabled={!semester}
         >
             <option value="">
