@@ -5,11 +5,13 @@ function Selection(){
 
     const [academicData, setAcademicData] = useState({});
     const [department, setDepartment] = useState("");
+    const [branch, setBranch] = useState("");
 
     const departments = Object.keys(academicData);
+    const branches =department ? Object.keys(academicData[department]) : [];
 
     useEffect(() => {
-        
+
         fetchAcademicOptions()
         
         
@@ -28,16 +30,20 @@ function Selection(){
 
     
     console.log(academicData);
-    return(
-    <div>
-        <h2>Academic Selection</h2>
+    return(<div>
+    <h2>Academic Selection</h2>
+    <div>    
         <label htmlFor="department">
             Department
         </label>
 
         <select
+            id="department"
             value={department}
-            onChange={(e) => setDepartment(e.target.value)}
+            onChange={(e) => {
+                setDepartment(e.target.value);
+                setBranch("");
+            }}
         >
             <option value="">Select Department</option>
 
@@ -47,6 +53,28 @@ function Selection(){
                 </option>
             ))}
         </select>
+    </div>
+    <div>
+        <label htmlFor="branch">Branch</label>
+
+        <select
+            id="branch"
+            value={branch}
+            onChange={(e) => setBranch(e.target.value)}
+            disabled={!department}
+        >
+            <option value="">Select Branch</option>
+
+            {branches.map((branchName) => (
+                <option
+                    key={branchName}
+                    value={branchName}
+                >
+                    {branchName}
+                </option>
+            ))}
+        </select>
+    </div>
     </div>
     )
 
