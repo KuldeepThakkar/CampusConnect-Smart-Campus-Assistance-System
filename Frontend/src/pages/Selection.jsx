@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getNextClass } from "../services/navigation";
 
 import api from "../api/axios";
 
@@ -12,6 +13,7 @@ function Selection(){
         latitude: null,
         longitude: null
     });
+    const [navigationData, setNavigationData] = useState(null);
 
     const [department, setDepartment] = useState("");
     const [branch, setBranch] = useState("");
@@ -90,6 +92,8 @@ function Selection(){
                     longitude
                 });
 
+                fetchNextClass(latitude, longitude);
+
                 console.log("Latitude:", latitude);
                 console.log("Longitude:", longitude);
 
@@ -101,6 +105,36 @@ function Selection(){
             }
 
         );
+
+    };
+
+    const fetchNextClass = async (latitude, longitude) => {
+
+        try {
+
+            const requestBody = {
+                latitude,
+                longitude,
+                department,
+                branch,
+                semester: Number(semester),
+                division,
+                currentDate: new Date().toISOString().slice(0, 19)
+            };
+
+            console.log(requestBody);
+
+            const response = await getNextClass(requestBody);
+
+            console.log(response);
+
+            setNavigationData(response);
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
 
     };
     
