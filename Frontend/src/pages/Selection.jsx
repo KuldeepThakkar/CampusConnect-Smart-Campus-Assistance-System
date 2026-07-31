@@ -8,6 +8,10 @@ function Selection(){
     const navigate = useNavigate();
 
     const [academicData, setAcademicData] = useState({});
+    const [location, setLocation] = useState({
+        latitude: null,
+        longitude: null
+    });
 
     const [department, setDepartment] = useState("");
     const [branch, setBranch] = useState("");
@@ -67,6 +71,38 @@ function Selection(){
         setDivision(e.target.value);
 
     };
+
+    const getUserLocation = () => {
+
+        if (!navigator.geolocation) {
+            alert("Geolocation is not supported by your browser.");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+
+            (position) => {
+
+                const { latitude, longitude } = position.coords;
+
+                setLocation({
+                    latitude,
+                    longitude
+                });
+
+                console.log("Latitude:", latitude);
+                console.log("Longitude:", longitude);
+
+            },
+
+            (error) => {
+                console.error(error);
+                alert("Unable to retrieve your location.");
+            }
+
+        );
+
+    };
     
     const handleContinue = () => {
 
@@ -75,14 +111,7 @@ function Selection(){
             return;
         }
 
-        navigate("/navigation", {
-            state: {
-                department,
-                branch,
-                semester,
-                division
-            }
-        });
+        getUserLocation();
 
     };
 
