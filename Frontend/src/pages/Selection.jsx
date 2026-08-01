@@ -11,6 +11,9 @@ function Selection(){
 
     const navigate = useNavigate();
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
+
     const [academicData, setAcademicData] = useState({});
     const [location, setLocation] = useState({
         latitude: null,
@@ -80,7 +83,8 @@ function Selection(){
     const getUserLocation = () => {
 
         if (!navigator.geolocation) {
-            alert("Geolocation is not supported by your browser.");
+            setErrorMessage("Geolocation is not supported by your browser.");
+            setIsLoading(false);
             return;
         }
 
@@ -97,14 +101,12 @@ function Selection(){
 
                 fetchNextClass(latitude, longitude);
 
-                console.log("Latitude:", latitude);
-                console.log("Longitude:", longitude);
-
             },
 
             (error) => {
                 console.error(error);
-                alert("Unable to retrieve your location.");
+                setErrorMessage("Unable to retrieve your location.");
+                setIsLoading(false);
             }
 
         );
@@ -122,33 +124,25 @@ function Selection(){
                 branch,
                 semester: Number(semester),
                 division,
-                currentDate:'2026-07-31T14:03:23'
-                // currentDate: new Date().toISOString().slice(0, 19)
+                currentDate: new Date().toISOString().slice(0, 19)
             };
 
-            console.log(requestBody);
-
             const response = await getNextClass(requestBody);
-
-            console.log(response);
 
             setNavigationData(response);
 
         } catch (error) {
 
             if (error.response) {
+                setErrorMessage(error.response.data.message || "Something went wrong.");
+            } else {
+                console.error(error);
+                setErrorMessage("Something went wrong. Please check your connection.");
+            }
 
-                    console.log(error.response.data);
+        } finally {
 
-                    // alert(error.response.data.message);
-
-                } else {
-
-                    console.error(error);
-
-                    alert("Something went wrong.");
-
-                }
+            setIsLoading(false);
 
         }
 
@@ -161,10 +155,12 @@ function Selection(){
             return;
         }
 
+        setErrorMessage(null);
+        setIsLoading(true);
+
         getUserLocation();
 
     };
-
     useEffect(() => {
         fetchAcademicOptions()     
     }, []);
@@ -262,23 +258,28 @@ function Selection(){
     <button
         type="button"
         onClick={handleContinue}
+        disabled={isLoading}
     >
-        Continue
+        {isLoading ? "Finding your route..." : "Continue"}
     </button>
-        {
-            navigationData?.success && (
-                <>
-                    <NextLectureCard
-                        lecture={navigationData.data.lecture}
-                        status={navigationData.data.status}
-                    />
+    {errorMessage && (
+        <p style={{ color: "red" }}>{errorMessage}</p>
+    )}
 
-                    <RouteDetails
-                        navigation={navigationData.data.navigation}
-                    />
-                </>
-            )
-        }
+    {
+        navigationData?.success && (
+            <>
+                <NextLectureCard
+                    lecture={navigationData.data.lecture}
+                    status={navigationData.data.status}
+                />
+
+                <RouteDetails
+                    navigation={navigationData.data.navigation}
+                />
+            </>
+        )
+    }
     </div>
 
     )
