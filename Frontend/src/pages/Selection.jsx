@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getNextClass } from "../services/navigation";
 
+import NextLectureCard from "../components/NextLectureCard";
+
 import api from "../api/axios";
 
 function Selection(){
@@ -119,8 +121,8 @@ function Selection(){
                 branch,
                 semester: Number(semester),
                 division,
-                // currentDate:'2026-07-31T14:03:23'
-                currentDate: new Date().toISOString().slice(0, 19)
+                currentDate:'2026-07-31T14:03:23'
+                // currentDate: new Date().toISOString().slice(0, 19)
             };
 
             console.log(requestBody);
@@ -262,6 +264,14 @@ function Selection(){
     >
         Continue
     </button>
+        {
+            navigationData?.success && (
+                <NextLectureCard
+                    lecture={navigationData.data.lecture}
+                    status={navigationData.data.status}
+                />
+            )
+        }
     </div>
 
     )
