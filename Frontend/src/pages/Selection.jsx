@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getNextClass } from "../services/navigation";
 
 import NextLectureCard from "../components/NextLectureCard";
+import RouteDetails from "../components/RouteDetails";
 
 import api from "../api/axios";
 
@@ -266,10 +267,16 @@ function Selection(){
     </button>
         {
             navigationData?.success && (
-                <NextLectureCard
-                    lecture={navigationData.data.lecture}
-                    status={navigationData.data.status}
-                />
+                <>
+                    <NextLectureCard
+                        lecture={navigationData.data.lecture}
+                        status={navigationData.data.status}
+                    />
+
+                    <RouteDetails
+                        navigation={navigationData.data.navigation}
+                    />
+                </>
             )
         }
     </div>
