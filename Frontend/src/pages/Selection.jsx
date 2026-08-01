@@ -119,6 +119,7 @@ function Selection(){
                 branch,
                 semester: Number(semester),
                 division,
+                // currentDate:'2026-07-31T14:03:23'
                 currentDate: new Date().toISOString().slice(0, 19)
             };
 
@@ -132,7 +133,19 @@ function Selection(){
 
         } catch (error) {
 
-            console.error(error);
+            if (error.response) {
+
+                    console.log(error.response.data);
+
+                    // alert(error.response.data.message);
+
+                } else {
+
+                    console.error(error);
+
+                    alert("Something went wrong.");
+
+                }
 
         }
 
