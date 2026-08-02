@@ -20,6 +20,8 @@ function Navigation(){
         division
     } = location.state || {};
 
+    
+
     const [checkpoints, setCheckpoints] = useState({});
 
     const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +31,10 @@ function Navigation(){
         longitude: null
     });
     const [navigationData, setNavigationData] = useState(null);
+
+    const routeCoordinates = (navigationData?.data?.navigation?.path || [])
+    .map((checkpointId) => checkpoints[checkpointId])
+    .filter(Boolean);
 
     const fetchNextClass = async (latitude, longitude) => {
 
@@ -143,6 +149,7 @@ function Navigation(){
             <CampusMap
                 userLatitude={userCoords.latitude}
                 userLongitude={userCoords.longitude}
+                routePath={routeCoordinates}
             />
 
             {isLoading && <p>Finding your route...</p>}

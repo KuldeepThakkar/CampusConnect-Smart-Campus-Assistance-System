@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Polyline, useMap } from "react-leaflet";
 import L from "leaflet";
 
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
@@ -33,9 +33,7 @@ function RecenterMap({ latitude, longitude }) {
 
 }
 
-function CampusMap({ userLatitude, userLongitude }) {
-    console.log(userLatitude,userLongitude);
-    
+function CampusMap({ userLatitude, userLongitude, routePath }) {
 
     return (
         <MapContainer
@@ -53,6 +51,10 @@ function CampusMap({ userLatitude, userLongitude }) {
                     <Marker position={[userLatitude, userLongitude]} />
                     <RecenterMap latitude={userLatitude} longitude={userLongitude} />
                 </>
+            )}
+
+            {routePath && routePath.length > 0 && (
+                <Polyline positions={routePath} pathOptions={{ color: "blue", weight: 4 }} />
             )}
         </MapContainer>
     );
