@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { getNextClass } from "../services/navigation";
 import CampusMap from "../components/CampusMap";
+import { getCampusData } from "../services/campus";
 
 import NextLectureCard from "../components/NextLectureCard";
 import RouteDetails from "../components/RouteDetails";
@@ -18,6 +19,8 @@ function Navigation(){
         semester,
         division
     } = location.state || {};
+
+    const [checkpoints, setCheckpoints] = useState({});
 
     const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -96,6 +99,27 @@ function Navigation(){
 
     };
 
+    const fetchCheckpoints = async () => {
+
+        try {
+
+            const response = await getCampusData();
+
+            const lookup = {};
+
+            response.data.checkpoints.forEach((checkpoint) => {
+                lookup[checkpoint.id] = [checkpoint.latitude, checkpoint.longitude];
+            });
+
+            setCheckpoints(lookup);
+           
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    };
+
     useEffect(() => {
 
         if (!department || !branch || !semester || !division) {
@@ -107,6 +131,11 @@ function Navigation(){
 
     }, []);
 
+    useEffect(() => {
+        fetchCheckpoints();
+    }, []);
+
+    
     return (
         <div>
             <h2>Navigation</h2>
