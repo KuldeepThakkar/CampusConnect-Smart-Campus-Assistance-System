@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 
 // TODO: replace with your campus's actual center coordinates
-const CAMPUS_CENTER = [23.0225, 72.5714];
+const CAMPUS_CENTER = [23.0302, 72.5772];
 
 function CampusMap() {
 

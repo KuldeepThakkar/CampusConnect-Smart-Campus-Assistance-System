@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { getNextClass } from "../services/navigation";
+import CampusMap from "../components/CampusMap";
 
 import NextLectureCard from "../components/NextLectureCard";
 import RouteDetails from "../components/RouteDetails";
@@ -37,7 +38,8 @@ function Navigation(){
                 branch,
                 semester: Number(semester),
                 division,
-                currentDate: new Date().toISOString().slice(0, 19)
+                currentDate: "2026-07-31T14:03:23"
+                // currentDate: new Date().toISOString().slice(0, 19)
             };
 
             const response = await getNextClass(requestBody);
@@ -108,6 +110,8 @@ function Navigation(){
     return (
         <div>
             <h2>Navigation</h2>
+
+            <CampusMap />
 
             {isLoading && <p>Finding your route...</p>}
 
