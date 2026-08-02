@@ -150,6 +150,7 @@ function Navigation(){
                 userLatitude={userCoords.latitude}
                 userLongitude={userCoords.longitude}
                 routePath={routeCoordinates}
+                isLoading={isLoading}
             />
 
             {isLoading && <p>Finding your route...</p>}
