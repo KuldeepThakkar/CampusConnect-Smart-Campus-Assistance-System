@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getNextClass } from "../services/navigation";
-
-import NextLectureCard from "../components/NextLectureCard";
-import RouteDetails from "../components/RouteDetails";
 
 import api from "../api/axios";
 
@@ -11,15 +7,7 @@ function Selection(){
 
     const navigate = useNavigate();
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(null);
-
     const [academicData, setAcademicData] = useState({});
-    const [location, setLocation] = useState({
-        latitude: null,
-        longitude: null
-    });
-    const [navigationData, setNavigationData] = useState(null);
 
     const [department, setDepartment] = useState("");
     const [branch, setBranch] = useState("");
@@ -27,11 +15,9 @@ function Selection(){
     const [division, setDivision] = useState("");
 
     const departments = Object.keys(academicData);
-    const branches =department ? Object.keys(academicData[department]) : [];
-    const semesters =department && branch ? Object.keys(academicData[department][branch]) : [];
+    const branches = department ? Object.keys(academicData[department]) : [];
+    const semesters = department && branch ? Object.keys(academicData[department][branch]) : [];
     const divisions = department && branch && semester ? academicData[department][branch][semester] : [];
-
-    
 
     const fetchAcademicOptions = async () => {
         try {
@@ -42,7 +28,7 @@ function Selection(){
         } catch (error) {
             console.error(error);
         }
-    }; 
+    };
 
     const handleDepartmentChange = (e) => {
 
@@ -80,74 +66,6 @@ function Selection(){
 
     };
 
-    const getUserLocation = () => {
-
-        if (!navigator.geolocation) {
-            setErrorMessage("Geolocation is not supported by your browser.");
-            setIsLoading(false);
-            return;
-        }
-
-        navigator.geolocation.getCurrentPosition(
-
-            (position) => {
-
-                const { latitude, longitude } = position.coords;
-
-                setLocation({
-                    latitude,
-                    longitude
-                });
-
-                fetchNextClass(latitude, longitude);
-
-            },
-
-            (error) => {
-                console.error(error);
-                setErrorMessage("Unable to retrieve your location.");
-                setIsLoading(false);
-            }
-
-        );
-
-    };
-
-    const fetchNextClass = async (latitude, longitude) => {
-
-        try {
-
-            const requestBody = {
-                latitude,
-                longitude,
-                department,
-                branch,
-                semester: Number(semester),
-                division,
-                currentDate: new Date().toISOString().slice(0, 19)
-            };
-
-            const response = await getNextClass(requestBody);
-
-            setNavigationData(response);
-
-        } catch (error) {
-
-            if (error.response) {
-                setErrorMessage(error.response.data.message || "Something went wrong.");
-            } else {
-                console.error(error);
-                setErrorMessage("Something went wrong. Please check your connection.");
-            }
-
-        } finally {
-
-            setIsLoading(false);
-
-        }
-
-    };
-    
     const handleContinue = () => {
 
         if (!department || !branch || !semester || !division) {
@@ -155,16 +73,21 @@ function Selection(){
             return;
         }
 
-        setErrorMessage(null);
-        setIsLoading(true);
-
-        getUserLocation();
+        navigate("/navigation", {
+            state: {
+                department,
+                branch,
+                semester,
+                division
+            }
+        });
 
     };
+
     useEffect(() => {
-        fetchAcademicOptions()     
+        fetchAcademicOptions();
     }, []);
-    
+
     return(<div>
     <h2>Academic Selection</h2>
     <div>    
@@ -258,33 +181,13 @@ function Selection(){
     <button
         type="button"
         onClick={handleContinue}
-        disabled={isLoading}
     >
-        {isLoading ? "Finding your route..." : "Continue"}
+        Continue
     </button>
-    {errorMessage && (
-        <p style={{ color: "red" }}>{errorMessage}</p>
-    )}
-
-    {
-        navigationData?.success && (
-            <>
-                <NextLectureCard
-                    lecture={navigationData.data.lecture}
-                    status={navigationData.data.status}
-                />
-
-                <RouteDetails
-                    navigation={navigationData.data.navigation}
-                />
-            </>
-        )
-    }
     </div>
 
     )
 
 }
-
 
 export default Selection;
