@@ -111,7 +111,10 @@ function Navigation(){
         <div>
             <h2>Navigation</h2>
 
-            <CampusMap />
+            <CampusMap
+                userLatitude={userCoords.latitude}
+                userLongitude={userCoords.longitude}
+            />
 
             {isLoading && <p>Finding your route...</p>}
 
