@@ -2,64 +2,39 @@ const dijkstraService = require("./dijkstra.service");
 const nearestCheckpointService = require("./nearestCheckpoint.service");
 const classroomService = require("./classroom.service");
 const timetableService = require("./timetable.service");
+const campusBoundaryService = require("./campusBoundary.service");
 
 function navigate(data) {
 
     const { latitude, longitude, classroom } = data;
 
-    // Find nearest checkpoint to the user
-    const nearestCheckpoint = nearestCheckpointService.findNearestCheckpoint(
-        latitude,
-        longitude
-    );
+    const insideCampus = campusBoundaryService.isInsideCampus(latitude, longitude);
 
-    // Find the building containing the classroom
+    const startCheckpointId = insideCampus
+        ? nearestCheckpointService.findNearestCheckpoint(latitude, longitude).checkpointId
+        : "CP25";
+
     const building = classroomService.findBuildingByClassroom(classroom);
 
     if (!building) {
 
         return {
-
             success: false,
-
             message: "Classroom not found"
-
         };
 
     }
 
-    // Variable to store the best route
     let bestRoute = null;
 
-    // Check every entrance of the building
     building.entrances.forEach((entrance) => {
 
-        const route = dijkstraService.findShortestPath(
+        const route = dijkstraService.findShortestPath(startCheckpointId, entrance);
 
-            nearestCheckpoint.checkpointId,
+        if (!route.success) return;
 
-            entrance
-
-        );
-
-        // Ignore invalid routes
-        if (!route.success)
-            return;
-
-        // First route
-        if (bestRoute === null) {
-
+        if (bestRoute === null || route.distance < bestRoute.distance) {
             bestRoute = route;
-
-            return;
-
-        }
-
-        // Replace if current route is shorter
-        if (route.distance < bestRoute.distance) {
-
-            bestRoute = route;
-
         }
 
     });
@@ -67,16 +42,16 @@ function navigate(data) {
     if (!bestRoute) {
 
         return {
-
             success: false,
-
             message: "No route found"
-
         };
 
     }
 
-    return bestRoute;
+    return {
+        ...bestRoute,
+        insideCampus
+    };
 
 }
 
