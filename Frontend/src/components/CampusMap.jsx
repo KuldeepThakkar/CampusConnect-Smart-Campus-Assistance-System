@@ -78,12 +78,12 @@ function CampusMap({ userLatitude, userLongitude, routePath, offCampusPath, isLo
                 {offCampusPath && offCampusPath.length > 0 && (
                     <Polyline
                         positions={offCampusPath}
-                        pathOptions={{ color: "orange", weight: 4, dashArray: "8, 8" }}
+                        pathOptions={{ color: "blue", weight: 4}}
                     />
                 )}
 
                 {routePath && routePath.length > 0 && (
-                    <Polyline positions={routePath} pathOptions={{ color: "blue", weight: 4 }} />
+                    <Polyline positions={routePath} pathOptions={{ color: "blue", weight: 4, dashArray: "8, 8"  }} />
                 )}
 
                 {destination && (

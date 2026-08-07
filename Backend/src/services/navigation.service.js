@@ -64,7 +64,8 @@ async function navigate(data) {
 
         try {
 
-            offCampusPath = await routingService.getWalkingDirections(
+            offCampusPath = await routingService.getDirections(
+                "driving-car",
                 latitude,
                 longitude,
                 gateCheckpoint.latitude,

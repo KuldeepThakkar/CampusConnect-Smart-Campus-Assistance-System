@@ -1,9 +1,9 @@
 const ORS_API_KEY = process.env.ORS_API_KEY;
-const ORS_BASE_URL = "https://api.openrouteservice.org/v2/directions/foot-walking";
+const ORS_BASE_URL = "https://api.openrouteservice.org/v2/directions";
 
-async function getWalkingDirections(startLatitude, startLongitude, endLatitude, endLongitude) {
+async function getDirections(profile, startLatitude, startLongitude, endLatitude, endLongitude) {
 
-    const url = `${ORS_BASE_URL}?api_key=${ORS_API_KEY}&start=${startLongitude},${startLatitude}&end=${endLongitude},${endLatitude}`;
+    const url = `${ORS_BASE_URL}/${profile}?api_key=${ORS_API_KEY}&start=${startLongitude},${startLatitude}&end=${endLongitude},${endLatitude}`;
 
     const response = await fetch(url);
 
@@ -15,8 +15,6 @@ async function getWalkingDirections(startLatitude, startLongitude, endLatitude, 
 
     const coordinates = data.features[0].geometry.coordinates;
 
-    // ORS returns [longitude, latitude] pairs — flip to [latitude, longitude]
-    // to match the convention every other part of this project already uses
     const path = coordinates.map(([longitude, latitude]) => [latitude, longitude]);
 
     return path;
@@ -24,5 +22,5 @@ async function getWalkingDirections(startLatitude, startLongitude, endLatitude, 
 }
 
 module.exports = {
-    getWalkingDirections
+    getDirections
 };
