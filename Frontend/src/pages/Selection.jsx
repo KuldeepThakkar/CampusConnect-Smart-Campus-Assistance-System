@@ -15,15 +15,25 @@ function Selection(){
     const [division, setDivision] = useState("");
 
     const departments = Object.keys(academicData);
-    const branches = department ? Object.keys(academicData[department]) : [];
-    const semesters = department && branch ? Object.keys(academicData[department][branch]) : [];
-    const divisions = department && branch && semester ? academicData[department][branch][semester] : [];
+    const branches = department? Object.keys(academicData[department] || {}): [];
+    const semesters =department && branch? Object.keys(academicData[department]?.[branch] || {}): [];
+    const divisions =department && branch && semester? academicData[department]?.[branch]?.[semester] || []: [];
 
     const fetchAcademicOptions = async () => {
         try {
             const response = await api.get("/timetable/options");
 
             setAcademicData(response.data.data);
+
+            const savedData = JSON.parse(localStorage.getItem("academicData"));
+
+            if (savedData) {
+                setDepartment(savedData.department || "");
+                setBranch(savedData.branch || "");
+                setSemester(savedData.semester || "");
+                setDivision(savedData.division || "");
+            }
+
 
         } catch (error) {
             console.error(error);
@@ -87,6 +97,21 @@ function Selection(){
     useEffect(() => {
         fetchAcademicOptions();
     }, []);
+
+
+    useEffect(() => {
+        if (!department || !branch || !semester || !division) return;
+
+        localStorage.setItem(
+            "academicData",
+            JSON.stringify({
+                department,
+                branch,
+                semester,
+                division,
+            })
+        );
+    }, [department, branch, semester, division]);
 
     return(<div>
     <h2>Academic Selection</h2>
