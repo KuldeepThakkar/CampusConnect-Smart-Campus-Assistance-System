@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, CircleMarker, Polyline, useMap } from "react-leaflet";
 import L from "leaflet";
 
@@ -18,6 +18,7 @@ const CAMPUS_CENTER = [23.0225, 72.5714];
 function MapUpdater({ userLatitude, userLongitude, routePath, offCampusPath }) {
 
     const map = useMap();
+    const hasFitBoundsRef = useRef(false);
 
     useEffect(() => {
 
@@ -26,17 +27,18 @@ function MapUpdater({ userLatitude, userLongitude, routePath, offCampusPath }) {
             ...(routePath || [])
         ];
 
-        if (allPoints.length > 0) {
+        if (allPoints.length > 0 && !hasFitBoundsRef.current) {
 
             const bounds = userLatitude && userLongitude
                 ? [...allPoints, [userLatitude, userLongitude]]
                 : allPoints;
 
             map.fitBounds(bounds, { padding: [40, 40] });
+            hasFitBoundsRef.current = true;
 
         } else if (userLatitude && userLongitude) {
 
-            map.setView([userLatitude, userLongitude], map.getZoom());
+            map.panTo([userLatitude, userLongitude]);
 
         }
 
