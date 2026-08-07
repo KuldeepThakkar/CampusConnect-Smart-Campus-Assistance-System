@@ -38,45 +38,88 @@ function Navigation(){
 
     const offCampusPath = navigationData?.data?.navigation?.offCampusPath || [];
 
-    const fetchNextClass = async (latitude, longitude) => {
+const fetchNextClass = async (latitude, longitude, isBackgroundUpdate = false) => {
 
-        try {
+    isFetchingRef.current = true;
 
-            const requestBody = {
-                latitude ,
-                longitude ,
-                department,
-                branch,
-                semester: Number(semester),
-                division,
-                currentDate: "2026-07-31T14:03:23"
-                // currentDate: new Date().toISOString().slice(0, 19)
-            };
-            // "latitude": 23.06502989563914,
-            // "longitude": 72.4400979280472
-            // requestBody.latitude = 23.06502989563914;
-            // requestBody.longitude = 72.4400979280472;
+    try {
 
-            const response = await getNextClass(requestBody);
+        const requestBody = {
+            latitude,
+            longitude,
+            department,
+            branch,
+            semester: Number(semester),
+            division,
+            currentDate: "2026-07-31T14:03:23"
+            // currentDate: new Date().toISOString().slice(0, 19)
+        };
 
-            setNavigationData(response);
+        const response = await getNextClass(requestBody);
 
-        } catch (error) {
+        setNavigationData(response);
+        setErrorMessage(null);
 
-            if (error.response) {
-                setErrorMessage(error.response.data.message || "Something went wrong.");
-            } else {
-                console.error(error);
-                setErrorMessage("Something went wrong. Please check your connection.");
-            }
+    } catch (error) {
 
-        } finally {
+        if (isBackgroundUpdate) {
 
-            setIsLoading(false);
+            console.error("Background route refresh failed:", error);
 
+        } else if (error.response) {
+            setErrorMessage(error.response.data.message || "Something went wrong.");
+        } else {
+            console.error(error);
+            setErrorMessage("Something went wrong. Please check your connection.");
         }
 
-    };
+    } finally {
+
+        setIsLoading(false);
+        isFetchingRef.current = false;
+
+    }
+
+};
+    // const fetchNextClass = async (latitude, longitude) => {
+
+    //     try {
+
+    //         const requestBody = {
+    //             latitude ,
+    //             longitude ,
+    //             department,
+    //             branch,
+    //             semester: Number(semester),
+    //             division,
+    //             currentDate: "2026-07-31T14:03:23"
+    //             // currentDate: new Date().toISOString().slice(0, 19)
+    //         };
+    //         // "latitude": 23.06502989563914,
+    //         // "longitude": 72.4400979280472
+    //         // requestBody.latitude = 23.06502989563914;
+    //         // requestBody.longitude = 72.4400979280472;
+
+    //         const response = await getNextClass(requestBody);
+
+    //         setNavigationData(response);
+
+    //     } catch (error) {
+
+    //         if (error.response) {
+    //             setErrorMessage(error.response.data.message || "Something went wrong.");
+    //         } else {
+    //             console.error(error);
+    //             setErrorMessage("Something went wrong. Please check your connection.");
+    //         }
+
+    //     } finally {
+
+    //         setIsLoading(false);
+
+    //     }
+
+    // };
 
     const watchIdRef = useRef(null);
 
@@ -99,8 +142,20 @@ function Navigation(){
                     longitude
                 });
 
-                if (isLoading) {
-                    fetchNextClass(latitude, longitude);
+                const lastCoords = lastFetchedCoordsRef.current;
+
+                const hasMovedEnough = !lastCoords || getDistanceInMeters(
+                    lastCoords.latitude, lastCoords.longitude, latitude, longitude
+                ) >= MOVEMENT_THRESHOLD_METERS;
+
+                if (hasMovedEnough && !isFetchingRef.current) {
+
+                    lastFetchedCoordsRef.current = { latitude, longitude };
+
+                    fetchNextClass(latitude, longitude, hasFetchedOnceRef.current);
+
+                    hasFetchedOnceRef.current = true;
+
                 }
 
             },
@@ -140,6 +195,29 @@ function Navigation(){
         }
 
     };
+
+    const lastFetchedCoordsRef = useRef(null);
+    const isFetchingRef = useRef(false);
+    const hasFetchedOnceRef = useRef(false);
+
+    const MOVEMENT_THRESHOLD_METERS = 25;
+
+    function getDistanceInMeters(lat1, lon1, lat2, lon2) {
+
+        const R = 6371000;
+        const toRad = (deg) => (deg * Math.PI) / 180;
+
+        const dLat = toRad(lat2 - lat1);
+        const dLon = toRad(lon2 - lon1);
+
+        const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return R * c;
+
+    }
 
     useEffect(() => {
 
