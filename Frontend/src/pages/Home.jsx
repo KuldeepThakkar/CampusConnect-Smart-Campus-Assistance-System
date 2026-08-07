@@ -1,13 +1,16 @@
-function Home(){
+import { Link } from "react-router-dom";
 
-    return(
+function Home() {
+    return (
         <div>
-            <h2>
-                Welcome to Class Locator
-            </h2>
-        </div>
-    )
+            <h1>Campus Connect</h1>
+            <p>Smart Campus Assistance System</p>
 
+            <Link to="/selection">
+                <button>Get Started</button>
+            </Link>
+        </div>
+    );
 }
 
 export default Home;
