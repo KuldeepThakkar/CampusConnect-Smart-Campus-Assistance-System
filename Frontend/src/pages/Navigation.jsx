@@ -55,6 +55,9 @@ const fetchNextClass = async (latitude, longitude, isBackgroundUpdate = false) =
             // currentDate: new Date().toISOString().slice(0, 19)
         };
 
+            // requestBody.latitude = 23.06502989563914;
+            // requestBody.longitude = 72.4400979280472;
+
         const response = await getNextClass(requestBody);
 
         setNavigationData(response);
@@ -272,9 +275,13 @@ const fetchNextClass = async (latitude, longitude, isBackgroundUpdate = false) =
                             status={navigationData.data.status}
                         />
 
-                        <RouteDetails
-                            navigation={navigationData.data.navigation}
-                        />
+                        {navigationData.data.navigation?.arrived ? (
+                            <p>You've arrived — your classroom is in this building.</p>
+                        ) : (
+                            <RouteDetails
+                                navigation={navigationData.data.navigation}
+                            />
+                        )}
                     </>
                 )
             }

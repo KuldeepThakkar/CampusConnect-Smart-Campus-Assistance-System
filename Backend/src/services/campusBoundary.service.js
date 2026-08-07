@@ -7,9 +7,7 @@ const boundaryData = JSON.parse(
     fs.readFileSync(filePath, "utf-8")
 );
 
-function isInsideCampus(latitude, longitude) {
-
-    const polygon = boundaryData.buildings[0].polygon;
+function isPointInPolygon(polygon, latitude, longitude) {
 
     let inside = false;
 
@@ -31,6 +29,15 @@ function isInsideCampus(latitude, longitude) {
 
 }
 
+function isInsideCampus(latitude, longitude) {
+
+    const polygon = boundaryData.buildings[0].polygon;
+
+    return isPointInPolygon(polygon, latitude, longitude);
+
+}
+
 module.exports = {
-    isInsideCampus
+    isInsideCampus,
+    isPointInPolygon
 };

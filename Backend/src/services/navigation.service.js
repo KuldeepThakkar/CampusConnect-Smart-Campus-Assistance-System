@@ -29,6 +29,25 @@ async function navigate(data) {
 
     }
 
+    const hasArrived = campusBoundaryService.isPointInPolygon(
+        building.polygon,
+        latitude,
+        longitude
+    );
+
+    if (hasArrived) {
+
+        return {
+            success: true,
+            arrived: true,
+            path: [],
+            distance: 0,
+            insideCampus,
+            offCampusPath: null
+        };
+
+    }
+
     let bestRoute = null;
 
     building.entrances.forEach((entrance) => {
@@ -84,7 +103,8 @@ async function navigate(data) {
     return {
         ...bestRoute,
         insideCampus,
-        offCampusPath
+        offCampusPath,
+        arrived: false
     };
 
 }
@@ -142,7 +162,8 @@ async function navigateToNextClass(data) {
             path: navigationResult.path,
             distance: navigationResult.distance,
             insideCampus: navigationResult.insideCampus,
-            offCampusPath: navigationResult.offCampusPath
+            offCampusPath: navigationResult.offCampusPath,
+            arrived: navigationResult.arrived
         }
     };
 
