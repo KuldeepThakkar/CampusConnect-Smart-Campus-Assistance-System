@@ -3,8 +3,12 @@ const nearestCheckpointService = require("./nearestCheckpoint.service");
 const classroomService = require("./classroom.service");
 const timetableService = require("./timetable.service");
 const campusBoundaryService = require("./campusBoundary.service");
+const routingService = require("./routing.service");
+const campusData = require("./campus.service");
 
-function navigate(data) {
+const GATE_CHECKPOINT_ID = "CP25";
+
+async function navigate(data) {
 
     const { latitude, longitude, classroom } = data;
 
@@ -12,7 +16,7 @@ function navigate(data) {
 
     const startCheckpointId = insideCampus
         ? nearestCheckpointService.findNearestCheckpoint(latitude, longitude).checkpointId
-        : "CP25";
+        : GATE_CHECKPOINT_ID;
 
     const building = classroomService.findBuildingByClassroom(classroom);
 
@@ -48,15 +52,44 @@ function navigate(data) {
 
     }
 
+    // If the user is outside campus, also fetch a real-world walking
+    // route from their location to the gate
+    let offCampusPath = null;
+
+    if (!insideCampus) {
+
+        const gateCheckpoint = campusData.checkpoints.find(
+            (checkpoint) => checkpoint.id === GATE_CHECKPOINT_ID
+        );
+
+        try {
+
+            offCampusPath = await routingService.getWalkingDirections(
+                latitude,
+                longitude,
+                gateCheckpoint.latitude,
+                gateCheckpoint.longitude
+            );
+
+        } catch (error) {
+
+            console.error("OpenRouteService request failed:", error.message);
+            offCampusPath = null;
+
+        }
+
+    }
+
     return {
         ...bestRoute,
-        insideCampus
+        insideCampus,
+        offCampusPath
     };
 
 }
 
 
-function navigateToNextClass(data) {
+async function navigateToNextClass(data) {
 
     const {
         latitude,
@@ -68,7 +101,6 @@ function navigateToNextClass(data) {
         currentDate
     } = data;
 
-    // Find current or next lecture
     const lectureResult = timetableService.getNextLecture(
         department,
         branch,
@@ -77,7 +109,6 @@ function navigateToNextClass(data) {
         currentDate ? new Date(currentDate) : new Date()
     );
 
-    // No lecture available
     if (!lectureResult.lecture) {
 
         return {
@@ -90,8 +121,7 @@ function navigateToNextClass(data) {
 
     }
 
-    // Reuse existing navigation logic
-    const navigationResult = navigate({
+    const navigationResult = await navigate({
         latitude,
         longitude,
         classroom: lectureResult.lecture.classroom
@@ -109,7 +139,9 @@ function navigateToNextClass(data) {
         lecture: lectureResult.lecture,
         navigation: {
             path: navigationResult.path,
-            distance: navigationResult.distance
+            distance: navigationResult.distance,
+            insideCampus: navigationResult.insideCampus,
+            offCampusPath: navigationResult.offCampusPath
         }
     };
 

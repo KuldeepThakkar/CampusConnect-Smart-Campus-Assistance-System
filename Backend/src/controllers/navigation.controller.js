@@ -1,11 +1,11 @@
 const navigationService = require("../services/navigation.service");
 const {successResponse,errorResponse} = require("../utils/response");
 
-function navigate(req, res) {
+async function navigate(req, res) {
 
     try {
 
-        const result = navigationService.navigate(req.body);
+        const result = await navigationService.navigate(req.body);
 
         if (!result.success) {
             return res.status(404).json(
@@ -18,7 +18,9 @@ function navigate(req, res) {
                 "Navigation successful",
                 {
                     path: result.path,
-                    distance: result.distance
+                    distance: result.distance,
+                    insideCampus: result.insideCampus,
+                    offCampusPath: result.offCampusPath
                 }
             )
         );
@@ -33,11 +35,11 @@ function navigate(req, res) {
 
 }
 
-function navigateToNextClass(req, res) {
+async function navigateToNextClass(req, res) {
 
     try {
 
-        const result = navigationService.navigateToNextClass(req.body);
+        const result = await navigationService.navigateToNextClass(req.body);
 
         if (!result.success) {
             return res.status(404).json(
