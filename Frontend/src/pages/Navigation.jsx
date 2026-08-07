@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { getNextClass } from "../services/navigation";
@@ -43,8 +43,8 @@ function Navigation(){
         try {
 
             const requestBody = {
-                latitude,
-                longitude,
+                latitude ,
+                longitude ,
                 department,
                 branch,
                 semester: Number(semester),
@@ -52,6 +52,10 @@ function Navigation(){
                 currentDate: "2026-07-31T14:03:23"
                 // currentDate: new Date().toISOString().slice(0, 19)
             };
+            // "latitude": 23.06502989563914,
+            // "longitude": 72.4400979280472
+            // requestBody.latitude = 23.06502989563914;
+            // requestBody.longitude = 72.4400979280472;
 
             const response = await getNextClass(requestBody);
 
@@ -74,6 +78,8 @@ function Navigation(){
 
     };
 
+    const watchIdRef = useRef(null);
+
     const getUserLocation = () => {
 
         if (!navigator.geolocation) {
@@ -82,7 +88,7 @@ function Navigation(){
             return;
         }
 
-        navigator.geolocation.getCurrentPosition(
+        watchIdRef.current = navigator.geolocation.watchPosition(
 
             (position) => {
 
@@ -93,7 +99,9 @@ function Navigation(){
                     longitude
                 });
 
-                fetchNextClass(latitude, longitude);
+                if (isLoading) {
+                    fetchNextClass(latitude, longitude);
+                }
 
             },
 
@@ -101,6 +109,11 @@ function Navigation(){
                 console.error(error);
                 setErrorMessage("Unable to retrieve your location.");
                 setIsLoading(false);
+            },
+
+            {
+                enableHighAccuracy: true,
+                maximumAge: 5000
             }
 
         );
@@ -143,6 +156,17 @@ function Navigation(){
         fetchCheckpoints();
     }, []);
 
+    useEffect(() => {
+
+        return () => {
+
+            if (watchIdRef.current !== null) {
+                navigator.geolocation.clearWatch(watchIdRef.current);
+            }
+
+        };
+
+    }, []);
     
     return (
         <div>
