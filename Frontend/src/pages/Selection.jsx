@@ -9,6 +9,8 @@ function Selection(){
 
     const [isLoading, setIsLoading] = useState(true);
 
+    const [errorMessage, setErrorMessage] = useState(null);
+
     const [academicData, setAcademicData] = useState({});
 
     const [department, setDepartment] = useState("");
@@ -22,6 +24,9 @@ function Selection(){
     const divisions =department && branch && semester? academicData[department]?.[branch]?.[semester] || []: [];
 
     const fetchAcademicOptions = async () => {
+
+        setIsLoading(true);
+        setErrorMessage(null);
 
         try {
 
@@ -39,7 +44,10 @@ function Selection(){
             }
 
         } catch (error) {
+
             console.error(error);
+            setErrorMessage("Couldn't load academic options. Please try again.");
+
         } finally {
             setIsLoading(false);
         }
@@ -123,6 +131,16 @@ function Selection(){
     <h2>Academic Selection</h2>
 
     {isLoading && <p>Loading academic options...</p>}
+
+    {errorMessage && (
+        <div>
+            <p style={{ color: "red" }}>{errorMessage}</p>
+            <button type="button" onClick={fetchAcademicOptions}>
+                Retry
+            </button>
+        </div>
+    )}
+    
     <div>    
         <label htmlFor="department">
             Department
