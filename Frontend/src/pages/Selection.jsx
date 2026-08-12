@@ -7,6 +7,8 @@ function Selection(){
 
     const navigate = useNavigate();
 
+    const [isLoading, setIsLoading] = useState(true);
+
     const [academicData, setAcademicData] = useState({});
 
     const [department, setDepartment] = useState("");
@@ -20,7 +22,9 @@ function Selection(){
     const divisions =department && branch && semester? academicData[department]?.[branch]?.[semester] || []: [];
 
     const fetchAcademicOptions = async () => {
+
         try {
+
             const response = await api.get("/timetable/options");
 
             setAcademicData(response.data.data);
@@ -34,10 +38,12 @@ function Selection(){
                 setDivision(savedData.division || "");
             }
 
-
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsLoading(false);
         }
+
     };
 
     const handleDepartmentChange = (e) => {
@@ -115,6 +121,8 @@ function Selection(){
 
     return(<div>
     <h2>Academic Selection</h2>
+
+    {isLoading && <p>Loading academic options...</p>}
     <div>    
         <label htmlFor="department">
             Department
@@ -124,6 +132,7 @@ function Selection(){
             id="department"
             value={department}
             onChange={handleDepartmentChange}
+            disabled={isLoading}
         >
             <option value="">Select Department</option>
 
@@ -141,7 +150,7 @@ function Selection(){
             id="branch"
             value={branch}
             onChange={handleBranchChange}
-            disabled={!department}
+            disabled={!department || isLoading}
         >
             <option value="">Select Branch</option>
 
@@ -162,7 +171,7 @@ function Selection(){
             id="semester"
             value={semester}
             onChange={handleSemesterChange}
-            disabled={!branch}
+            disabled={!branch || isLoading}
         >
             <option value="">
                 Select Semester
@@ -187,7 +196,7 @@ function Selection(){
             id="division"
             value={division}
             onChange={handleDivisionChange}
-            disabled={!semester}
+            disabled={!semester || isLoading}
         >
             <option value="">
                 Select Division
