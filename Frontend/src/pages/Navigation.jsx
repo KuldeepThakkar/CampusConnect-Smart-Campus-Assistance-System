@@ -253,36 +253,36 @@ const fetchNextClass = async (latitude, longitude, isBackgroundUpdate = false) =
         <div>
             <h2>Navigation</h2>
 
-            <CampusMap
-                userLatitude={userCoords.latitude}
-                userLongitude={userCoords.longitude}
-                routePath={routeCoordinates}
-                offCampusPath={offCampusPath}
-                isLoading={isLoading}
-            />
+            <div className="map-wrapper">
+                <CampusMap
+                    userLatitude={userCoords.latitude}
+                    userLongitude={userCoords.longitude}
+                    routePath={routeCoordinates}
+                    offCampusPath={offCampusPath}
+                    isLoading={isLoading}
+                />
+            </div>
 
-            {isLoading && <p>Finding your route...</p>}
+            {isLoading && <p className="status-text">Finding your route...</p>}
 
             {errorMessage && (
-                <p style={{ color: "red" }}>{errorMessage}</p>
+                <div className="error-box">
+                    <p>{errorMessage}</p>
+                </div>
             )}
 
             {
                 navigationData?.success && (
-                    <>
+                    <div className="results">
                         <NextLectureCard
                             lecture={navigationData.data.lecture}
                             status={navigationData.data.status}
                         />
 
-                        {navigationData.data.navigation?.arrived ? (
-                            <p>You've arrived — your classroom is in this building.</p>
-                        ) : (
-                            <RouteDetails
-                                navigation={navigationData.data.navigation}
-                            />
-                        )}
-                    </>
+                        <RouteDetails
+                            navigation={navigationData.data.navigation}
+                        />
+                    </div>
                 )
             }
         </div>

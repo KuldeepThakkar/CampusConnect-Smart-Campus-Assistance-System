@@ -172,3 +172,13 @@ select:focus-visible {
   background: var(--error);
   color: #fff;
 }
+
+.map-wrapper {
+  margin: var(--space-4) 0;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
