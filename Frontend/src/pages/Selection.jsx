@@ -130,18 +130,18 @@ function Selection(){
     return(<div>
     <h2>Academic Selection</h2>
 
-    {isLoading && <p>Loading academic options...</p>}
+    {isLoading && <p className="status-text">Loading academic options...</p>}
 
     {errorMessage && (
-        <div>
-            <p style={{ color: "red" }}>{errorMessage}</p>
-            <button type="button" onClick={fetchAcademicOptions}>
+        <div className="error-box">
+            <p>{errorMessage}</p>
+            <button type="button" className="btn-retry" onClick={fetchAcademicOptions}>
                 Retry
             </button>
         </div>
     )}
-    
-    <div>    
+
+    <div className="field">
         <label htmlFor="department">
             Department
         </label>
@@ -161,7 +161,7 @@ function Selection(){
             ))}
         </select>
     </div>
-    <div>
+    <div className="field">
         <label htmlFor="branch">Branch</label>
 
         <select
@@ -182,7 +182,7 @@ function Selection(){
             ))}
         </select>
     </div>
-    <div>
+    <div className="field">
         <label htmlFor="semester">Semester</label>
 
         <select
@@ -205,7 +205,7 @@ function Selection(){
             ))}
         </select>
     </div>
-    <div>
+    <div className="field">
         <label htmlFor="division">
             Division
         </label>
@@ -232,14 +232,13 @@ function Selection(){
     </div>
     <button
         type="button"
+        className="btn-primary"
         onClick={handleContinue}
     >
         Continue
     </button>
     </div>
 
-    )
-
+)
 }
-
 export default Selection;

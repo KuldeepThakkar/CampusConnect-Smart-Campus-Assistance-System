@@ -74,3 +74,101 @@ button, select, input {
     padding: var(--space-5) var(--space-3);
   }
 }
+
+
+.field {
+  text-align: left;
+  margin-bottom: var(--space-4);
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: var(--space-1);
+}
+
+select {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+select:disabled {
+  background: #F3F3F1;
+  color: var(--ink-light);
+  cursor: not-allowed;
+}
+
+select:focus-visible {
+  outline: 2px solid var(--route-blue);
+  outline-offset: 1px;
+  border-color: var(--route-blue);
+}
+
+.btn-primary {
+  width: 100%;
+  height: 48px;
+  margin-top: var(--space-2);
+  background: var(--route-blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--route-blue-dark);
+}
+
+.btn-primary:disabled {
+  background: var(--line);
+  color: var(--ink-light);
+  cursor: not-allowed;
+}
+
+.status-text {
+  font-size: 14px;
+  color: var(--ink-light);
+  text-align: left;
+}
+
+.error-box {
+  background: var(--error-bg);
+  border: 1px solid var(--error);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  margin: var(--space-3) 0;
+  text-align: left;
+}
+
+.error-box p {
+  color: var(--error);
+  margin: 0 0 var(--space-2);
+}
+
+.btn-retry {
+  background: transparent;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-retry:hover {
+  background: var(--error);
+  color: #fff;
+}
