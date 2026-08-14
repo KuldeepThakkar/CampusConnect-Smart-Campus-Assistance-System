@@ -4,20 +4,41 @@ function NextLectureCard({ lecture, status }) {
         return null;
     }
 
-    return (
-        <div>
-            <h2>Next Lecture</h2>
+    const isOngoing = status === "ONGOING";
 
-            <p><strong>Status:</strong> {status}</p>
-            <p><strong>Subject:</strong> {lecture.subject}</p>
-            <p><strong>Faculty:</strong> {lecture.faculty}</p>
-            <p><strong>Classroom:</strong> {lecture.classroom}</p>
-            <p>
-                <strong>Time:</strong>{" "}
-                {lecture.startTime} - {lecture.endTime}
-            </p>
+    return (
+        <div className="card">
+            <div className="card-header">
+                <h2>Next Lecture</h2>
+                <span className={`badge ${isOngoing ? "badge-ongoing" : "badge-upcoming"}`}>
+                    {status}
+                </span>
+            </div>
+
+            <div className="card-row">
+                <span className="card-row-label">Subject</span>
+                <span className="card-row-value">{lecture.subject}</span>
+            </div>
+
+            <div className="card-row">
+                <span className="card-row-label">Faculty</span>
+                <span className="card-row-value">{lecture.faculty}</span>
+            </div>
+
+            <div className="card-row">
+                <span className="card-row-label">Classroom</span>
+                <span className="card-row-value">{lecture.classroom}</span>
+            </div>
+
+            <div className="card-row">
+                <span className="card-row-label">Time</span>
+                <span className="card-row-value mono">
+                    {lecture.startTime} - {lecture.endTime}
+                </span>
+            </div>
         </div>
     );
+
 }
 
 export default NextLectureCard;

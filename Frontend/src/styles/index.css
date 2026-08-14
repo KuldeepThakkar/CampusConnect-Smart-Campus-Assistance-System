@@ -5,6 +5,7 @@
   --ink-light: #5C6B7A;
   --paper: #FAFAF8;
   --line: #E2E2DE;
+  --success: #2F9E44;
 
   --route-blue: #2D9CDB;
   --route-blue-dark: #1F7DB8;
@@ -181,4 +182,74 @@ select:focus-visible {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  text-align: left;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.badge-ongoing {
+  background: rgba(47, 158, 68, 0.12);
+  color: var(--success);
+}
+
+.badge-upcoming {
+  background: rgba(92, 107, 122, 0.12);
+  color: var(--ink-light);
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--line);
+}
+
+.card-row:first-of-type {
+  border-top: none;
+}
+
+.card-row-label {
+  font-size: 13px;
+  color: var(--ink-light);
+}
+
+.card-row-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+
+.card-row-value.mono {
+  font-family: var(--font-mono);
 }
