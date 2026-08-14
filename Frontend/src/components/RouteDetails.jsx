@@ -5,28 +5,31 @@ function RouteDetails({ navigation }) {
     }
 
     return (
-        <div>
+        <div className="card">
 
-            <h2>Route Details</h2>
+            <div className="card-header">
+                <h2>Route Details</h2>
+                <span className={`badge ${navigation.insideCampus ? "badge-on-campus" : "badge-off-campus"}`}>
+                    {navigation.insideCampus ? "On Campus" : "Off Campus"}
+                </span>
+            </div>
 
-            <p>
-                <strong>Distance:</strong> {navigation.distance} m
-            </p>
+            <div className="card-row">
+                <span className="card-row-label">Distance</span>
+                <span className="card-row-value mono">{navigation.distance} m</span>
+            </div>
 
-            <h3>Path</h3>
+            <h3 className="route-path-heading">Path</h3>
 
-            {
-                navigation.path.map((checkpoint, index) => (
-                    <div key={checkpoint}>
-                        <p>{checkpoint}</p>
-
-                        {
-                            index !== navigation.path.length - 1 &&
-                            <p>↓</p>
-                        }
-                    </div>
-                ))
-            }
+            <div className="route-path">
+                {
+                    navigation.path.map((checkpoint) => (
+                        <div key={checkpoint} className="route-step">
+                            {checkpoint}
+                        </div>
+                    ))
+                }
+            </div>
 
         </div>
     );
