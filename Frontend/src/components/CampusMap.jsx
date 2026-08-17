@@ -55,18 +55,11 @@ function CampusMap({ userLatitude, userLongitude, routePath, offCampusPath, isLo
         : null;
 
     return (
-        <div
-            style={{
-                position: "relative",
-                borderRadius: "12px",
-                overflow: "hidden",
-                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)"
-            }}
-        >
+        <div className="map-container">
             <MapContainer
                 center={CAMPUS_CENTER}
                 zoom={18}
-                style={{ height: "400px", width: "100%" }}
+                style={{ height: "100%", width: "100%" }}
             >
                 <TileLayer
                     url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
@@ -80,12 +73,12 @@ function CampusMap({ userLatitude, userLongitude, routePath, offCampusPath, isLo
                 {offCampusPath && offCampusPath.length > 0 && (
                     <Polyline
                         positions={offCampusPath}
-                        pathOptions={{ color: "blue", weight: 4}}
+                        pathOptions={{ color: "orange", weight: 4 }}
                     />
                 )}
 
                 {routePath && routePath.length > 0 && (
-                    <Polyline positions={routePath} pathOptions={{ color: "blue", weight: 4, dashArray: "8, 8"  }} />
+                    <Polyline positions={routePath} pathOptions={{ color: "blue", weight: 4, dashArray: "8, 8" }} />
                 )}
 
                 {destination && (

@@ -316,3 +316,32 @@ select:focus-visible {
 .route-step:last-child::before {
   background: #EB5757;
 }
+
+.map-container {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  height: clamp(260px, 45vh, 400px);
+}
+
+select {
+  font-size: 16px; /* was 15px — prevents iOS auto-zoom on focus */
+}
+
+.card-header {
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.card-row {
+  gap: var(--space-3);
+}
+
+.card-row-label {
+  flex-shrink: 0;
+}
+
+.card-row-value {
+  word-break: break-word;
+}
