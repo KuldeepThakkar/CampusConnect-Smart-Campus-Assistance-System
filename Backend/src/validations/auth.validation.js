@@ -1,0 +1,27 @@
+function validateSignupRequest(req, res, next) {
+
+    const { email, password, role } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ success: false, message: "email is required" });
+    }
+
+    if (!password) {
+        return res.status(400).json({ success: false, message: "password is required" });
+    }
+
+    if (typeof password !== "string" || password.length < 6) {
+        return res.status(400).json({ success: false, message: "password must be at least 6 characters" });
+    }
+
+    if (!role || !["student", "teacher"].includes(role)) {
+        return res.status(400).json({ success: false, message: "role must be either student or teacher" });
+    }
+
+    next();
+
+}
+
+module.exports = {
+    validateSignupRequest
+};

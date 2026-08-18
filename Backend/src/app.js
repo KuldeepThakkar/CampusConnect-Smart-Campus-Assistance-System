@@ -4,6 +4,7 @@ const app = express();
 const campusRoutes = require("./routes/campus.routes");
 const navigationRoutes = require("./routes/navigation.routes");
 const timetableRoutes = require("./routes/timetable.routes");
+const authRoutes = require("./routes/auth.routes");
 
 
 app.use(express.json());
@@ -16,5 +17,6 @@ app.use(
 app.use("/api/campus", campusRoutes);
 app.use("/api/navigation", navigationRoutes);
 app.use("/api/timetable", timetableRoutes);
+app.use("/api/auth", authRoutes);
 
 module.exports = app;
