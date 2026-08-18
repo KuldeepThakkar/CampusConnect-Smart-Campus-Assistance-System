@@ -1,17 +1,25 @@
-// test-routing.js
+// test-user-model.js
 require("dotenv").config();
-
-const routingService = require("./src/services/routing.service");
+const mongoose = require("mongoose");
+const User = require("./src/models/user.model");
 
 async function run() {
 
-    // Pick a real-world point outside your campus, and CP25's coordinates
-    const path = await routingService.getWalkingDirections(
-        23.05, 72.40,           // some point outside campus
-        23.064504359995777, 72.43899285793306  // CP25 (the gate)
-    );
+    await mongoose.connect(process.env.MONGODB_URI);
 
-    console.log(path);
+    const testUser = await User.create({
+        email: "test.25.ce@iite.indusuni.ac.in",
+        password: "temporary_plain_text_for_now",
+        role: "student"
+    });
+
+    console.log("Created:", testUser);
+
+    await User.deleteOne({ _id: testUser._id });
+
+    console.log("Cleaned up test user");
+
+    await mongoose.disconnect();
 
 }
 
