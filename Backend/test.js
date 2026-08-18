@@ -1,26 +1,13 @@
-// test-user-model.js
-require("dotenv").config();
-const mongoose = require("mongoose");
-const User = require("./src/models/user.model");
+// test-email-util.js
+const { isAllowedDomain, parseStudentEmail } = require("./src/utils/email.util");
 
-async function run() {
+console.log(isAllowedDomain("krishpatel.23.ce@iite.indusuni.ac.in")); // true
+console.log(isAllowedDomain("cse.hod@indusuni.ac.in")); // true
+console.log(isAllowedDomain("student@gmail.com")); // false
+console.log(isAllowedDomain("student@evilindusuni.ac.in")); // false — confirms the exact-match protection
 
-    await mongoose.connect(process.env.MONGODB_URI);
+console.log(parseStudentEmail("krishpatel.23.ce@iite.indusuni.ac.in"));
+// { batchYear: '23', branch: 'ce' }
 
-    const testUser = await User.create({
-        email: "test.25.ce@iite.indusuni.ac.in",
-        password: "temporary_plain_text_for_now",
-        role: "student"
-    });
-
-    console.log("Created:", testUser);
-
-    await User.deleteOne({ _id: testUser._id });
-
-    console.log("Cleaned up test user");
-
-    await mongoose.disconnect();
-
-}
-
-run();
+console.log(parseStudentEmail("director@iite.indusuni.ac.in"));
+// null — no crash, just no match
