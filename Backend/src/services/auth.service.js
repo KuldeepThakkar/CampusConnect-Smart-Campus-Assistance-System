@@ -84,8 +84,6 @@ async function signup(email, password, role) {
 
 }
 
-
-
 async function verifyOtp(email, code, adminCode) {
 
     const normalizedEmail = email.trim().toLowerCase();
@@ -157,7 +155,59 @@ async function verifyOtp(email, code, adminCode) {
 
 }
 
+async function login(email, password) {
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const user = await User.findOne({ email: normalizedEmail });
+
+    if (!user) {
+
+        return {
+            success: false,
+            message: "Invalid email or password"
+        };
+
+    }
+
+    if (!user.isVerified) {
+
+        return {
+            success: false,
+            message: "Please verify your account before logging in"
+        };
+
+    }
+
+    const passwordMatches = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatches) {
+
+        return {
+            success: false,
+            message: "Invalid email or password"
+        };
+
+    }
+
+    const token = generateToken(user);
+
+    return {
+        success: true,
+        message: "Login successful",
+        token,
+        user: {
+            id: user._id,
+            email: user.email,
+            role: user.role,
+            academicDetails: user.academicDetails
+        }
+    };
+
+}
+
 module.exports = {
     signup,
-    verifyOtp
+    verifyOtp,
+    login
 };

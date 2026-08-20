@@ -38,7 +38,24 @@ function validateVerifyOtpRequest(req, res, next) {
 
 }
 
+function validateLoginRequest(req, res, next) {
+
+    const { email, password } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ success: false, message: "email is required" });
+    }
+
+    if (!password) {
+        return res.status(400).json({ success: false, message: "password is required" });
+    }
+
+    next();
+
+}
+
 module.exports = {
     validateSignupRequest,
-    validateVerifyOtpRequest
+    validateVerifyOtpRequest,
+    validateLoginRequest
 };
