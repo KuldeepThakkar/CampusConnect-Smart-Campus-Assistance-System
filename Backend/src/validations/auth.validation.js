@@ -22,6 +22,23 @@ function validateSignupRequest(req, res, next) {
 
 }
 
+function validateVerifyOtpRequest(req, res, next) {
+
+    const { email, code } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ success: false, message: "email is required" });
+    }
+
+    if (!code) {
+        return res.status(400).json({ success: false, message: "code is required" });
+    }
+
+    next();
+
+}
+
 module.exports = {
-    validateSignupRequest
+    validateSignupRequest,
+    validateVerifyOtpRequest
 };

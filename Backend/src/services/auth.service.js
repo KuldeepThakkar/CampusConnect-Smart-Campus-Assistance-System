@@ -3,6 +3,7 @@ const User = require("../models/user.model");
 const { isAllowedDomain } = require("../utils/email.util");
 const { generateOtp, getOtpExpiry } = require("../utils/otp.util");
 const mailerService = require("./mailer.service");
+const { generateToken } = require("../utils/jwt.util");
 
 const SALT_ROUNDS = 10;
 
@@ -83,6 +84,80 @@ async function signup(email, password, role) {
 
 }
 
+
+
+async function verifyOtp(email, code, adminCode) {
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const user = await User.findOne({ email: normalizedEmail });
+
+    if (!user) {
+
+        return {
+            success: false,
+            message: "No signup found for this email"
+        };
+
+    }
+
+    if (user.isVerified) {
+
+        return {
+            success: false,
+            message: "This account is already verified. Please log in."
+        };
+
+    }
+
+    if (!user.otp.expiresAt || user.otp.expiresAt < new Date()) {
+
+        return {
+            success: false,
+            message: "OTP has expired. Please sign up again to get a new code."
+        };
+
+    }
+
+    if (user.otp.code !== code) {
+
+        return {
+            success: false,
+            message: "Invalid OTP"
+        };
+
+    }
+
+    if (user.role === "teacher" && user.otp.adminCode !== adminCode) {
+
+        return {
+            success: false,
+            message: "Invalid admin approval code"
+        };
+
+    }
+
+    user.isVerified = true;
+    user.otp = { code: null, adminCode: null, expiresAt: null };
+
+    await user.save();
+
+    const token = generateToken(user);
+
+    return {
+        success: true,
+        message: "Account verified successfully",
+        token,
+        user: {
+            id: user._id,
+            email: user.email,
+            role: user.role
+        }
+    };
+
+}
+
 module.exports = {
-    signup
+    signup,
+    verifyOtp
 };
