@@ -8,6 +8,7 @@ import VerifyOtp from "../pages/VerifyOtp";
 import Login from "../pages/Login";
 import AcademicSetup from "../pages/AcademicSetup";
 import ProtectedRoute from "../components/ProtectedRoute";
+import NotFound from "../pages/NotFound";
 
 function AppRoutes(){
 
@@ -44,6 +45,8 @@ function AppRoutes(){
                     />
 
                 </Route>
+
+                <Route path="*" element={<NotFound />} />
 
             </Routes>
 
