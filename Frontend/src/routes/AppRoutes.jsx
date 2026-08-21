@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 import Signup from "../pages/Signup";
 import VerifyOtp from "../pages/VerifyOtp";
 import Login from "../pages/Login";
+import AcademicSetup from "../pages/AcademicSetup";
 
 
 function AppRoutes(){
@@ -21,6 +22,8 @@ function AppRoutes(){
                 <Route path="/verify-otp" element={<VerifyOtp />} />
 
                 <Route path="/login" element={<Login />} />
+
+                <Route path="/setup-academic-details" element={<AcademicSetup />} />
 
                 <Route element={<Layout />}>
 
