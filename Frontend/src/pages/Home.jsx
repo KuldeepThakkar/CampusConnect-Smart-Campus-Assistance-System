@@ -6,7 +6,7 @@ function Home() {
             <h1>Campus Connect</h1>
             <p>Smart Campus Assistance System</p>
 
-            <Link to="/selection">
+            <Link to="/navigation">
                 <button>Get Started</button>
             </Link>
         </div>

@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
-import Selection from "../pages/Selection";
 import Navigation from "../pages/Navigation";
 import Layout from "../components/Layout";
 import Signup from "../pages/Signup";
@@ -34,15 +33,6 @@ function AppRoutes(){
                 <Route element={<Layout />}>
 
                     <Route path="/" element={<Home />} />
-
-                    <Route
-                        path="/selection"
-                        element={
-                            <ProtectedRoute allowedRoles={["student"]} requireAcademicSetup>
-                                <Selection />
-                            </ProtectedRoute>
-                        }
-                    />
 
                     <Route
                         path="/navigation"
