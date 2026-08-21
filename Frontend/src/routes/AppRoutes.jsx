@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Selection from "../pages/Selection";
 import Navigation from "../pages/Navigation";
 import Layout from "../components/Layout";
+import Signup from "../pages/Signup";
 
 
 function AppRoutes(){
@@ -12,6 +13,8 @@ function AppRoutes(){
        
 
             <Routes>
+
+                <Route path="/signup" element={<Signup />} />
 
                 <Route element={<Layout />}>
 
