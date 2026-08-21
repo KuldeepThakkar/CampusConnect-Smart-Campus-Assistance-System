@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 function AcademicSetup() {
 
     const navigate = useNavigate();
-    const { user, isLoading: authLoading, updateUser } = useAuth();
+    const { updateUser } = useAuth();
 
     const [academicData, setAcademicData] = useState({});
 
@@ -48,27 +48,6 @@ function AcademicSetup() {
     useEffect(() => {
         fetchAcademicOptions();
     }, []);
-
-    useEffect(() => {
-
-        if (authLoading) return;
-
-        if (!user) {
-            navigate("/login");
-            return;
-        }
-
-        if (user.role !== "student") {
-            navigate("/");
-            return;
-        }
-
-        if (user.academicDetails?.isLocked) {
-            navigate("/");
-            return;
-        }
-
-    }, [authLoading, user]);
 
     const handleDepartmentChange = (e) => {
         setDepartment(e.target.value);

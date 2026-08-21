@@ -1,4 +1,4 @@
-import {  Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
 import Selection from "../pages/Selection";
@@ -8,12 +8,11 @@ import Signup from "../pages/Signup";
 import VerifyOtp from "../pages/VerifyOtp";
 import Login from "../pages/Login";
 import AcademicSetup from "../pages/AcademicSetup";
-
+import ProtectedRoute from "../components/ProtectedRoute";
 
 function AppRoutes(){
 
     return (
-       
 
             <Routes>
 
@@ -23,29 +22,42 @@ function AppRoutes(){
 
                 <Route path="/login" element={<Login />} />
 
-                <Route path="/setup-academic-details" element={<AcademicSetup />} />
+                <Route
+                    path="/setup-academic-details"
+                    element={
+                        <ProtectedRoute allowedRoles={["student"]} blockIfAlreadySetup>
+                            <AcademicSetup />
+                        </ProtectedRoute>
+                    }
+                />
 
                 <Route element={<Layout />}>
 
                     <Route path="/" element={<Home />} />
 
-                    <Route 
-                        path="/selection" 
-                        element={<Selection />} 
+                    <Route
+                        path="/selection"
+                        element={
+                            <ProtectedRoute allowedRoles={["student"]} requireAcademicSetup>
+                                <Selection />
+                            </ProtectedRoute>
+                        }
                     />
 
-                    <Route 
-                        path="/navigation" 
-                        element={<Navigation />} 
+                    <Route
+                        path="/navigation"
+                        element={
+                            <ProtectedRoute allowedRoles={["student"]} requireAcademicSetup>
+                                <Navigation />
+                            </ProtectedRoute>
+                        }
                     />
 
                 </Route>
 
             </Routes>
 
-        
     )
 }
-
 
 export default AppRoutes;

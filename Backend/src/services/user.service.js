@@ -66,7 +66,28 @@ async function adminUpdateAcademicDetails(targetUserId, updates) {
 
 }
 
+async function getProfile(userId) {
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+        return { success: false, message: "User not found" };
+    }
+
+    return {
+        success: true,
+        user: {
+            id: user._id,
+            email: user.email,
+            role: user.role,
+            academicDetails: user.academicDetails
+        }
+    };
+
+}
+
 module.exports = {
     setAcademicDetails,
-    adminUpdateAcademicDetails
+    adminUpdateAcademicDetails,
+    getProfile
 };

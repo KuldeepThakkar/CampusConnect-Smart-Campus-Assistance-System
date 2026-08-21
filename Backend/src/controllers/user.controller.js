@@ -41,7 +41,28 @@ async function adminUpdateAcademicDetails(req, res) {
 
 }
 
+async function getProfile(req, res) {
+
+    try {
+
+        const result = await userService.getProfile(req.user._id);
+
+        if (!result.success) {
+            return res.status(404).json(errorResponse(result.message));
+        }
+
+        return res.status(200).json(successResponse("Profile fetched", result.user));
+
+    } catch (error) {
+
+        return res.status(500).json(errorResponse(error.message));
+
+    }
+
+}
+
 module.exports = {
     setAcademicDetails,
-    adminUpdateAcademicDetails
+    adminUpdateAcademicDetails,
+    getProfile
 };

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { getMe } from "../services/user";
 
 const AuthContext = createContext(null);
 
@@ -9,14 +10,38 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
 
-        const storedUser = localStorage.getItem("user");
-        const storedToken = localStorage.getItem("token");
+        const init = async () => {
 
-        if (storedUser && storedToken) {
-            setUser(JSON.parse(storedUser));
-        }
+            const storedUser = localStorage.getItem("user");
+            const storedToken = localStorage.getItem("token");
 
-        setIsLoading(false);
+            if (storedUser && storedToken) {
+
+                setUser(JSON.parse(storedUser)); // instant render from cache, may be stale
+
+                try {
+
+                    const response = await getMe();
+
+                    setUser(response.data);
+                    localStorage.setItem("user", JSON.stringify(response.data));
+
+                } catch (error) {
+
+                    // token invalid/expired on the server — force a clean logout
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    setUser(null);
+
+                }
+
+            }
+
+            setIsLoading(false);
+
+        };
+
+        init();
 
     }, []);
 
@@ -37,7 +62,7 @@ export function AuthProvider({ children }) {
         setUser(null);
 
     };
-    
+
         const updateUser = (updates) => {
 
         setUser((prev) => {

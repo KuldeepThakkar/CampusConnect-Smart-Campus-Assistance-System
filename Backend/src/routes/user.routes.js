@@ -20,4 +20,6 @@ router.patch(
     userController.adminUpdateAcademicDetails
 );
 
+router.get("/me", authenticate, userController.getProfile);
+
 module.exports = router;
