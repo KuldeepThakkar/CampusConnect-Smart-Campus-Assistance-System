@@ -406,3 +406,10 @@ input:disabled {
   font-weight: 600;
   text-decoration: none;
 }
+
+.otp-input {
+  text-align: center;
+  letter-spacing: 4px;
+  font-family: var(--font-mono);
+  font-size: 18px;
+}

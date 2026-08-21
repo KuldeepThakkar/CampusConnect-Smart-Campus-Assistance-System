@@ -5,6 +5,7 @@ import Selection from "../pages/Selection";
 import Navigation from "../pages/Navigation";
 import Layout from "../components/Layout";
 import Signup from "../pages/Signup";
+import VerifyOtp from "../pages/VerifyOtp";
 
 
 function AppRoutes(){
@@ -15,6 +16,8 @@ function AppRoutes(){
             <Routes>
 
                 <Route path="/signup" element={<Signup />} />
+
+                <Route path="/verify-otp" element={<VerifyOtp />} />
 
                 <Route element={<Layout />}>
 
