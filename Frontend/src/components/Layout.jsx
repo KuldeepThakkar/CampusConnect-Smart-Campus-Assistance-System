@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 
+
 function Layout(){
 
     return (
@@ -11,8 +12,9 @@ function Layout(){
                 <h1>
                     Class Locator
                 </h1>
+                
             </header>
-
+            
 
             <main>
                 <Outlet />

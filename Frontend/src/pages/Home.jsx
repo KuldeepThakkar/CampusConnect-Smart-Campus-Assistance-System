@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+
 function Home() {
     return (
         <div>
@@ -9,6 +10,7 @@ function Home() {
             <Link to="/navigation">
                 <button>Get Started</button>
             </Link>
+            
         </div>
     );
 }
