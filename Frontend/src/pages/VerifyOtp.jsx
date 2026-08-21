@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 import { verifyOtp } from "../services/auth";
 
@@ -7,6 +8,8 @@ function VerifyOtp() {
 
     const location = useLocation();
     const navigate = useNavigate();
+
+    const { login } = useAuth();
 
     const { email, role } = location.state || {};
 
@@ -49,8 +52,7 @@ function VerifyOtp() {
                 adminCode: role === "teacher" ? adminCode : undefined
             });
 
-            localStorage.setItem("token", response.data.token);
-            localStorage.setItem("user", JSON.stringify(response.data.user));
+            login(response.data.token, response.data.user);
 
             navigate("/");
 

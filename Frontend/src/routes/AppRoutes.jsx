@@ -6,6 +6,7 @@ import Navigation from "../pages/Navigation";
 import Layout from "../components/Layout";
 import Signup from "../pages/Signup";
 import VerifyOtp from "../pages/VerifyOtp";
+import Login from "../pages/Login";
 
 
 function AppRoutes(){
@@ -18,6 +19,8 @@ function AppRoutes(){
                 <Route path="/signup" element={<Signup />} />
 
                 <Route path="/verify-otp" element={<VerifyOtp />} />
+
+                <Route path="/login" element={<Login />} />
 
                 <Route element={<Layout />}>
 
