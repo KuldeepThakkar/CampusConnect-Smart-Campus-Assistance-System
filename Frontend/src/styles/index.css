@@ -413,3 +413,16 @@ input:disabled {
   font-family: var(--font-mono);
   font-size: 18px;
 }
+
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) 0;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 20px;
+}
