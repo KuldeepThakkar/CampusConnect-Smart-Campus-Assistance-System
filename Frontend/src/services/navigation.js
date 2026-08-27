@@ -5,6 +5,8 @@ export const getNextClass = async (navigationData) => {
         "/navigation/next-class",
         navigationData
     );
+    
+    
 
     return response.data;
 };

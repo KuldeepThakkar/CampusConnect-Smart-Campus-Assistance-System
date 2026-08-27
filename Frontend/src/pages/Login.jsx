@@ -28,7 +28,7 @@ function Login() {
         try {
 
             const response = await loginRequest({ email, password });
-
+            
             login(response.data.token, response.data.user);
 
             navigate("/");

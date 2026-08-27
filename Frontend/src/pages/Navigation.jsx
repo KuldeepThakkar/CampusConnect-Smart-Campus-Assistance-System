@@ -116,10 +116,13 @@ function Navigation(){
                 branch,
                 semester: Number(semester),
                 division,
-                currentDate: new Date().toISOString().slice(0, 19)
+                currentDate: "2026-07-31T14:03:23"
+                // currentDate: new Date().toISOString().slice(0, 19)
             };
-
+            
+            
             const response = await getNextClass(requestBody);
+           
 
             setNavigationData(response);
             setErrorMessage(null);
