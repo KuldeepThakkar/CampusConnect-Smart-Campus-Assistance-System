@@ -168,9 +168,47 @@ function getNextLecture(
     };
 }
 
+function getBusyClassrooms(day, time) {
+
+    // time can be "09:30" string or minutes-as-number
+    const currentMinutes = typeof time === "number"
+        ? time
+        : convertTimeToMinutes(time);
+
+    const busy = new Set();
+
+    timetableData.forEach((record) => {
+
+        const daySchedule = record.schedule?.[day];
+
+        if (!daySchedule || daySchedule.length === 0) {
+            return;
+        }
+
+        daySchedule.forEach((lecture) => {
+
+            const start = convertTimeToMinutes(lecture.startTime);
+            const end = convertTimeToMinutes(lecture.endTime);
+
+            // inclusive start, exclusive end — matches "class is still on" at the start of the next slot
+            if (currentMinutes >= start && currentMinutes < end) {
+                if (lecture.classroom) {
+                    busy.add(lecture.classroom);
+                }
+            }
+
+        });
+
+    });
+
+    return Array.from(busy).sort();
+
+}
+
 module.exports = {
     getAcademicOptions,
     getDivisionTimetable,
     getTodaySchedule,
-    getNextLecture
+    getNextLecture,
+    getBusyClassrooms
 };
