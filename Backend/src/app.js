@@ -6,6 +6,7 @@ const navigationRoutes = require("./routes/navigation.routes");
 const timetableRoutes = require("./routes/timetable.routes");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
+const classroomRoutes = require("./routes/classroom.routes");
 
 
 app.use(express.json());
@@ -20,5 +21,6 @@ app.use("/api/navigation", navigationRoutes);
 app.use("/api/timetable", timetableRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/classrooms", classroomRoutes);
 
 module.exports = app;
