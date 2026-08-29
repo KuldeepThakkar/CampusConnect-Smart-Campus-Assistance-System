@@ -49,10 +49,14 @@ function getFreeClassrooms(day, time, buildingId) {
 
     });
 
+    const buildings = Object.values(grouped).filter(
+        (b) => b.freeClassrooms.length > 0 || b.busyClassrooms.length > 0
+    );
+
     return {
         day,
         time,
-        buildings: Object.values(grouped)
+        buildings
     };
 
 }
@@ -144,11 +148,15 @@ function getDaySchedule(day, buildingId) {
 
     });
 
+    const buildings = Object.values(grouped).filter(
+        (b) => b.classrooms.length > 0
+    );
+
     return {
         day,
         dayStart: CAMPUS_DAY_START,
         dayEnd: CAMPUS_DAY_END,
-        buildings: Object.values(grouped)
+        buildings
     };
 
 }
