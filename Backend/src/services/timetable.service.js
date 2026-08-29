@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { timeToMinutes } = require("../utils/time.util");
 
 // Load timetable.json once when the server starts
 const timetableData = JSON.parse(
@@ -170,10 +171,9 @@ function getNextLecture(
 
 function getBusyClassrooms(day, time) {
 
-    // time can be "09:30" string or minutes-as-number
     const currentMinutes = typeof time === "number"
         ? time
-        : convertTimeToMinutes(time);
+        : timeToMinutes(time);
 
     const busy = new Set();
 
@@ -205,10 +205,15 @@ function getBusyClassrooms(day, time) {
 
 }
 
+function getRawTimetable() {
+    return timetableData;
+}
+
 module.exports = {
     getAcademicOptions,
     getDivisionTimetable,
     getTodaySchedule,
     getNextLecture,
-    getBusyClassrooms
+    getBusyClassrooms,
+    getRawTimetable
 };
