@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getFreeClassroomsNow, getDaySchedule, getBuildingsWithClassrooms } from "../services/classroom";
 
 import ClassroomNowResults from "../components/ClassroomNowResults";
+import ClassroomDayResults from "../components/ClassroomDayResults";
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -150,11 +151,8 @@ function FreeClassrooms() {
                 <ClassroomNowResults data={results} />
             )}
 
-            {/* TEMPORARY — replaced by FC.4 (day-mode results) */}
             {results && mode === "day" && (
-                <pre style={{ textAlign: "left", overflow: "auto" }}>
-                    {JSON.stringify(results, null, 2)}
-                </pre>
+                <ClassroomDayResults data={results} />
             )}
 
         </div>
