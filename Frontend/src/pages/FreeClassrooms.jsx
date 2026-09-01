@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import { getFreeClassroomsNow, getDaySchedule, getBuildingsWithClassrooms } from "../services/classroom";
 
+import ClassroomNowResults from "../components/ClassroomNowResults";
+
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 function getTodayName() {
@@ -144,8 +146,12 @@ function FreeClassrooms() {
                 </div>
             )}
 
-            {/* TEMPORARY — replaced by FC.3 (now-mode results) and FC.4 (day-mode results) */}
-            {results && (
+            {results && mode === "now" && (
+                <ClassroomNowResults data={results} />
+            )}
+
+            {/* TEMPORARY — replaced by FC.4 (day-mode results) */}
+            {results && mode === "day" && (
                 <pre style={{ textAlign: "left", overflow: "auto" }}>
                     {JSON.stringify(results, null, 2)}
                 </pre>
