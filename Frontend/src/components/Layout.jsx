@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 import LogoutButton from "./LogoutButton";
 import { useAuth } from "../context/AuthContext";
@@ -15,6 +15,13 @@ function Layout(){
                 <h1>
                     Class Locator
                 </h1>
+
+                {user && (
+                    <nav className="app-nav">
+                        <Link to="/">Home</Link>
+                        <Link to="/free-classrooms">Free Classrooms</Link>
+                    </nav>
+                )}
 
                 {user && <LogoutButton />}
             </header>
