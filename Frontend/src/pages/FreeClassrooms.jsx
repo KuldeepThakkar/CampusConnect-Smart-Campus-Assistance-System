@@ -4,6 +4,7 @@ import { getFreeClassroomsNow, getDaySchedule, getBuildingsWithClassrooms } from
 
 import ClassroomNowResults from "../components/ClassroomNowResults";
 import ClassroomDayResults from "../components/ClassroomDayResults";
+import { Link } from "react-router-dom";
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -81,6 +82,9 @@ function FreeClassrooms() {
 
     return (
         <div>
+            <Link to="/" className="btn-retry" style={{ display: "inline-block", marginBottom: "16px", textDecoration: "none" }}>
+                ← Home
+            </Link>
             <h2>Free Classrooms</h2>
 
             <div className="field">

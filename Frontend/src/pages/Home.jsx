@@ -10,10 +10,6 @@ function Home() {
                 <Link to="/navigation">
                     <button type="button" className="btn-primary">Get Started</button>
                 </Link>
-
-                <Link to="/free-classrooms">
-                    <button type="button" className="btn-retry">Find Free Classrooms</button>
-                </Link>
             </div>
         </div>
     );
