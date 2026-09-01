@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import AcademicSetup from "../pages/AcademicSetup";
 import ProtectedRoute from "../components/ProtectedRoute";
 import NotFound from "../pages/NotFound";
+import FreeClassrooms from "../pages/FreeClassrooms";
 
 function AppRoutes(){
 
@@ -45,6 +46,15 @@ function AppRoutes(){
                     />
 
                 </Route>
+
+                <Route
+                    path="/free-classrooms"
+                    element={
+                        <ProtectedRoute allowedRoles={["student", "teacher"]}>
+                            <FreeClassrooms />
+                        </ProtectedRoute>
+                    }
+                />
 
                 <Route path="*" element={<NotFound />} />
 
