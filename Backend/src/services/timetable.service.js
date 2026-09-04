@@ -205,6 +205,44 @@ function getBusyClassrooms(day, time) {
 
 }
 
+// Range-overlap check (as opposed to getBusyClassrooms' single-instant check).
+// Two ranges [aStart,aEnd) and [bStart,bEnd) overlap iff aStart < bEnd && bStart < aEnd.
+// Used by reservation.service.js to make sure a requested reservation slot
+// doesn't collide with an actual scheduled lecture for that classroom.
+function isClassroomBusyInRange(day, classroom, startTime, endTime) {
+
+    const rangeStart = timeToMinutes(startTime);
+    const rangeEnd = timeToMinutes(endTime);
+
+    for (const record of timetableData) {
+
+        const daySchedule = record.schedule?.[day];
+
+        if (!daySchedule || daySchedule.length === 0) {
+            continue;
+        }
+
+        for (const lecture of daySchedule) {
+
+            if (lecture.classroom !== classroom) {
+                continue;
+            }
+
+            const lectureStart = convertTimeToMinutes(lecture.startTime);
+            const lectureEnd = convertTimeToMinutes(lecture.endTime);
+
+            if (rangeStart < lectureEnd && lectureStart < rangeEnd) {
+                return true;
+            }
+
+        }
+
+    }
+
+    return false;
+
+}
+
 function getRawTimetable() {
     return timetableData;
 }
@@ -215,5 +253,6 @@ module.exports = {
     getTodaySchedule,
     getNextLecture,
     getBusyClassrooms,
+    isClassroomBusyInRange,
     getRawTimetable
 };
