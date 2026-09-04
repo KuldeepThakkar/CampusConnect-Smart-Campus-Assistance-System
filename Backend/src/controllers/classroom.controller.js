@@ -1,13 +1,13 @@
 const freeClassroomService = require("../services/freeClassroom.service");
 const { successResponse, errorResponse } = require("../utils/response");
 
-function getFreeClassrooms(req, res) {
+async function getFreeClassrooms(req, res) {
 
     try {
 
         const { day, time, building } = req.query;
 
-        const result = freeClassroomService.getFreeClassrooms(day, time, building);
+        const result = await freeClassroomService.getFreeClassrooms(day, time, building);
 
         return res.status(200).json(successResponse("Free classrooms fetched", result));
 
@@ -19,13 +19,13 @@ function getFreeClassrooms(req, res) {
 
 }
 
-function getDaySchedule(req, res) {
+async function getDaySchedule(req, res) {
 
     try {
 
         const { day, building } = req.query;
 
-        const result = freeClassroomService.getDaySchedule(day, building);
+        const result = await freeClassroomService.getDaySchedule(day, building);
 
         return res.status(200).json(successResponse("Day schedule fetched", result));
 
