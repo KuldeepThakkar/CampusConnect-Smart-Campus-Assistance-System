@@ -70,7 +70,30 @@ function validateDayScheduleQuery(req, res, next) {
 
 }
 
+function validateSlotAvailabilityQuery(req, res, next) {
+
+    let { day, building } = req.query;
+
+    if (!day) {
+        day = new Date().toLocaleDateString("en-US", { weekday: "long" });
+    }
+
+    if (!VALID_DAYS.includes(day)) {
+        return res.status(400).json({
+            success: false,
+            message: `day must be one of: ${VALID_DAYS.join(", ")}`
+        });
+    }
+
+    req.query.day = day;
+    req.query.building = building || null;
+
+    next();
+
+}
+
 module.exports = {
     validateFreeClassroomsQuery,
-    validateDayScheduleQuery
+    validateDayScheduleQuery,
+    validateSlotAvailabilityQuery
 };

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const classroomController = require("../controllers/classroom.controller");
-const { validateFreeClassroomsQuery, validateDayScheduleQuery } = require("../validations/classroom.validation");
+const { validateFreeClassroomsQuery, validateDayScheduleQuery, validateSlotAvailabilityQuery } = require("../validations/classroom.validation");
 const { authenticate, authorize } = require("../middlewares/auth.middleware");
 
 router.get(
@@ -19,6 +19,14 @@ router.get(
     authorize("student", "teacher"),
     validateDayScheduleQuery,
     classroomController.getDaySchedule
+);
+
+router.get(
+    "/slots",
+    authenticate,
+    authorize("student", "teacher"),
+    validateSlotAvailabilityQuery,
+    classroomController.getSlotAvailability
 );
 
 module.exports = router;

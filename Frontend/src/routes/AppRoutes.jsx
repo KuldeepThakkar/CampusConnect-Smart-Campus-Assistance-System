@@ -10,6 +10,7 @@ import AcademicSetup from "../pages/AcademicSetup";
 import ProtectedRoute from "../components/ProtectedRoute";
 import NotFound from "../pages/NotFound";
 import FreeClassrooms from "../pages/FreeClassrooms";
+import TeacherDashboard from "../pages/TeacherDashboard";
 
 function AppRoutes(){
 
@@ -55,6 +56,8 @@ function AppRoutes(){
                         </ProtectedRoute>
                     }
                 />
+
+                <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
 
                 <Route path="*" element={<NotFound />} />
 

@@ -27,12 +27,6 @@ function getClassroomsForBuilding(buildingId) {
 
 }
 
-// The requested day only carries reservations if it's actually today's
-// real calendar day — a "Monday" query on a Tuesday means "generic Monday
-// timetable", not "this specific coming Monday", so reservations (which
-// are always pinned to today) don't apply to it. No date field exists on
-// these endpoints, so a day-name match against today's actual weekday is
-// the correct (and only) signal here.
 function isRequestedDayToday(day) {
     const todayDayName = new Date().toLocaleDateString("en-US", { weekday: "long" });
     return day === todayDayName;
@@ -53,7 +47,6 @@ async function getFreeClassrooms(day, time, buildingId) {
             const start = timeToMinutes(reservation.startTime);
             const end = timeToMinutes(reservation.endTime);
 
-            // inclusive start, exclusive end — same convention as getBusyClassrooms
             if (timeMinutes >= start && timeMinutes < end) {
                 busySet.add(reservation.classroom);
             }
@@ -142,7 +135,6 @@ async function getDaySchedule(day, buildingId) {
 
         });
 
-        // fold in today's reservations for this room as busy blocks too
         (reservationsByRoom[room] || []).forEach((reservation) => {
 
             const start = Math.max(timeToMinutes(reservation.startTime), dayStartMinutes);
@@ -156,12 +148,6 @@ async function getDaySchedule(day, buildingId) {
 
         busyIntervals.sort((a, b) => a.start - b.start);
 
-        // merge overlapping/adjacent busy blocks — but only when they're the
-        // SAME subject (e.g. two divisions double-booked into the same slot).
-        // A lecture immediately followed by a reservation (or vice versa) must
-        // stay as two distinct blocks, otherwise the merged block silently
-        // inherits the first block's label and misrepresents who's using the
-        // room during the second half.
         const merged = [];
 
         busyIntervals.forEach((interval) => {
@@ -173,10 +159,6 @@ async function getDaySchedule(day, buildingId) {
             if (last && sameSubject && interval.start <= last.end) {
                 last.end = Math.max(last.end, interval.end);
             } else if (last && !sameSubject && interval.start < last.end) {
-                // genuine overlap (not just adjacency) between different
-                // subjects — shouldn't happen given reservation.service.js's
-                // conflict checks, but clip defensively rather than let the
-                // ranges cross
                 merged.push({ ...interval, start: last.end });
             } else {
                 merged.push({ ...interval });
@@ -184,7 +166,6 @@ async function getDaySchedule(day, buildingId) {
 
         });
 
-        // walk the gaps between busy blocks to find free time
         const freeBlocks = [];
         let cursor = dayStartMinutes;
 
@@ -234,7 +215,78 @@ async function getDaySchedule(day, buildingId) {
 
 }
 
+async function getSlotAvailability(day, buildingId) {
+
+    const targetClassrooms = getClassroomsForBuilding(buildingId);
+    const periodSlots = timetableService.getPeriodSlotsForDay(day);
+
+    let todaysReservations = [];
+
+    if (isRequestedDayToday(day)) {
+        todaysReservations = await reservationService.getReservationsForToday();
+    }
+
+    const grouped = {};
+
+    targetClassrooms.forEach((room) => {
+
+        const { id, name } = getBuildingForClassroom(room);
+
+        if (!grouped[id]) {
+            grouped[id] = { buildingId: id, buildingName: name, classrooms: [] };
+        }
+
+        const slots = periodSlots.map((period) => {
+
+            const periodStart = timeToMinutes(period.startTime);
+            const periodEnd = timeToMinutes(period.endTime);
+
+            const timetableClash = timetableService.isClassroomBusyInRange(
+                day,
+                room,
+                period.startTime,
+                period.endTime
+            );
+
+            const reservationClash = todaysReservations.some((reservation) => {
+
+                if (reservation.classroom !== room) return false;
+
+                const resStart = timeToMinutes(reservation.startTime);
+                const resEnd = timeToMinutes(reservation.endTime);
+
+                return periodStart < resEnd && resStart < periodEnd;
+
+            });
+
+            return {
+                startTime: period.startTime,
+                endTime: period.endTime,
+                free: !timetableClash && !reservationClash
+            };
+
+        });
+
+        grouped[id].classrooms.push({
+            classroom: room,
+            slots
+        });
+
+    });
+
+    const buildings = Object.values(grouped).filter(
+        (b) => b.classrooms.length > 0
+    );
+
+    return {
+        day,
+        buildings
+    };
+
+}
+
 module.exports = {
     getFreeClassrooms,
-    getDaySchedule
+    getDaySchedule,
+    getSlotAvailability
 };

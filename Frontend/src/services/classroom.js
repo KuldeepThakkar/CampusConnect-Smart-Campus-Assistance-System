@@ -21,6 +21,16 @@ export const getDaySchedule = async ({ day, building }) => {
 
 };
 
+export const getClassroomSlots = async ({ day, building }) => {
+
+    const response = await api.get("/classrooms/slots", {
+        params: { day, building }
+    });
+
+    return response.data;
+
+};
+
 export const getBuildingsWithClassrooms = async () => {
 
     const response = await getCampusData();

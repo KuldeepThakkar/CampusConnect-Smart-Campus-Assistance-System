@@ -247,6 +247,40 @@ function getRawTimetable() {
     return timetableData;
 }
 
+// Returns the distinct set of fixed period slots actually used in the
+// timetable for a given day, e.g. [{startTime:"09:10",endTime:"10:00"}, ...],
+// sorted chronologically. These are real periods pulled from the data —
+// nothing inferred, no assumptions about breaks or gaps.
+function getPeriodSlotsForDay(day) {
+
+    const slotMap = new Map();
+
+    timetableData.forEach((record) => {
+
+        const daySchedule = record.schedule?.[day];
+
+        if (!daySchedule || daySchedule.length === 0) {
+            return;
+        }
+
+        daySchedule.forEach((lecture) => {
+
+            const key = `${lecture.startTime}-${lecture.endTime}`;
+
+            if (!slotMap.has(key)) {
+                slotMap.set(key, { startTime: lecture.startTime, endTime: lecture.endTime });
+            }
+
+        });
+
+    });
+
+    return Array.from(slotMap.values()).sort(
+        (a, b) => convertTimeToMinutes(a.startTime) - convertTimeToMinutes(b.startTime)
+    );
+
+}
+
 module.exports = {
     getAcademicOptions,
     getDivisionTimetable,
@@ -254,5 +288,6 @@ module.exports = {
     getNextLecture,
     getBusyClassrooms,
     isClassroomBusyInRange,
+    getPeriodSlotsForDay,
     getRawTimetable
 };

@@ -1,6 +1,7 @@
 const Reservation = require("../models/reservation.model");
 const timetableService = require("./timetable.service");
 const { timeToMinutes } = require("../utils/time.util");
+const { CAMPUS_DAY_START, CAMPUS_DAY_END } = require("../config/campusHours");
 
 // Local-time "YYYY-MM-DD", consistent with how the rest of the codebase
 // (timetable.service.js) derives "today" via local Date methods rather than UTC.
@@ -30,7 +31,7 @@ async function createReservation(teacherId, { classroom, buildingId, date, start
 
     }
 
-    const startMinutes = timeToMinutes(startTime);
+        const startMinutes = timeToMinutes(startTime);
     const endMinutes = timeToMinutes(endTime);
 
     if (startMinutes >= endMinutes) {
@@ -38,6 +39,30 @@ async function createReservation(teacherId, { classroom, buildingId, date, start
         return {
             success: false,
             message: "Start time must be before end time"
+        };
+
+    }
+
+    const campusStartMinutes = timeToMinutes(CAMPUS_DAY_START);
+    const campusEndMinutes = timeToMinutes(CAMPUS_DAY_END);
+
+    if (startMinutes < campusStartMinutes || endMinutes > campusEndMinutes) {
+
+        return {
+            success: false,
+            message: `Reservations must fall between ${CAMPUS_DAY_START} and ${CAMPUS_DAY_END}`
+        };
+
+    }
+
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    if (startMinutes < currentMinutes) {
+
+        return {
+            success: false,
+            message: "Cannot reserve a time slot that has already passed"
         };
 
     }

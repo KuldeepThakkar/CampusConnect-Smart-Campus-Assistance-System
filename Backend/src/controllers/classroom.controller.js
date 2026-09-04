@@ -37,7 +37,26 @@ async function getDaySchedule(req, res) {
 
 }
 
+async function getSlotAvailability(req, res) {
+
+    try {
+
+        const { day, building } = req.query;
+
+        const result = await freeClassroomService.getSlotAvailability(day, building);
+
+        return res.status(200).json(successResponse("Slot availability fetched", result));
+
+    } catch (error) {
+
+        return res.status(500).json(errorResponse(error.message));
+
+    }
+
+}
+
 module.exports = {
     getFreeClassrooms,
-    getDaySchedule
+    getDaySchedule,
+    getSlotAvailability
 };
