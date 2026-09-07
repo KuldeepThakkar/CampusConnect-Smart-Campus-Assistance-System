@@ -57,7 +57,14 @@ function AppRoutes(){
                     }
                 />
 
-                <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+                <Route
+                    path="/teacher-dashboard"
+                    element={
+                        <ProtectedRoute allowedRoles={["teacher"]}>
+                            <TeacherDashboard />
+                        </ProtectedRoute>
+                    }
+                />
 
                 <Route path="*" element={<NotFound />} />
 

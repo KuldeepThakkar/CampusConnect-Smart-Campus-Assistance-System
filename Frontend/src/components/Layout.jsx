@@ -20,6 +20,9 @@ function Layout(){
                     <nav className="app-nav">
                         <Link to="/">Home</Link>
                         <Link to="/free-classrooms">Free Classrooms</Link>
+                        {user.role === "teacher" && (
+                            <Link to="/teacher-dashboard">Reserve Classroom</Link>
+                        )}
                     </nav>
                 )}
 
