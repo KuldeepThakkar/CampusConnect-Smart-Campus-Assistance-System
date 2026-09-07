@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { getClassroomSlots, getBuildingsWithClassrooms } from "../services/classroom";
-import { createReservation } from "../services/reservation";
+import { createReservation, getMyReservations } from "../services/reservation";
 
 function getTodayName() {
     return new Date().toLocaleDateString("en-US", { weekday: "long" });
@@ -21,7 +21,10 @@ function TeacherDashboard() {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
-    const [reservingKey, setReservingKey] = useState(null); // `${classroom}-${startTime}-${endTime}`
+    const [myReservations, setMyReservations] = useState([]);
+    const [isLoadingReservations, setIsLoadingReservations] = useState(false);
+
+    const [reservingKey, setReservingKey] = useState(null);
     const [reserveError, setReserveError] = useState(null);
     const [reserveSuccess, setReserveSuccess] = useState(null);
 
@@ -66,9 +69,27 @@ function TeacherDashboard() {
 
     };
 
+    const loadMyReservations = async () => {
+
+        setIsLoadingReservations(true);
+
+        try {
+
+            const response = await getMyReservations();
+            setMyReservations(response.data.reservations);
+
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoadingReservations(false);
+        }
+
+    };
+
     useEffect(() => {
         fetchBuildings();
         loadSlots();
+        loadMyReservations();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -89,6 +110,7 @@ function TeacherDashboard() {
             });
 
             await loadSlots();
+            await loadMyReservations();
 
             setReserveSuccess(`${classroom} reserved from ${startTime} to ${endTime}.`);
 
@@ -112,6 +134,29 @@ function TeacherDashboard() {
                 ← Home
             </Link>
             <h2>Reserve a Classroom</h2>
+
+            <div className="card">
+
+                <div className="card-header">
+                    <h2>Your Reservations Today</h2>
+                </div>
+
+                {isLoadingReservations ? (
+                    <p className="status-text">Loading...</p>
+                ) : myReservations.length === 0 ? (
+                    <p className="status-text">You have no reservations today.</p>
+                ) : (
+                    <div className="chip-group">
+                        {myReservations.map((reservation) => (
+                            <span key={reservation._id} className="chip chip-busy">
+                                {reservation.classroom}: {reservation.startTime} – {reservation.endTime}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+            </div>
+
             <p className="status-text">Showing today's fixed period slots. Reservations are only available for today.</p>
 
             <div className="field">
