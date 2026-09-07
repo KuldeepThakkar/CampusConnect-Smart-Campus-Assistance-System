@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { getClassroomSlots, getBuildingsWithClassrooms } from "../services/classroom";
-import { createReservation, getMyReservations } from "../services/reservation";
+import { createReservation, getMyReservations,cancelReservation  } from "../services/reservation";
 
 function getTodayName() {
     return new Date().toLocaleDateString("en-US", { weekday: "long" });
@@ -27,6 +27,8 @@ function TeacherDashboard() {
     const [reservingKey, setReservingKey] = useState(null);
     const [reserveError, setReserveError] = useState(null);
     const [reserveSuccess, setReserveSuccess] = useState(null);
+
+    const [cancellingId, setCancellingId] = useState(null);
 
     const fetchBuildings = async () => {
 
@@ -128,6 +130,35 @@ function TeacherDashboard() {
 
     };
 
+    const handleCancel = async (id) => {
+
+        setReserveError(null);
+        setReserveSuccess(null);
+        setCancellingId(id);
+
+        try {
+
+            await cancelReservation(id);
+
+            await loadSlots();
+            await loadMyReservations();
+
+            setReserveSuccess("Reservation cancelled.");
+
+        } catch (error) {
+
+            if (error.response) {
+                setReserveError(error.response.data.message || "Couldn't cancel this reservation.");
+            } else {
+                setReserveError("Something went wrong. Please check your connection.");
+            }
+
+        } finally {
+            setCancellingId(null);
+        }
+
+    };
+
     return (
         <div>
             <Link to="/" className="btn-retry" style={{ display: "inline-block", marginBottom: "16px", textDecoration: "none" }}>
@@ -148,9 +179,18 @@ function TeacherDashboard() {
                 ) : (
                     <div className="chip-group">
                         {myReservations.map((reservation) => (
-                            <span key={reservation._id} className="chip chip-busy">
-                                {reservation.classroom}: {reservation.startTime} – {reservation.endTime}
-                            </span>
+                            <button
+                                key={reservation._id}
+                                type="button"
+                                className="chip chip-busy"
+                                style={{ cursor: "pointer", border: "none" }}
+                                disabled={cancellingId === reservation._id}
+                                onClick={() => handleCancel(reservation._id)}
+                            >
+                                {cancellingId === reservation._id
+                                    ? "Cancelling..."
+                                    : `${reservation.classroom}: ${reservation.startTime} – ${reservation.endTime} ✕`}
+                            </button>
                         ))}
                     </div>
                 )}

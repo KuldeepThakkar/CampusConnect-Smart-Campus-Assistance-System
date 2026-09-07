@@ -170,8 +170,31 @@ async function getTeacherReservationsToday(teacherId) {
 
 }
 
+async function cancelReservation(teacherId, reservationId) {
+
+    const reservation = await Reservation.findById(reservationId);
+
+    if (!reservation || reservation.teacher.toString() !== teacherId.toString()) {
+
+        return {
+            success: false,
+            message: "Reservation not found"
+        };
+
+    }
+
+    await Reservation.deleteOne({ _id: reservationId });
+
+    return {
+        success: true,
+        message: "Reservation cancelled successfully"
+    };
+
+}
+
 module.exports = {
     createReservation,
     getReservationsForToday,
-    getTeacherReservationsToday
+    getTeacherReservationsToday,
+    cancelReservation
 };

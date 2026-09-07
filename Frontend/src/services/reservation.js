@@ -15,3 +15,11 @@ export const getMyReservations = async () => {
     return response.data;
 
 };
+
+export const cancelReservation = async (id) => {
+
+    const response = await api.delete(`/reservations/${id}`);
+
+    return response.data;
+
+};

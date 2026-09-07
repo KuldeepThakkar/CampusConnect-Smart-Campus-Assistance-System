@@ -20,4 +20,11 @@ router.get(
     reservationController.getMyReservations
 );
 
+router.delete(
+    "/:id",
+    authenticate,
+    authorize("teacher"),
+    reservationController.cancelReservation
+);
+
 module.exports = router;
