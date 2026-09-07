@@ -27,6 +27,10 @@ async function authenticate(req, res, next) {
             return res.status(401).json({ success: false, message: "User no longer exists" });
         }
 
+        if (!user.isVerified) {
+            return res.status(401).json({ success: false, message: "Account is not verified" });
+        }
+
         req.user = user;
 
         next();
