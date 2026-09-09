@@ -35,6 +35,12 @@ function FreeClassrooms() {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
+    const handleModeChange = (newMode) => {
+        setMode(newMode);
+        setResults(null);
+        setErrorMessage(null);
+    };
+
     const fetchBuildings = async () => {
 
         try {
@@ -93,7 +99,7 @@ function FreeClassrooms() {
                     <button
                         type="button"
                         className={`toggle-option ${mode === "now" ? "active" : ""}`}
-                        onClick={() => setMode("now")}
+                        onClick={() => handleModeChange("now")}
                         disabled={isLoading}
                     >
                         Right Now
@@ -101,7 +107,7 @@ function FreeClassrooms() {
                     <button
                         type="button"
                         className={`toggle-option ${mode === "day" ? "active" : ""}`}
-                        onClick={() => setMode("day")}
+                        onClick={() => handleModeChange("day")}
                         disabled={isLoading}
                     >
                         Whole Day
