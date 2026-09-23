@@ -1,0 +1,293 @@
+const fs = require("fs");
+const path = require("path");
+const { timeToMinutes } = require("../utils/time.util");
+
+// Load timetable.json once when the server starts
+const timetableData = JSON.parse(
+    fs.readFileSync(
+        path.join(__dirname, "../data/timetable.json"),
+        "utf8"
+    )
+);
+
+function getAcademicOptions() {
+    const academicOptions = {};
+
+    timetableData.forEach((record) => {
+
+        const { department, branch, semester, division } = record;
+
+        // Create department if it doesn't exist
+        if (!academicOptions[department]) {
+            academicOptions[department] = {};
+        }
+
+        // Create branch if it doesn't exist
+        if (!academicOptions[department][branch]) {
+            academicOptions[department][branch] = {};
+        }
+
+        // Create semester if it doesn't exist
+        if (!academicOptions[department][branch][semester]) {
+            academicOptions[department][branch][semester] = [];
+        }
+
+        // Add division if not already present
+        if (
+            !academicOptions[department][branch][semester].includes(division)
+        ) {
+            academicOptions[department][branch][semester].push(division);
+        }
+
+    });
+
+    return academicOptions;
+}
+
+function getDivisionTimetable(department, branch, semester, division) {
+    const divisionData = timetableData.find((record) => {
+    return (
+        record.department === department &&
+        record.branch === branch &&
+        record.semester === semester &&
+        record.division === division
+    );
+});
+
+return divisionData;
+}
+
+function getTodaySchedule(
+    department,
+    branch,
+    semester,
+    division,
+    currentDate = new Date()
+) {
+
+    const divisionTimetable = getDivisionTimetable(
+        department,
+        branch,
+        semester,
+        division
+    );
+
+    if (!divisionTimetable) {
+        return [];
+    }
+
+    const today = currentDate.toLocaleDateString("en-US", {
+        weekday: "long"
+    });
+
+    return divisionTimetable.schedule[today] || [];
+}
+
+function convertTimeToMinutes(time) {
+    const [hours, minutes] = time.split(":").map(Number);
+    return hours * 60 + minutes;
+}
+
+function getNextLecture(
+    department,
+    branch,
+    semester,
+    division,
+    currentDate = new Date()
+) {
+
+    const todaySchedule = getTodaySchedule(
+    department,
+    branch,
+    semester,
+    division,
+    currentDate
+);
+
+    const day = currentDate.toLocaleDateString("en-US", {
+        weekday: "long"
+    });
+
+    const currentTime =
+        currentDate.getHours() * 60 +
+        currentDate.getMinutes();
+
+    const currentTimeString = currentDate.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    });
+
+    if (!todaySchedule || todaySchedule.length === 0) {
+        return {
+            status: "NO_SCHEDULE",
+            day,
+            currentTime: currentTimeString,
+            lecture: null
+        };
+    }
+
+    for (const lecture of todaySchedule) {
+
+        const lectureStartTime = convertTimeToMinutes(
+            lecture.startTime
+        );
+
+        const lectureEndTime = convertTimeToMinutes(
+            lecture.endTime
+        );
+
+        // Current lecture is running
+        if (
+            currentTime >= lectureStartTime &&
+            currentTime <= lectureEndTime
+        ) {
+            return {
+                status: "ONGOING",
+                day,
+                currentTime: currentTimeString,
+                lecture
+            };
+        }
+
+        // Next upcoming lecture
+        if (lectureStartTime > currentTime) {
+            return {
+                status: "UPCOMING",
+                day,
+                currentTime: currentTimeString,
+                lecture
+            };
+        }
+    }
+
+    return {
+        status: "NO_MORE_CLASSES",
+        day,
+        currentTime: currentTimeString,
+        lecture: null
+    };
+}
+
+function getBusyClassrooms(day, time) {
+
+    const currentMinutes = typeof time === "number"
+        ? time
+        : timeToMinutes(time);
+
+    const busy = new Set();
+
+    timetableData.forEach((record) => {
+
+        const daySchedule = record.schedule?.[day];
+
+        if (!daySchedule || daySchedule.length === 0) {
+            return;
+        }
+
+        daySchedule.forEach((lecture) => {
+
+            const start = convertTimeToMinutes(lecture.startTime);
+            const end = convertTimeToMinutes(lecture.endTime);
+
+            // inclusive start, exclusive end — matches "class is still on" at the start of the next slot
+            if (currentMinutes >= start && currentMinutes < end) {
+                if (lecture.classroom) {
+                    busy.add(lecture.classroom);
+                }
+            }
+
+        });
+
+    });
+
+    return Array.from(busy).sort();
+
+}
+
+// Range-overlap check (as opposed to getBusyClassrooms' single-instant check).
+// Two ranges [aStart,aEnd) and [bStart,bEnd) overlap iff aStart < bEnd && bStart < aEnd.
+// Used by reservation.service.js to make sure a requested reservation slot
+// doesn't collide with an actual scheduled lecture for that classroom.
+function isClassroomBusyInRange(day, classroom, startTime, endTime) {
+
+    const rangeStart = timeToMinutes(startTime);
+    const rangeEnd = timeToMinutes(endTime);
+
+    for (const record of timetableData) {
+
+        const daySchedule = record.schedule?.[day];
+
+        if (!daySchedule || daySchedule.length === 0) {
+            continue;
+        }
+
+        for (const lecture of daySchedule) {
+
+            if (lecture.classroom !== classroom) {
+                continue;
+            }
+
+            const lectureStart = convertTimeToMinutes(lecture.startTime);
+            const lectureEnd = convertTimeToMinutes(lecture.endTime);
+
+            if (rangeStart < lectureEnd && lectureStart < rangeEnd) {
+                return true;
+            }
+
+        }
+
+    }
+
+    return false;
+
+}
+
+function getRawTimetable() {
+    return timetableData;
+}
+
+// Returns the distinct set of fixed period slots actually used in the
+// timetable for a given day, e.g. [{startTime:"09:10",endTime:"10:00"}, ...],
+// sorted chronologically. These are real periods pulled from the data —
+// nothing inferred, no assumptions about breaks or gaps.
+function getPeriodSlotsForDay(day) {
+
+    const slotMap = new Map();
+
+    timetableData.forEach((record) => {
+
+        const daySchedule = record.schedule?.[day];
+
+        if (!daySchedule || daySchedule.length === 0) {
+            return;
+        }
+
+        daySchedule.forEach((lecture) => {
+
+            const key = `${lecture.startTime}-${lecture.endTime}`;
+
+            if (!slotMap.has(key)) {
+                slotMap.set(key, { startTime: lecture.startTime, endTime: lecture.endTime });
+            }
+
+        });
+
+    });
+
+    return Array.from(slotMap.values()).sort(
+        (a, b) => convertTimeToMinutes(a.startTime) - convertTimeToMinutes(b.startTime)
+    );
+
+}
+
+module.exports = {
+    getAcademicOptions,
+    getDivisionTimetable,
+    getTodaySchedule,
+    getNextLecture,
+    getBusyClassrooms,
+    isClassroomBusyInRange,
+    getPeriodSlotsForDay,
+    getRawTimetable
+};
