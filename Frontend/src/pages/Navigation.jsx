@@ -1,65 +1,16 @@
-
-            // currentDate: new Date().toISOString().slice(0, 19)
-        
-
-            // requestBody.latitude = 23.06502989563914;
-            // requestBody.longitude = 72.4400979280472;
-
-      
-
-
-    // const fetchNextClass = async (latitude, longitude) => {
-
-    //     try {
-
-    //         const requestBody = {
-    //             latitude ,
-    //             longitude ,
-    //             department,
-    //             branch,
-    //             semester: Number(semester),
-    //             division,
-    //             currentDate: "2026-07-31T14:03:23"
-    //             // currentDate: new Date().toISOString().slice(0, 19)
-    //         };
-    //         // "latitude": 23.06502989563914,
-    //         // "longitude": 72.4400979280472
-    //         // requestBody.latitude = 23.06502989563914;
-    //         // requestBody.longitude = 72.4400979280472;
-
-    //         const response = await getNextClass(requestBody);
-
-    //         setNavigationData(response);
-
-    //     } catch (error) {
-
-    //         if (error.response) {
-    //             setErrorMessage(error.response.data.message || "Something went wrong.");
-    //         } else {
-    //             console.error(error);
-    //             setErrorMessage("Something went wrong. Please check your connection.");
-    //         }
-
-    //     } finally {
-
-    //         setIsLoading(false);
-
-    //     }
-
-    // };
-
-
 import { useEffect, useState, useRef } from "react";
 
-import { getNextClass } from "../services/navigation";
+import { navigateToClassroom } from "../services/navigation";
+import { getNextLecture, getTodayLectures } from "../services/timetable";
 import { getCampusData } from "../services/campus";
 import { useAuth } from "../context/AuthContext";
 
 import NextLectureCard from "../components/NextLectureCard";
 import RouteDetails from "../components/RouteDetails";
 import CampusMap from "../components/CampusMap";
+import LecturePicker from "../components/LecturePicker";
 
-function Navigation(){
+function Navigation() {
 
     const { user } = useAuth();
 
@@ -76,6 +27,12 @@ function Navigation(){
         latitude: null,
         longitude: null
     });
+
+    const [lectures, setLectures] = useState([]);
+    const [selectedLecture, setSelectedLecture] = useState(null);
+    const [autoLecture, setAutoLecture] = useState(null);
+    const [autoStatus, setAutoStatus] = useState(null);
+
     const [navigationData, setNavigationData] = useState(null);
     const [checkpoints, setCheckpoints] = useState({});
 
@@ -83,6 +40,7 @@ function Navigation(){
     const lastFetchedCoordsRef = useRef(null);
     const isFetchingRef = useRef(false);
     const hasFetchedOnceRef = useRef(false);
+    const selectedLectureRef = useRef(null);
 
     const MOVEMENT_THRESHOLD_METERS = 25;
 
@@ -97,32 +55,20 @@ function Navigation(){
         return R * c;
     }
 
-    const routeCoordinates = (navigationData?.data?.navigation?.path || [])
+    // Response from POST /navigation/ is flat: {path, distance, insideCampus, offCampusPath}
+    const routeCoordinates = (navigationData?.data?.path || [])
         .map((checkpointId) => checkpoints[checkpointId])
         .filter(Boolean);
 
-    const offCampusPath = navigationData?.data?.navigation?.offCampusPath || [];
+    const offCampusPath = navigationData?.data?.offCampusPath || [];
 
-    const fetchNextClass = async (latitude, longitude, isBackgroundUpdate = false) => {
+    const fetchRoute = async (latitude, longitude, classroom, isBackgroundUpdate = false) => {
 
         isFetchingRef.current = true;
 
         try {
 
-            const requestBody = {
-                latitude,
-                longitude,
-                department,
-                branch,
-                semester: Number(semester),
-                division,
-                currentDate: "2026-07-31T14:03:23"
-                // currentDate: new Date().toISOString().slice(0, 19)
-            };
-            
-            
-            const response = await getNextClass(requestBody);
-           
+            const response = await navigateToClassroom({ latitude, longitude, classroom });
 
             setNavigationData(response);
             setErrorMessage(null);
@@ -145,6 +91,46 @@ function Navigation(){
 
     };
 
+    const loadLectureData = async () => {
+
+        try {
+
+            const requestBody = {
+                department,
+                branch,
+                semester: Number(semester),
+                division
+            };
+
+            const [nextLectureResponse, todayLecturesResponse] = await Promise.all([
+                getNextLecture(requestBody),
+                getTodayLectures(requestBody)
+            ]);
+
+            const { status, lecture } = nextLectureResponse.data;
+
+            setAutoStatus(status);
+            setAutoLecture(lecture);
+            setLectures(todayLecturesResponse.data.lectures);
+
+            if (lecture) {
+                setSelectedLecture(lecture);
+            } else {
+                // No auto-detected lecture (break/no-lecture/none left today) —
+                // nothing to route to until the student picks one manually.
+                setIsLoading(false);
+            }
+
+        } catch (error) {
+
+            console.error(error);
+            setErrorMessage("Couldn't load today's timetable.");
+            setIsLoading(false);
+
+        }
+
+    };
+
     const getUserLocation = () => {
 
         if (!navigator.geolocation) {
@@ -161,6 +147,12 @@ function Navigation(){
 
                 setUserCoords({ latitude, longitude });
 
+                const currentLecture = selectedLectureRef.current;
+
+                if (!currentLecture) {
+                    return;
+                }
+
                 const lastCoords = lastFetchedCoordsRef.current;
 
                 const hasMovedEnough = !lastCoords || getDistanceInMeters(
@@ -171,7 +163,7 @@ function Navigation(){
 
                     lastFetchedCoordsRef.current = { latitude, longitude };
 
-                    fetchNextClass(latitude, longitude, hasFetchedOnceRef.current);
+                    fetchRoute(latitude, longitude, currentLecture.classroom, hasFetchedOnceRef.current);
 
                     hasFetchedOnceRef.current = true;
 
@@ -215,6 +207,38 @@ function Navigation(){
     };
 
     useEffect(() => {
+        selectedLectureRef.current = selectedLecture;
+    }, [selectedLecture]);
+
+    // Whenever the selected lecture changes (initial auto-pick, or a manual
+    // pick from the picker), fetch a fresh route immediately using the last
+    // known coordinates — don't wait for the next GPS movement tick.
+    useEffect(() => {
+
+        if (!selectedLecture) {
+            setNavigationData(null);
+            return;
+        }
+
+        if (userCoords.latitude != null && userCoords.longitude != null) {
+
+            lastFetchedCoordsRef.current = { latitude: userCoords.latitude, longitude: userCoords.longitude };
+
+            fetchRoute(userCoords.latitude, userCoords.longitude, selectedLecture.classroom, hasFetchedOnceRef.current);
+
+            hasFetchedOnceRef.current = true;
+
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedLecture]);
+
+    useEffect(() => {
+        loadLectureData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
         getUserLocation();
     }, []);
 
@@ -231,6 +255,12 @@ function Navigation(){
         };
 
     }, []);
+
+    const isAutoSelected = selectedLecture && autoLecture
+        && selectedLecture.startTime === autoLecture.startTime
+        && selectedLecture.classroom === autoLecture.classroom;
+
+    const displayStatus = isAutoSelected ? autoStatus : "SELECTED";
 
     return (
         <div>
@@ -254,20 +284,29 @@ function Navigation(){
                 </div>
             )}
 
-            {
-                navigationData?.success && (
-                    <div className="results">
-                        <NextLectureCard
-                            lecture={navigationData.data.lecture}
-                            status={navigationData.data.status}
-                        />
+            <div className="results">
 
-                        <RouteDetails
-                            navigation={navigationData.data.navigation}
-                        />
-                    </div>
-                )
-            }
+                <LecturePicker
+                    lectures={lectures}
+                    selectedLecture={selectedLecture}
+                    onSelect={setSelectedLecture}
+                />
+
+                {selectedLecture && (
+                    <NextLectureCard
+                        lecture={selectedLecture}
+                        status={displayStatus}
+                    />
+                )}
+
+                {navigationData?.success && selectedLecture && (
+                    <RouteDetails
+                        navigation={navigationData.data}
+                    />
+                )}
+
+            </div>
+
         </div>
     );
 
