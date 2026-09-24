@@ -19,18 +19,6 @@ function RouteDetails({ navigation }) {
                 <span className="card-row-value mono">{navigation.distance} m</span>
             </div>
 
-            <h3 className="route-path-heading">Path</h3>
-
-            <div className="route-path">
-                {
-                    navigation.path.map((checkpoint) => (
-                        <div key={checkpoint} className="route-step">
-                            {checkpoint}
-                        </div>
-                    ))
-                }
-            </div>
-
         </div>
     );
 

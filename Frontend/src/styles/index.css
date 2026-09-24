@@ -267,56 +267,6 @@ select:focus-visible {
   color: var(--route-orange-dark);
 }
 
-.route-path-heading {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: var(--ink-light);
-  margin: var(--space-3) 0 var(--space-2);
-}
-
-.route-path {
-  position: relative;
-  padding-left: 24px;
-}
-
-.route-step {
-  position: relative;
-  padding-bottom: var(--space-3);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--ink);
-}
-
-.route-step::before {
-  content: "";
-  position: absolute;
-  left: -24px;
-  top: 4px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--route-blue);
-}
-
-.route-step::after {
-  content: "";
-  position: absolute;
-  left: -20.5px;
-  top: 12px;
-  bottom: 0;
-  width: 1px;
-  background: var(--line);
-}
-
-.route-step:last-child::after {
-  display: none;
-}
-
-.route-step:last-child::before {
-  background: #EB5757;
-}
-
 .map-container {
   position: relative;
   border-radius: var(--radius);
