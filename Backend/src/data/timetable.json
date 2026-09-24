@@ -5879,6 +5879,20 @@
           "subject": "Digital Logic",
           "faculty": "Prof. Dave",
           "classroom": "LH-42"
+        },
+        {
+          "startTime": "15:20",
+          "endTime": "16:20",
+          "subject": "",
+          "faculty": "",
+          "classroom": ""
+        },
+        {
+          "startTime": "16:20",
+          "endTime": "17:20",
+          "subject": "BREAK",
+          "faculty": "",
+          "classroom": ""
         }
       ],
       "Friday": [

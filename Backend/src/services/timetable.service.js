@@ -17,22 +17,18 @@ function getAcademicOptions() {
 
         const { department, branch, semester, division } = record;
 
-        // Create department if it doesn't exist
         if (!academicOptions[department]) {
             academicOptions[department] = {};
         }
 
-        // Create branch if it doesn't exist
         if (!academicOptions[department][branch]) {
             academicOptions[department][branch] = {};
         }
 
-        // Create semester if it doesn't exist
         if (!academicOptions[department][branch][semester]) {
             academicOptions[department][branch][semester] = [];
         }
 
-        // Add division if not already present
         if (
             !academicOptions[department][branch][semester].includes(division)
         ) {
@@ -97,12 +93,12 @@ function getNextLecture(
 ) {
 
     const todaySchedule = getTodaySchedule(
-    department,
-    branch,
-    semester,
-    division,
-    currentDate
-);
+        department,
+        branch,
+        semester,
+        division,
+        currentDate
+    );
 
     const day = currentDate.toLocaleDateString("en-US", {
         weekday: "long"
@@ -127,38 +123,69 @@ function getNextLecture(
         };
     }
 
-    for (const lecture of todaySchedule) {
+    // Pass 1: is "now" inside ANY row — a real lecture, a break, or an
+    // explicit empty (no-lecture) slot? Rows with classroom === "" still
+    // occupy real time on the schedule, so they must be checked here to
+    // correctly report BREAK/NO_LECTURE instead of falling through to the
+    // wrong upcoming lecture.
+    for (const row of todaySchedule) {
 
-        const lectureStartTime = convertTimeToMinutes(
-            lecture.startTime
-        );
+        const rowStart = convertTimeToMinutes(row.startTime);
+        const rowEnd = convertTimeToMinutes(row.endTime);
 
-        const lectureEndTime = convertTimeToMinutes(
-            lecture.endTime
-        );
+        if (currentTime >= rowStart && currentTime <= rowEnd) {
 
-        // Current lecture is running
-        if (
-            currentTime >= lectureStartTime &&
-            currentTime <= lectureEndTime
-        ) {
+            if (row.classroom) {
+
+                return {
+                    status: "ONGOING",
+                    day,
+                    currentTime: currentTimeString,
+                    lecture: row
+                };
+
+            }
+
+            if (row.subject === "BREAK") {
+
+                return {
+                    status: "BREAK",
+                    day,
+                    currentTime: currentTimeString,
+                    lecture: null
+                };
+
+            }
+
             return {
-                status: "ONGOING",
+                status: "NO_LECTURE",
                 day,
                 currentTime: currentTimeString,
-                lecture
+                lecture: null
             };
+
         }
 
-        // Next upcoming lecture
-        if (lectureStartTime > currentTime) {
+    }
+
+    // Pass 2: "now" isn't inside any row — find the next REAL lecture,
+    // explicitly skipping break/no-lecture rows so they're never reported
+    // as the "next" class.
+    for (const row of todaySchedule) {
+
+        const rowStart = convertTimeToMinutes(row.startTime);
+
+        if (rowStart > currentTime && row.classroom) {
+
             return {
                 status: "UPCOMING",
                 day,
                 currentTime: currentTimeString,
-                lecture
+                lecture: row
             };
+
         }
+
     }
 
     return {
@@ -190,7 +217,6 @@ function getBusyClassrooms(day, time) {
             const start = convertTimeToMinutes(lecture.startTime);
             const end = convertTimeToMinutes(lecture.endTime);
 
-            // inclusive start, exclusive end — matches "class is still on" at the start of the next slot
             if (currentMinutes >= start && currentMinutes < end) {
                 if (lecture.classroom) {
                     busy.add(lecture.classroom);
@@ -205,10 +231,6 @@ function getBusyClassrooms(day, time) {
 
 }
 
-// Range-overlap check (as opposed to getBusyClassrooms' single-instant check).
-// Two ranges [aStart,aEnd) and [bStart,bEnd) overlap iff aStart < bEnd && bStart < aEnd.
-// Used by reservation.service.js to make sure a requested reservation slot
-// doesn't collide with an actual scheduled lecture for that classroom.
 function isClassroomBusyInRange(day, classroom, startTime, endTime) {
 
     const rangeStart = timeToMinutes(startTime);
@@ -247,10 +269,6 @@ function getRawTimetable() {
     return timetableData;
 }
 
-// Returns the distinct set of fixed period slots actually used in the
-// timetable for a given day, e.g. [{startTime:"09:10",endTime:"10:00"}, ...],
-// sorted chronologically. These are real periods pulled from the data —
-// nothing inferred, no assumptions about breaks or gaps.
 function getPeriodSlotsForDay(day) {
 
     const slotMap = new Map();
