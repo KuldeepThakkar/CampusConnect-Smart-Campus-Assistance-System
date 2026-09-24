@@ -292,12 +292,10 @@ function Navigation() {
                     onSelect={setSelectedLecture}
                 />
 
-                {selectedLecture && (
-                    <NextLectureCard
-                        lecture={selectedLecture}
-                        status={displayStatus}
-                    />
-                )}
+                <NextLectureCard
+                    lecture={selectedLecture}
+                    status={selectedLecture ? displayStatus : autoStatus}
+                />
 
                 {navigationData?.success && selectedLecture && (
                     <RouteDetails
