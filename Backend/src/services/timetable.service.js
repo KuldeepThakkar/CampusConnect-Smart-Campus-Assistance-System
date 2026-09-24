@@ -196,6 +196,38 @@ function getNextLecture(
     };
 }
 
+// Full list of today's REAL lectures for a division — break/no-lecture
+// rows (classroom === "") are filtered out. Powers the student's lecture
+// picker (BN.4), so they choose an actual class to navigate to.
+function getTodayLectureList(
+    department,
+    branch,
+    semester,
+    division,
+    currentDate = new Date()
+) {
+
+    const todaySchedule = getTodaySchedule(
+        department,
+        branch,
+        semester,
+        division,
+        currentDate
+    );
+
+    const day = currentDate.toLocaleDateString("en-US", {
+        weekday: "long"
+    });
+
+    const lectures = todaySchedule.filter((row) => row.classroom);
+
+    return {
+        day,
+        lectures
+    };
+
+}
+
 function getBusyClassrooms(day, time) {
 
     const currentMinutes = typeof time === "number"
@@ -304,6 +336,7 @@ module.exports = {
     getDivisionTimetable,
     getTodaySchedule,
     getNextLecture,
+    getTodayLectureList,
     getBusyClassrooms,
     isClassroomBusyInRange,
     getPeriodSlotsForDay,

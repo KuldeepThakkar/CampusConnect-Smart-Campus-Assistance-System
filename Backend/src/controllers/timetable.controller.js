@@ -61,7 +61,45 @@ function getNextLecture(req, res) {
 
 }
 
+function getTodayLectures(req, res) {
+
+    try {
+
+        const {
+            department,
+            branch,
+            semester,
+            division,
+            currentDate
+        } = req.body;
+
+        const result = timetableService.getTodayLectureList(
+            department,
+            branch,
+            Number(semester),
+            division,
+            currentDate ? new Date(currentDate) : new Date()
+        );
+
+        return res.status(200).json(
+            successResponse(
+                "Today's lectures fetched successfully",
+                result
+            )
+        );
+
+    } catch (error) {
+
+        return res.status(500).json(
+            errorResponse(error.message)
+        );
+
+    }
+
+}
+
 module.exports = {
     getAcademicOptions,
-    getNextLecture
+    getNextLecture,
+    getTodayLectures
 };
