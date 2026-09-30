@@ -41,16 +41,18 @@ function getAcademicOptions() {
 }
 
 function getDivisionTimetable(department, branch, semester, division) {
-    const divisionData = timetableData.find((record) => {
-    return (
-        record.department === department &&
-        record.branch === branch &&
-        record.semester === semester &&
-        record.division === division
-    );
-});
 
-return divisionData;
+    const divisionData = timetableData.find((record) => {
+        return (
+            record.department === department &&
+            record.branch === branch &&
+            record.semester === semester &&
+            record.division === division
+        );
+    });
+
+    return divisionData;
+
 }
 
 function getTodaySchedule(
@@ -77,11 +79,6 @@ function getTodaySchedule(
     });
 
     return divisionTimetable.schedule[today] || [];
-}
-
-function convertTimeToMinutes(time) {
-    const [hours, minutes] = time.split(":").map(Number);
-    return hours * 60 + minutes;
 }
 
 function getNextLecture(
@@ -128,12 +125,15 @@ function getNextLecture(
     // occupy real time on the schedule, so they must be checked here to
     // correctly report BREAK/NO_LECTURE instead of falling through to the
     // wrong upcoming lecture.
+    // End is EXCLUSIVE — matches getBusyClassrooms' convention below, so a
+    // lecture that starts exactly when the previous one ends is reported
+    // as the current one, not the one that just finished.
     for (const row of todaySchedule) {
 
-        const rowStart = convertTimeToMinutes(row.startTime);
-        const rowEnd = convertTimeToMinutes(row.endTime);
+        const rowStart = timeToMinutes(row.startTime);
+        const rowEnd = timeToMinutes(row.endTime);
 
-        if (currentTime >= rowStart && currentTime <= rowEnd) {
+        if (currentTime >= rowStart && currentTime < rowEnd) {
 
             if (row.classroom) {
 
@@ -173,7 +173,7 @@ function getNextLecture(
     // as the "next" class.
     for (const row of todaySchedule) {
 
-        const rowStart = convertTimeToMinutes(row.startTime);
+        const rowStart = timeToMinutes(row.startTime);
 
         if (rowStart > currentTime && row.classroom) {
 
@@ -198,7 +198,7 @@ function getNextLecture(
 
 // Full list of today's REAL lectures for a division — break/no-lecture
 // rows (classroom === "") are filtered out. Powers the student's lecture
-// picker (BN.4), so they choose an actual class to navigate to.
+// picker, so they choose an actual class to navigate to.
 function getTodayLectureList(
     department,
     branch,
@@ -246,8 +246,8 @@ function getBusyClassrooms(day, time) {
 
         daySchedule.forEach((lecture) => {
 
-            const start = convertTimeToMinutes(lecture.startTime);
-            const end = convertTimeToMinutes(lecture.endTime);
+            const start = timeToMinutes(lecture.startTime);
+            const end = timeToMinutes(lecture.endTime);
 
             if (currentMinutes >= start && currentMinutes < end) {
                 if (lecture.classroom) {
@@ -282,8 +282,8 @@ function isClassroomBusyInRange(day, classroom, startTime, endTime) {
                 continue;
             }
 
-            const lectureStart = convertTimeToMinutes(lecture.startTime);
-            const lectureEnd = convertTimeToMinutes(lecture.endTime);
+            const lectureStart = timeToMinutes(lecture.startTime);
+            const lectureEnd = timeToMinutes(lecture.endTime);
 
             if (rangeStart < lectureEnd && lectureStart < rangeEnd) {
                 return true;
@@ -326,7 +326,7 @@ function getPeriodSlotsForDay(day) {
     });
 
     return Array.from(slotMap.values()).sort(
-        (a, b) => convertTimeToMinutes(a.startTime) - convertTimeToMinutes(b.startTime)
+        (a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime)
     );
 
 }
@@ -339,6 +339,6 @@ module.exports = {
     getTodayLectureList,
     getBusyClassrooms,
     isClassroomBusyInRange,
-    getPeriodSlotsForDay,
-    getRawTimetable
+    getRawTimetable,
+    getPeriodSlotsForDay
 };

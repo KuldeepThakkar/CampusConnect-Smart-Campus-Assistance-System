@@ -5832,9 +5832,15 @@
         {
           "startTime": "14:30",
           "endTime": "15:20",
-          "subject": "Engineering Mathematics II",
-          "faculty": "Prof. Pandya",
-          "classroom": "LH-42"
+          "subject": "",
+          "faculty": "",
+          "classroom": ""
+        },{
+          "startTime": "15:20",
+          "endTime": "16:20",
+          "subject": "BREAK",
+          "faculty": "",
+          "classroom": ""
         }
       ],
       "Thursday": [

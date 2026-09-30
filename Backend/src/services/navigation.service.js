@@ -110,67 +110,9 @@ async function navigate(data) {
 }
 
 
-async function navigateToNextClass(data) {
 
-    const {
-        latitude,
-        longitude,
-        department,
-        branch,
-        semester,
-        division,
-        currentDate
-    } = data;
-
-    const lectureResult = timetableService.getNextLecture(
-        department,
-        branch,
-        Number(semester),
-        division,
-        currentDate ? new Date(currentDate) : new Date()
-    );
-
-    if (!lectureResult.lecture) {
-
-        return {
-            success: false,
-            status: lectureResult.status,
-            day: lectureResult.day,
-            currentTime: lectureResult.currentTime,
-            message: "No lecture available for navigation."
-        };
-
-    }
-
-    const navigationResult = await navigate({
-        latitude,
-        longitude,
-        classroom: lectureResult.lecture.classroom
-    });
-
-    if (!navigationResult.success) {
-        return navigationResult;
-    }
-
-    return {
-        success: true,
-        status: lectureResult.status,
-        day: lectureResult.day,
-        currentTime: lectureResult.currentTime,
-        lecture: lectureResult.lecture,
-        navigation: {
-            path: navigationResult.path,
-            distance: navigationResult.distance,
-            insideCampus: navigationResult.insideCampus,
-            offCampusPath: navigationResult.offCampusPath,
-            arrived: navigationResult.arrived
-        }
-    };
-
-}
 
 
 module.exports = {
-    navigate,
-    navigateToNextClass
+    navigate
 };
