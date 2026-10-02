@@ -5,11 +5,17 @@ function EventCard({ event, currentUser, onDelete, isDeleting }) {
         (currentUser.role === "teacher" && event.createdBy === currentUser.id)
     );
 
+    const todayDateStr = new Date().toLocaleDateString("en-CA");
+    const isPast = event.eventDate < todayDateStr;
+
     return (
         <div className="card">
 
             <div className="card-header">
                 <h2>{event.eventName}</h2>
+                <span className={`badge ${isPast ? "badge-upcoming" : "badge-on-campus"}`}>
+                    {isPast ? "Past" : "Upcoming"}
+                </span>
             </div>
 
             <div className="card-row">
