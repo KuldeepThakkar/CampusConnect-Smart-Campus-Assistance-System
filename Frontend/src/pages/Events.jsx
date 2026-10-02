@@ -45,11 +45,14 @@ function Events() {
 
     return (
         <div>
+            <Link to="/" className="btn-retry" style={{ display: "inline-block", marginBottom: "16px", textDecoration: "none" }}>
+                ← Home
+            </Link>
             <h2>Events</h2>
 
             {canCreateEvent && (
-                <Link to="/create-event" className="btn-primary" style={{ display: "inline-block", textAlign: "center", textDecoration: "none", marginBottom: "16px" }}>
-                    Create Event
+                <Link to="/create-event" style={{ display: "block", marginBottom: "16px", textDecoration: "none" }}>
+                    <button type="button" className="btn-primary">Create Event</button>
                 </Link>
             )}
 
