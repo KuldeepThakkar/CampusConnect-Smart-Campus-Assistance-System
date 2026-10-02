@@ -27,6 +27,9 @@ function Home() {
                         <Link to="/free-classrooms">
                             <button type="button" className="btn-primary">Free Classroom</button>
                         </Link>
+                        <Link to="/events">
+                            <button type="button" className="btn-primary">Events</button>
+                        </Link>
                     </>
                 )}
 
@@ -37,6 +40,9 @@ function Home() {
                         </Link>
                         <Link to="/teacher-dashboard">
                             <button type="button" className="btn-primary">Reservation Classroom</button>
+                        </Link>
+                        <Link to="/events">
+                            <button type="button" className="btn-primary">Events</button>
                         </Link>
                     </>
                 )}
