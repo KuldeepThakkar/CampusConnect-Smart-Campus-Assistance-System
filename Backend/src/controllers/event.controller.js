@@ -7,7 +7,7 @@ async function createEvent(req, res) {
 
         const { eventName, eventDate, eventTime, location, description, coordinator } = req.body;
 
-        const result = await eventService.createEvent(req.user._id, {
+                const result = await eventService.createEvent(req.user._id, {
             eventName,
             eventDate,
             eventTime,
@@ -15,6 +15,10 @@ async function createEvent(req, res) {
             description,
             coordinator
         });
+
+        if (!result.success) {
+            return res.status(400).json(errorResponse(result.message));
+        }
 
         return res.status(201).json(
             successResponse(result.message, { event: result.event })

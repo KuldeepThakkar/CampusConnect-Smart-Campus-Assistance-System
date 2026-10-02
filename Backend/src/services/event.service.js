@@ -2,6 +2,17 @@ const Event = require("../models/event.model");
 
 async function createEvent(createdById, { eventName, eventDate, eventTime, location, description, coordinator }) {
 
+    const todayDateStr = new Date().toLocaleDateString("en-CA");
+
+    if (eventDate < todayDateStr) {
+
+        return {
+            success: false,
+            message: "Event date cannot be in the past"
+        };
+
+    }
+
     const event = await Event.create({
         eventName,
         eventDate,
