@@ -11,6 +11,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import NotFound from "../pages/NotFound";
 import FreeClassrooms from "../pages/FreeClassrooms";
 import TeacherDashboard from "../pages/TeacherDashboard";
+import Events from "../pages/Events";
 
 function AppRoutes(){
 
@@ -62,6 +63,15 @@ function AppRoutes(){
                     element={
                         <ProtectedRoute allowedRoles={["teacher"]}>
                             <TeacherDashboard />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/events"
+                    element={
+                        <ProtectedRoute allowedRoles={["student", "teacher"]}>
+                            <Events />
                         </ProtectedRoute>
                     }
                 />
