@@ -31,8 +31,6 @@ async function createEvent(createdById, { eventName, eventDate, eventTime, locat
 
 }
 
-// Sorted by date, newest-first — eventDate is "YYYY-MM-DD" so lexicographic
-// descending sort is also chronologically correct, no parsing needed.
 async function getAllEvents() {
 
     const events = await Event.find().sort({ eventDate: -1, eventTime: -1 });
@@ -41,7 +39,42 @@ async function getAllEvents() {
 
 }
 
+async function deleteEvent(user, eventId) {
+
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+
+        return {
+            success: false,
+            message: "Event not found"
+        };
+
+    }
+
+    const isOwner = event.createdBy.toString() === user._id.toString();
+    const isAdmin = user.role === "admin";
+
+    if (!isOwner && !isAdmin) {
+
+        return {
+            success: false,
+            message: "Event not found"
+        };
+
+    }
+
+    await Event.deleteOne({ _id: eventId });
+
+    return {
+        success: true,
+        message: "Event deleted successfully"
+    };
+
+}
+
 module.exports = {
     createEvent,
-    getAllEvents
+    getAllEvents,
+    deleteEvent
 };

@@ -1,4 +1,9 @@
-function EventCard({ event }) {
+function EventCard({ event, currentUser, onDelete, isDeleting }) {
+
+    const canDelete = currentUser && (
+        currentUser.role === "admin" ||
+        (currentUser.role === "teacher" && event.createdBy === currentUser.id)
+    );
 
     return (
         <div className="card">
@@ -31,6 +36,18 @@ function EventCard({ event }) {
                 <p className="status-text" style={{ marginTop: "12px", textAlign: "left" }}>
                     {event.description}
                 </p>
+            )}
+
+            {canDelete && (
+                <button
+                    type="button"
+                    className="btn-retry"
+                    style={{ marginTop: "12px" }}
+                    onClick={() => onDelete(event._id)}
+                    disabled={isDeleting}
+                >
+                    {isDeleting ? "Deleting..." : "Delete Event"}
+                </button>
             )}
 
         </div>

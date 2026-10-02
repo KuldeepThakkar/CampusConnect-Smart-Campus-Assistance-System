@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { getAllEvents } from "../services/event";
+import { getAllEvents, deleteEvent } from "../services/event";
 import { useAuth } from "../context/AuthContext";
 import EventCard from "../components/EventCard";
 
@@ -12,6 +12,9 @@ function Events() {
     const [events, setEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
+
+    const [deletingId, setDeletingId] = useState(null);
+    const [deleteError, setDeleteError] = useState(null);
 
     const loadEvents = async () => {
 
@@ -41,6 +44,30 @@ function Events() {
         loadEvents();
     }, []);
 
+    const handleDelete = async (eventId) => {
+
+        setDeleteError(null);
+        setDeletingId(eventId);
+
+        try {
+
+            await deleteEvent(eventId);
+            await loadEvents();
+
+        } catch (error) {
+
+            if (error.response) {
+                setDeleteError(error.response.data.message || "Couldn't delete this event.");
+            } else {
+                setDeleteError("Something went wrong. Please check your connection.");
+            }
+
+        } finally {
+            setDeletingId(null);
+        }
+
+    };
+
     const canCreateEvent = user?.role === "teacher" || user?.role === "admin";
 
     return (
@@ -48,6 +75,7 @@ function Events() {
             <Link to="/" className="btn-retry" style={{ display: "inline-block", marginBottom: "16px", textDecoration: "none" }}>
                 ← Home
             </Link>
+
             <h2>Events</h2>
 
             {canCreateEvent && (
@@ -64,6 +92,12 @@ function Events() {
                 </div>
             )}
 
+            {deleteError && (
+                <div className="error-box">
+                    <p>{deleteError}</p>
+                </div>
+            )}
+
             {!isLoading && !errorMessage && events.length === 0 && (
                 <p className="status-text">No events scheduled.</p>
             )}
@@ -71,7 +105,13 @@ function Events() {
             {events.length > 0 && (
                 <div className="results">
                     {events.map((event) => (
-                        <EventCard key={event._id} event={event} />
+                        <EventCard
+                            key={event._id}
+                            event={event}
+                            currentUser={user}
+                            onDelete={handleDelete}
+                            isDeleting={deletingId === event._id}
+                        />
                     ))}
                 </div>
             )}

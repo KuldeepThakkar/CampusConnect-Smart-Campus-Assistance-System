@@ -15,3 +15,11 @@ export const getAllEvents = async () => {
     return response.data;
 
 };
+
+export const deleteEvent = async (id) => {
+
+    const response = await api.delete(`/events/${id}`);
+
+    return response.data;
+
+};

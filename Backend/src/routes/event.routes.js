@@ -19,4 +19,11 @@ router.get(
     eventController.getAllEvents
 );
 
+router.delete(
+    "/:id",
+    authenticate,
+    authorize("teacher"),
+    eventController.deleteEvent
+);
+
 module.exports = router;

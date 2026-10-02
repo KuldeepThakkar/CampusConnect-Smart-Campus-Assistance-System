@@ -7,7 +7,7 @@ async function createEvent(req, res) {
 
         const { eventName, eventDate, eventTime, location, description, coordinator } = req.body;
 
-                const result = await eventService.createEvent(req.user._id, {
+        const result = await eventService.createEvent(req.user._id, {
             eventName,
             eventDate,
             eventTime,
@@ -50,7 +50,30 @@ async function getAllEvents(req, res) {
 
 }
 
+async function deleteEvent(req, res) {
+
+    try {
+
+        const { id } = req.params;
+
+        const result = await eventService.deleteEvent(req.user, id);
+
+        if (!result.success) {
+            return res.status(404).json(errorResponse(result.message));
+        }
+
+        return res.status(200).json(successResponse(result.message));
+
+    } catch (error) {
+
+        return res.status(500).json(errorResponse(error.message));
+
+    }
+
+}
+
 module.exports = {
     createEvent,
-    getAllEvents
+    getAllEvents,
+    deleteEvent
 };
