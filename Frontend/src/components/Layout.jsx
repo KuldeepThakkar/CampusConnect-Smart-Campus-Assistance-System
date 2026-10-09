@@ -1,6 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 
 import LogoutButton from "./LogoutButton";
+import NoticePopup from "./NoticePopup";
 import { useAuth } from "../context/AuthContext";
 
 function Layout(){
@@ -30,6 +31,7 @@ function Layout(){
                 <Outlet />
             </main>
 
+            {user?.role === "student" && <NoticePopup />}
 
         </div>
 
