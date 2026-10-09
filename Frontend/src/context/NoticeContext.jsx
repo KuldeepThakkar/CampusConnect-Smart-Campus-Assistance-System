@@ -98,7 +98,7 @@ export function NoticeProvider({ children }) {
     }, [refreshNotices]);
 
     // Only students get an isRead flag, so for teachers/admin this is 0.
-    const unreadCount = notices.filter((notice) => notice.isRead === false).length;
+    const unreadCount = notices.filter((notice) => notice.isRead === false).length; 
     return (
         <NoticeContext.Provider value={{ notices, unreadCount, isLoading, refreshNotices, markRead }}>
             {children}

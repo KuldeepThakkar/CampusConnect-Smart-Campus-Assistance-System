@@ -498,3 +498,47 @@ input:disabled {
   max-width: 300px;
   margin: var(--space-4) auto 0;
 }
+
+.notice-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.notice-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.notice-chevron {
+  color: var(--ink-light);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.notice-message {
+  margin: var(--space-3) 0 0;
+  color: var(--ink);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.unread-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--error);
+  flex-shrink: 0;
+}

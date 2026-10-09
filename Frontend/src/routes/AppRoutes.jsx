@@ -13,6 +13,7 @@ import FreeClassrooms from "../pages/FreeClassrooms";
 import TeacherDashboard from "../pages/TeacherDashboard";
 import Events from "../pages/Events";
 import CreateEvent from "../pages/CreateEvent";
+import NoticeBoard from "../pages/NoticeBoard";
 
 function AppRoutes(){
 
@@ -82,6 +83,15 @@ function AppRoutes(){
                     element={
                         <ProtectedRoute allowedRoles={["teacher"]}>
                             <CreateEvent />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/notices"
+                    element={
+                        <ProtectedRoute allowedRoles={["student", "teacher"]}>
+                            <NoticeBoard />
                         </ProtectedRoute>
                     }
                 />
