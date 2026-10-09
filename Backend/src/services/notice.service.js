@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Notice = require("../models/notice.model");
 
 async function createNotice(user, { title, message }) {
@@ -40,6 +41,34 @@ async function getAllNotices(user) {
 
 }
 
+// Marks the given notices as read for this user. Idempotent: $addToSet only
+// adds the user ID if it isn't already in readBy, so repeat calls change
+// nothing. Malformed IDs are dropped instead of failing the whole request.
+async function markNoticesRead(user, ids) {
+
+    const validIds = ids.filter((id) => mongoose.Types.ObjectId.isValid(id));
+
+    if (validIds.length === 0) {
+
+        return {
+            success: true,
+            message: "No notices to mark as read"
+        };
+
+    }
+
+    await Notice.updateMany(
+        { _id: { $in: validIds } },
+        { $addToSet: { readBy: user._id } }
+    );
+
+    return {
+        success: true,
+        message: "Notices marked as read"
+    };
+
+}
+
 // Strips readBy so it can never leak through an API response.
 function toPublicNotice(notice) {
 
@@ -57,5 +86,6 @@ function toPublicNotice(notice) {
 
 module.exports = {
     createNotice,
-    getAllNotices
+    getAllNotices,
+    markNoticesRead
 };

@@ -1,5 +1,6 @@
 const MAX_TITLE_LENGTH = 100;
 const MAX_MESSAGE_LENGTH = 1000;
+const MAX_IDS_PER_REQUEST = 100;
 
 function validateCreateNoticeRequest(req, res, next) {
 
@@ -31,6 +32,34 @@ function validateCreateNoticeRequest(req, res, next) {
 
 }
 
+function validateMarkReadRequest(req, res, next) {
+
+    const { ids } = req.body;
+
+    if (!Array.isArray(ids)) {
+        return res.status(400).json({ success: false, message: "ids must be an array" });
+    }
+
+    if (ids.length === 0) {
+        return res.status(400).json({ success: false, message: "ids must not be empty" });
+    }
+
+    if (ids.length > MAX_IDS_PER_REQUEST) {
+        return res.status(400).json({
+            success: false,
+            message: `ids must contain at most ${MAX_IDS_PER_REQUEST} items`
+        });
+    }
+
+    if (!ids.every((id) => typeof id === "string")) {
+        return res.status(400).json({ success: false, message: "ids must be strings" });
+    }
+
+    next();
+
+}
+
 module.exports = {
-    validateCreateNoticeRequest
+    validateCreateNoticeRequest,
+    validateMarkReadRequest
 };

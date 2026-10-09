@@ -3,7 +3,10 @@ const router = express.Router();
 
 const noticeController = require("../controllers/notice.controller");
 const { authenticate, authorize } = require("../middlewares/auth.middleware");
-const { validateCreateNoticeRequest } = require("../validations/notice.validation");
+const {
+    validateCreateNoticeRequest,
+    validateMarkReadRequest
+} = require("../validations/notice.validation");
 
 router.post(
     "/",
@@ -17,6 +20,14 @@ router.get(
     "/",
     authenticate,
     noticeController.getAllNotices
+);
+
+router.post(
+    "/read",
+    authenticate,
+    authorize("student"),
+    validateMarkReadRequest,
+    noticeController.markNoticesRead
 );
 
 module.exports = router;

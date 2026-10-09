@@ -39,7 +39,26 @@ async function getAllNotices(req, res) {
 
 }
 
+async function markNoticesRead(req, res) {
+
+    try {
+
+        const { ids } = req.body;
+
+        const result = await noticeService.markNoticesRead(req.user, ids);
+
+        return res.status(200).json(successResponse(result.message));
+
+    } catch (error) {
+
+        return res.status(500).json(errorResponse(error.message));
+
+    }
+
+}
+
 module.exports = {
     createNotice,
-    getAllNotices
+    getAllNotices,
+    markNoticesRead
 };
