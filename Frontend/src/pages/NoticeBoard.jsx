@@ -1,18 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 
+import { deleteNotice } from "../services/notice";
+import { useAuth } from "../context/AuthContext";
 import { useNotices } from "../context/NoticeContext";
 import NoticeCard from "../components/NoticeCard";
 
 function NoticeBoard() {
 
-    const { notices, isLoading, markRead } = useNotices();
+    const { notices, isLoading, markRead, refreshNotices } = useNotices();
     const { user } = useAuth();
 
-    const canCreateNotice = user?.role === "teacher" || user?.role === "admin";
-
     const [expandedId, setExpandedId] = useState(null);
+    const [deletingId, setDeletingId] = useState(null);
+    const [deleteError, setDeleteError] = useState(null);
+
+    const canCreateNotice = user?.role === "teacher" || user?.role === "admin";
 
     const handleToggle = async (notice) => {
 
@@ -27,6 +30,30 @@ function NoticeBoard() {
 
     };
 
+    const handleDelete = async (noticeId) => {
+
+        setDeleteError(null);
+        setDeletingId(noticeId);
+
+        try {
+
+            await deleteNotice(noticeId);
+            await refreshNotices();
+
+        } catch (error) {
+
+            if (error.response) {
+                setDeleteError(error.response.data.message || "Couldn't delete this notice.");
+            } else {
+                setDeleteError("Something went wrong. Please check your connection.");
+            }
+
+        } finally {
+            setDeletingId(null);
+        }
+
+    };
+
     return (
         <div>
             <Link to="/" className="btn-retry" style={{ display: "inline-block", marginBottom: "16px", textDecoration: "none" }}>
@@ -34,6 +61,7 @@ function NoticeBoard() {
             </Link>
 
             <h2>Notice Board</h2>
+
             {canCreateNotice && (
                 <Link to="/create-notice" style={{ display: "block", marginBottom: "16px", textDecoration: "none" }}>
                     <button type="button" className="btn-primary">Create Notice</button>
@@ -41,6 +69,12 @@ function NoticeBoard() {
             )}
 
             {isLoading && <p className="status-text">Loading notices...</p>}
+
+            {deleteError && (
+                <div className="error-box">
+                    <p>{deleteError}</p>
+                </div>
+            )}
 
             {!isLoading && notices.length === 0 && (
                 <p className="status-text">No notices yet.</p>
@@ -54,6 +88,9 @@ function NoticeBoard() {
                             notice={notice}
                             isExpanded={expandedId === notice._id}
                             onToggle={handleToggle}
+                            currentUser={user}
+                            onDelete={handleDelete}
+                            isDeleting={deletingId === notice._id}
                         />
                     ))}
                 </div>

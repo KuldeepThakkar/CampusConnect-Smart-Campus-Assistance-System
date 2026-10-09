@@ -69,6 +69,52 @@ async function markNoticesRead(user, ids) {
 
 }
 
+// Only the teacher who posted the notice (or an admin) can delete it.
+// A missing notice and someone else's notice return the same message, so
+// IDs can't be probed to find out which notices exist.
+async function deleteNotice(user, noticeId) {
+
+    if (!mongoose.Types.ObjectId.isValid(noticeId)) {
+
+        return {
+            success: false,
+            message: "Notice not found"
+        };
+
+    }
+
+    const notice = await Notice.findById(noticeId);
+
+    if (!notice) {
+
+        return {
+            success: false,
+            message: "Notice not found"
+        };
+
+    }
+
+    const isOwner = notice.createdBy.toString() === user._id.toString();
+    const isAdmin = user.role === "admin";
+
+    if (!isOwner && !isAdmin) {
+
+        return {
+            success: false,
+            message: "Notice not found"
+        };
+
+    }
+
+    await Notice.deleteOne({ _id: noticeId });
+
+    return {
+        success: true,
+        message: "Notice deleted successfully"
+    };
+
+}
+
 // Strips readBy so it can never leak through an API response.
 function toPublicNotice(notice) {
 
@@ -87,5 +133,6 @@ function toPublicNotice(notice) {
 module.exports = {
     createNotice,
     getAllNotices,
-    markNoticesRead
+    markNoticesRead,
+    deleteNotice
 };

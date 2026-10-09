@@ -23,3 +23,11 @@ export const markNoticesRead = async (ids) => {
     return response.data;
 
 };
+
+export const deleteNotice = async (id) => {
+
+    const response = await api.delete(`/notices/${id}`);
+
+    return response.data;
+
+};

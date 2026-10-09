@@ -30,4 +30,11 @@ router.post(
     noticeController.markNoticesRead
 );
 
+router.delete(
+    "/:id",
+    authenticate,
+    authorize("teacher"),
+    noticeController.deleteNotice
+);
+
 module.exports = router;

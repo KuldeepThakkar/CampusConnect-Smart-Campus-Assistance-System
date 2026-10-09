@@ -10,10 +10,16 @@ function formatPostedAt(isoString) {
 
 }
 
-function NoticeCard({ notice, isExpanded, onToggle }) {
+function NoticeCard({ notice, isExpanded, onToggle, currentUser, onDelete, isDeleting }) {
 
     // Only students get an isRead flag; teachers/admin never see a dot.
     const isUnread = notice.isRead === false;
+
+    // The server re-checks ownership, so this only controls visibility.
+    const canDelete = currentUser && (
+        currentUser.role === "admin" ||
+        (currentUser.role === "teacher" && notice.createdBy === currentUser.id)
+    );
 
     return (
         <div className="card">
@@ -37,6 +43,18 @@ function NoticeCard({ notice, isExpanded, onToggle }) {
 
             {isExpanded && (
                 <p className="notice-message">{notice.message}</p>
+            )}
+
+            {canDelete && (
+                <button
+                    type="button"
+                    className="btn-retry"
+                    style={{ marginTop: "12px" }}
+                    onClick={() => onDelete(notice._id)}
+                    disabled={isDeleting}
+                >
+                    {isDeleting ? "Deleting..." : "Delete Notice"}
+                </button>
             )}
 
         </div>
