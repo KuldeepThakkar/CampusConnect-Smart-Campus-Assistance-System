@@ -640,3 +640,15 @@ textarea:disabled {
   word-break: break-word;
   margin: 0 0 var(--space-2);
 }
+.btn-with-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+/* The default red dot disappears against the blue button less than you'd
+   expect, but a white ring keeps it clearly visible. */
+.unread-dot-on-button {
+  box-shadow: 0 0 0 2px #fff;
+}

@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
+import { useNotices } from "../context/NoticeContext";
 
 function Home() {
 
     const { user } = useAuth();
+    const { unreadCount } = useNotices();
 
     return (
         <div>
@@ -30,6 +32,12 @@ function Home() {
                         <Link to="/events">
                             <button type="button" className="btn-primary">Events</button>
                         </Link>
+                        <Link to="/notices">
+                            <button type="button" className="btn-primary btn-with-dot">
+                                Notice Board
+                                {unreadCount > 0 && <span className="unread-dot unread-dot-on-button" aria-label="Unread notices" />}
+                            </button>
+                        </Link>
                     </>
                 )}
 
@@ -43,6 +51,9 @@ function Home() {
                         </Link>
                         <Link to="/events">
                             <button type="button" className="btn-primary">Events</button>
+                        </Link>
+                        <Link to="/notices">
+                            <button type="button" className="btn-primary">Notice Board</button>
                         </Link>
                     </>
                 )}
