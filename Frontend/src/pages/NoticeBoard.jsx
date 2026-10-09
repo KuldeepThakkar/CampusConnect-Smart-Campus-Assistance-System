@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 import { useNotices } from "../context/NoticeContext";
 import NoticeCard from "../components/NoticeCard";
@@ -7,6 +8,9 @@ import NoticeCard from "../components/NoticeCard";
 function NoticeBoard() {
 
     const { notices, isLoading, markRead } = useNotices();
+    const { user } = useAuth();
+
+    const canCreateNotice = user?.role === "teacher" || user?.role === "admin";
 
     const [expandedId, setExpandedId] = useState(null);
 
@@ -30,6 +34,11 @@ function NoticeBoard() {
             </Link>
 
             <h2>Notice Board</h2>
+            {canCreateNotice && (
+                <Link to="/create-notice" style={{ display: "block", marginBottom: "16px", textDecoration: "none" }}>
+                    <button type="button" className="btn-primary">Create Notice</button>
+                </Link>
+            )}
 
             {isLoading && <p className="status-text">Loading notices...</p>}
 

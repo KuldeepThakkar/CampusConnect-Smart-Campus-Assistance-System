@@ -542,3 +542,27 @@ input:disabled {
   background: var(--error);
   flex-shrink: 0;
 }
+
+textarea {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px;
+  resize: vertical;
+}
+
+textarea:focus-visible {
+  outline: 2px solid var(--route-blue);
+  outline-offset: 1px;
+  border-color: var(--route-blue);
+}
+
+textarea:disabled {
+  background: #F3F3F1;
+  color: var(--ink-light);
+  cursor: not-allowed;
+}

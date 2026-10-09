@@ -14,6 +14,7 @@ import TeacherDashboard from "../pages/TeacherDashboard";
 import Events from "../pages/Events";
 import CreateEvent from "../pages/CreateEvent";
 import NoticeBoard from "../pages/NoticeBoard";
+import CreateNotice from "../pages/CreateNotice";
 
 function AppRoutes(){
 
@@ -92,6 +93,15 @@ function AppRoutes(){
                     element={
                         <ProtectedRoute allowedRoles={["student", "teacher"]}>
                             <NoticeBoard />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/create-notice"
+                    element={
+                        <ProtectedRoute allowedRoles={["teacher"]}>
+                            <CreateNotice />
                         </ProtectedRoute>
                     }
                 />
